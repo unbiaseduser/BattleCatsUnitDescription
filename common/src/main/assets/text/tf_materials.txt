@@ -1,0 +1,19 @@
+6|xp|XP
+30|purple_seed|Purple Catfruit Seed
+31|red_seed|Red Catfruit Seed
+32|blue_seed|Blue Catfruit Seed
+33|green_seed|Green Catfruit Seed
+34|yellow_seed|Yellow Catfruit Seed
+35|purple|Purple Catfruit
+36|red|Red Catfruit
+37|blue|Blue Catfruit
+38|green|Green Catfruit
+39|yellow|Yellow Catfruit
+40|epic|Epic Catfruit
+41|elder_seed|Elder Catfruit Seed
+42|elder|Elder Catfruit
+43|epic_seed|Epic Catfruit Seed
+44|gold|Gold Catfruit
+160|aku_seed|Aku Catfruit Seed
+161|aku|Aku Catfruit
+164|gold_seed|Gold Catfruit Seed

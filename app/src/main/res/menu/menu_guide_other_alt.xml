@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/text_search"
+        android:icon="@drawable/text_format"
+        android:title="@string/highlight_text"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/go_to_combos"
+        android:title="@string/view_catcombos"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/guide_other_go_to_website"
+        android:icon="@drawable/web"
+        android:title="@string/go_to_website"
+        app:showAsAction="ifRoom" />
+
+</menu>

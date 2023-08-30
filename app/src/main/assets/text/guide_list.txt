@@ -1,0 +1,14 @@
+Progress Outline|progress_outline.md|https://thanksfeanor.pythonanywhere.com/guides/documents/progress-outline.html
+ItF + Early SoL Guide|early_sol_itf.md|https://thanksfeanor.pythonanywhere.com/guides/documents/itf.html
+CotC Guide|cotc.md|https://thanksfeanor.pythonanywhere.com/guides/documents/cotc.html
+Advents Guide|-|https://thanksfeanor.pythonanywhere.com/guides/documents/advents.html
+Legend Quest Info & Details|legend_quest.md|https://thanksfeanor.pythonanywhere.com/guides/documents/legend-quest.html
+Improving your Legend Quest winrate|legend_quest_improv.md|https://thanksfeanor.pythonanywhere.com/guides/documents/improving-your-lq-winrate.html
+Battle Cats Terminology|terminology.md|https://thanksfeanor.pythonanywhere.com/guides/documents/terminology.html
+Almost Everything About Attacks|everything_atk.md|https://thanksfeanor.pythonanywhere.com/guides/documents/almost-everything-about-attacks.html
+Attack Timings (condensed)|atk_timing_condensed.md|https://thanksfeanor.pythonanywhere.com/guides/documents/attack-timings.html
+Leveling and Stat Mechanics|leveling_stat.md|https://thanksfeanor.pythonanywhere.com/guides/documents/levelling-and-stat-mechanics.html
+Gamatoto Mechanics|gamatoto.md|https://thanksfeanor.pythonanywhere.com/guides/documents/gamatoto-mechanics.html
+Cannons Guide|cannons.md|https://thanksfeanor.pythonanywhere.com/guides/documents/cannons.html
+Cat Combo Guide|combos.md|https://thanksfeanor.pythonanywhere.com/guides/documents/catcombos.html
+Account Recovery Guide|account_recovery.md|https://thanksfeanor.pythonanywhere.com/guides/documents/account-recovery-guide.html

@@ -1,0 +1,10 @@
+<resources>
+    <string-array name="list_modes_entry_values" translatable="false">
+        <item>list</item>
+        <item>grid</item>
+    </string-array>
+    <string-array name="advent_guide_view_modes_entry_values" translatable="false">
+        <item>tabs</item>
+        <item>texts</item>
+    </string-array>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="max_priority">Maximum Priority</string>
+    <string name="top_priority">Top Priority</string>
+    <string name="high_priority">High Priority</string>
+    <string name="medium_priority">Medium Priority</string>
+    <string name="low_priority">Low Priority</string>
+    <string name="do_not_unlock">Do Not Unlock</string>
+    <string name="min_priority">Minimum Priority</string>
+    <string name="rare_super_special">Rare/Super/Special</string>
+    <string name="uber">Uber</string>
+    <string name="special">Special</string>
+    <string name="rare">Rare</string>
+    <string name="super_rare">Super Rare</string>
+    <string name="story_legends">Story Legends</string>
+    <string name="rares">Rares</string>
+    <string name="super_rares">Super Rares</string>
+    <string name="ubers">Ubers</string>
+    <string name="legend_rares">Legend Rares</string>
+    <string name="cf_specials">CF Specials</string>
+    <string name="advent_drops">Advent Drops</string>
+    <string name="elder">Elder</string>
+    <string name="epic">Epic</string>
+</resources>

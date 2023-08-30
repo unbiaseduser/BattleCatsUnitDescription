@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main_fragment">
+
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.MainFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/main_to_tf_material_data"
+            app:destination="@id/tf_material_data_fragment" />
+        <action
+            android:id="@+id/action_main_fragment_to_talentDataFragment"
+            app:destination="@id/talentDataFragment" />
+        <action
+            android:id="@+id/action_main_fragment_to_hypermaxDataFragment"
+            app:destination="@id/hypermaxDataFragment" />
+        <action
+            android:id="@+id/action_main_fragment_to_baseDataFragment"
+            app:destination="@id/baseDataFragment" />
+        <action
+            android:id="@+id/action_main_fragment_to_EEPDataFragment"
+            app:destination="@id/EEPDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tf_material_data_fragment"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.TFMaterialDataFragment"
+        android:label="@string/tf_material_navigation_item"
+        tools:layout="@layout/fragment_tf_material_data">
+        <action
+            android:id="@+id/show_add_unit_tf_material_data_dialog"
+            app:destination="@id/add_unit_tf_material_data_dialog"/>
+        <action
+            android:id="@+id/show_edit_unit_tf_material_data_dialog"
+            app:destination="@id/edit_unit_tf_material_data_dialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/add_unit_tf_material_data_dialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddUnitTFMaterialDataDialog"
+        tools:layout="@layout/dialog_add_unit_tf_material_data">
+        <argument
+            android:name="existing_unit_ids"
+            app:argType="integer[]"/>
+        <action
+            android:id="@+id/show_add_tf_material_dialog"
+            app:destination="@id/add_tf_material_dialog" />
+        <action
+            android:id="@+id/show_edit_tf_material_dialog"
+            app:destination="@id/edit_tf_material_dialog" />
+    </dialog>
+    <dialog
+        android:id="@+id/add_tf_material_dialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddTFMaterialDialog"
+        tools:layout="@layout/dialog_add_tf_material">
+        <argument
+            android:name="existing_tf_material_indices"
+            app:argType="integer[]"/>
+    </dialog>
+    <dialog
+        android:id="@+id/edit_unit_tf_material_data_dialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditUnitTFMaterialDataDialog"
+        tools:layout="@layout/dialog_add_unit_tf_material_data">
+        <argument
+            android:name="existing_unit_ids"
+            app:argType="integer[]"/>
+        <argument
+            android:name="existing_data"
+            app:argType="com.sixtyninefourtwenty.common.objects.UnitTFMaterialData"/>
+        <action
+            android:id="@+id/show_add_tf_material_dialog"
+            app:destination="@id/add_tf_material_dialog" />
+        <action
+            android:id="@+id/show_edit_tf_material_dialog"
+            app:destination="@id/edit_tf_material_dialog" />
+    </dialog>
+    <dialog
+        android:id="@+id/edit_tf_material_dialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditTFMaterialDialog"
+        tools:layout="@layout/dialog_add_tf_material">
+        <argument
+            android:name="existing_material"
+            app:argType="com.sixtyninefourtwenty.common.objects.TFMaterialData"/>
+        <argument
+            android:name="existing_tf_material_indices"
+            app:argType="integer[]"/>
+    </dialog>
+    <dialog
+        android:id="@+id/addTalentDialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddTalentDialog"
+        tools:layout="@layout/dialog_add_talent">
+        <argument
+            android:name="existing_talent_indices"
+            app:argType="integer[]"/>
+    </dialog>
+    <dialog
+        android:id="@+id/editTalentDialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditTalentDialog"
+        tools:layout="@layout/dialog_add_talent">
+        <argument
+            android:name="existing_talent"
+            app:argType="com.sixtyninefourtwenty.common.objects.TalentData"/>
+        <argument
+            android:name="existing_talent_indices"
+            app:argType="integer[]"/>
+    </dialog>
+    <dialog
+        android:id="@+id/addUnitTalentDataDialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddUnitTalentDataDialog"
+        tools:layout="@layout/dialog_add_unit_talent_data">
+        <argument
+            android:name="existing_unit_ids"
+            app:argType="integer[]"/>
+        <action
+            android:id="@+id/action_addUnitTalentDataDialog_to_addTalentDialog"
+            app:destination="@id/addTalentDialog" />
+        <action
+            android:id="@+id/action_addUnitTalentDataDialog_to_editTalentDialog"
+            app:destination="@id/editTalentDialog" />
+    </dialog>
+    <dialog
+        android:id="@+id/editUnitTalentDataDialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditUnitTalentDataDialog"
+        tools:layout="@layout/dialog_add_unit_talent_data">
+        <argument
+            android:name="existing_unit_ids"
+            app:argType="integer[]"/>
+        <argument
+            android:name="existing_data"
+            app:argType="com.sixtyninefourtwenty.common.objects.UnitTalentData"/>
+        <action
+            android:id="@+id/action_editUnitTalentDataDialog_to_addTalentDialog"
+            app:destination="@id/addTalentDialog" />
+        <action
+            android:id="@+id/action_editUnitTalentDataDialog_to_editTalentDialog"
+            app:destination="@id/editTalentDialog" />
+    </dialog>
+    <fragment
+        android:id="@+id/talentDataFragment"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.TalentDataFragment"
+        android:label="@string/talents"
+        tools:layout="@layout/fragment_talent_data" >
+        <action
+            android:id="@+id/action_talentDataFragment_to_editUnitTalentDataDialog"
+            app:destination="@id/editUnitTalentDataDialog" />
+        <action
+            android:id="@+id/action_talentDataFragment_to_addUnitTalentDataDialog"
+            app:destination="@id/addUnitTalentDataDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/hypermaxDataFragment"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.HypermaxDataFragment"
+        android:label="@string/hypermax_priority"
+        tools:layout="@layout/fragment_hypermax_data" >
+        <action
+            android:id="@+id/action_hypermaxDataFragment_to_addUnitHypermaxDataDialog"
+            app:destination="@id/addUnitHypermaxDataDialog" />
+        <action
+            android:id="@+id/action_hypermaxDataFragment_to_editUnitHypermaxDataDialog"
+            app:destination="@id/editUnitHypermaxDataDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/addUnitHypermaxDataDialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddUnitHypermaxDataDialog"
+        tools:layout="@layout/dialog_add_unit_hypermax_data">
+        <argument
+            android:name="existing_unit_ids"
+            app:argType="integer[]"/>
+    </dialog>
+    <dialog
+        android:id="@+id/editUnitHypermaxDataDialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditUnitHypermaxDataDialog"
+        tools:layout="@layout/dialog_add_unit_hypermax_data">
+        <argument
+            android:name="existing_unit_ids"
+            app:argType="integer[]"/>
+        <argument
+            android:name="existing_data"
+            app:argType="com.sixtyninefourtwenty.common.objects.UnitHypermaxData"/>
+    </dialog>
+    <fragment
+        android:id="@+id/baseDataFragment"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.BaseDataFragment"
+        android:label="@string/unit_base_data" >
+        <action
+            android:id="@+id/action_baseDataFragment_to_addUnitBaseDataDialog"
+            app:destination="@id/addUnitBaseDataDialog" />
+        <action
+            android:id="@+id/action_baseDataFragment_to_editUnitBaseDataDialog"
+            app:destination="@id/editUnitBaseDataDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/addUnitBaseDataDialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddUnitBaseDataDialog"
+        android:label="AddUnitBaseDataDialog">
+        <argument
+            android:name="existing_unit_ids"
+            app:argType="integer[]"/>
+    </dialog>
+    <dialog
+        android:id="@+id/editUnitBaseDataDialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditUnitBaseDataDialog"
+        android:label="EditUnitBaseDataDialog">
+        <argument
+            android:name="existing_unit_ids"
+            app:argType="integer[]"/>
+        <argument
+            android:name="existing_data"
+            app:argType="com.sixtyninefourtwenty.common.objects.UnitBaseData"/>
+    </dialog>
+    <fragment
+        android:id="@+id/EEPDataFragment"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.EEPDataFragment"
+        android:label="@string/elder_epic_tf_priority"
+        tools:layout="@layout/fragment_eep_data" >
+        <action
+            android:id="@+id/action_EEPDataFragment_to_editUnitEEPDialog"
+            app:destination="@id/editUnitEEPDialog" />
+        <action
+            android:id="@+id/action_EEPDataFragment_to_addUnitEEPDialog"
+            app:destination="@id/addUnitEEPDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/addUnitEEPDialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddUnitEEPDataDialog"
+        tools:layout="@layout/dialog_add_unit_eep_data">
+        <argument
+            android:name="existing_datas"
+            app:argType="com.sixtyninefourtwenty.common.objects.UnitEEPriorityData[]"/>
+    </dialog>
+    <dialog
+        android:id="@+id/editUnitEEPDialog"
+        android:name="com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditUnitEEPDataDialog"
+        tools:layout="@layout/dialog_add_unit_eep_data">
+        <argument
+            android:name="existing_datas"
+            app:argType="com.sixtyninefourtwenty.common.objects.UnitEEPriorityData[]"/>
+        <argument
+            android:name="existing_data"
+            app:argType="com.sixtyninefourtwenty.common.objects.UnitEEPriorityData"/>
+    </dialog>
+</navigation>

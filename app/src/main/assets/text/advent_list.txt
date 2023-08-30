@@ -1,0 +1,17 @@
+edi_271.png|Queen B|advent_queen_b_intro.md|advent_queen_b_wrath.md|advent_queen_b_revenge.md|https://battle-cats.fandom.com/wiki/Queen_B_(Alien/Floating)
+edi_493.png|Queen Mother V|advent_queen_v_intro.md|-|-|https://battle-cats.fandom.com/wiki/Queen_Mother_V_(Relic/Floating)
+edi_317.png|Daboo of the Dead|advent_daboo_intro.md|advent_daboo_wrath.md|advent_daboo_revenge.md|https://battle-cats.fandom.com/wiki/Daboo_of_the_Dead_(Zombie)
+edi_492.png|Heavenly Herald Papuu|advent_papuu_intro.md|-|-|https://battle-cats.fandom.com/wiki/Heavenly_Herald_Papuu_(Angel)
+edi_257.png|King Wahwah|advent_wahwah_intro.md|advent_wahwah_wrath.md|advent_wahwah_revenge.md|https://battle-cats.fandom.com/wiki/King_Wahwah
+edi_506.png|Everlord Wanwan|advent_wanwan_intro.md|-|-|https://battle-cats.fandom.com/wiki/Everlord_Wanwan_(Alien)
+edi_232.png|Cruel Angel Clionel|advent_clionel_intro.md|advent_clionel_wrath.md|advent_clionel_revenge.md|https://battle-cats.fandom.com/wiki/Cruel_Angel_Clionel_(Angel)
+edi_511.png|Death Angel Z-Onel|advent_zonel_intro.md|-|-|https://battle-cats.fandom.com/wiki/Death_Angel_Z-Onel_(Zombie)
+edi_431.png|Bakoo|advent_bakoo_intro.md|advent_bakoo_wrath.md|advent_bakoo_revenge.md|https://battle-cats.fandom.com/wiki/Bakoo_(Black)
+edi_514.png|Doremi|advent_doremi_intro.md|-|-|https://battle-cats.fandom.com/wiki/Doremi
+edi_267.png|Hannya|advent_hannya_intro.md|advent_hannya_wrath.md|advent_hannya_revenge.md|https://battle-cats.fandom.com/wiki/Hannya_(Red)
+edi_491.png|Black Okame|advent_okame_intro.md|advent_okame_wrath.md|advent_okame_revenge.md|https://battle-cats.fandom.com/wiki/Black_Okame_(Red/Black)
+edi_585.png|Sathankhamun VIII|advent_sathankhamun_intro.md|-|-|https://battle-cats.fandom.com/wiki/Sathankhamun_VIII_(Aku)
+edi_573.png|Possessed Empress Cat|advent_empress_intro.md|-|-|https://battle-cats.fandom.com/wiki/Possessed_Empress_(Aku)
+edi_535.png|Evil Emperor Cat|advent_emperor_intro.md|-|-|https://battle-cats.fandom.com/wiki/Evil_Emperor_Cat_(Relic)
+edi_495.png|Kappy Jr.|advent_kappy_intro_and_wrath.md|advent_kappy_intro_and_wrath.md|advent_kappy_revenge.md|https://battle-cats.fandom.com/wiki/Kappy_Jr.
+edi_479.png|Puffsley's Comet|advent_puffsley_intro.md|-|-|https://battle-cats.fandom.com/wiki/Puffsley%27s_Comet_(Alien)

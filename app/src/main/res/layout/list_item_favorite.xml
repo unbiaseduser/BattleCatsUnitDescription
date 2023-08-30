@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <github.com.st235.swipetoactionlayout.SwipeToActionLayout
+        android:id="@+id/sal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:sal_items="@menu/menu_popup_favorite_item">
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/unit_icon"
+                android:layout_width="55dp"
+                android:layout_height="42.5dp"
+                android:layout_margin="6dp"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/unit_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"/>
+
+            <CheckBox
+                android:id="@+id/cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:clickable="false"
+                android:background="@null"
+                android:checked="true"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </github.com.st235.swipetoactionlayout.SwipeToActionLayout>
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/expand_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:el_expanded="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reasons"
+                android:textSize="18sp"
+                android:gravity="center"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reasons_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+</LinearLayout>

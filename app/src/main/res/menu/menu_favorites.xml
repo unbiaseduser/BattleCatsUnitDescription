@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/import_export"
+        android:title="@string/import_export">
+
+        <menu>
+
+            <item
+                android:id="@+id/import_fav"
+                android:title="@string/import_fav"/>
+
+            <item
+                android:id="@+id/export_fav"
+                android:title="@string/export"/>
+
+        </menu>
+
+    </item>
+
+</menu>

@@ -1,0 +1,341 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="hello_blank_fragment">idk</string>
+    <string name="app_name">Battle Cats Unit Description</string>
+    <string name="app_icon">App icon</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Battle Cats Unit Description</string>
+    <string name="nav_header_subtitle">View Unit Description Project\'s content offline</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="menu_udp">Unit Descriptions</string>
+    <string name="menu_guides">Guides</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About</string>
+    <string name="story_legends">Story Legends</string>
+    <string name="rares">Rares</string>
+    <string name="super_rares">Super Rares</string>
+    <string name="ubers">Ubers</string>
+    <string name="legend_rares">Legend Rares</string>
+    <string name="useful_to_own_by">Useful to Own By:</string>
+    <string name="useful_to_tf_by">Useful to TF By:</string>
+    <string name="tf_costs">True Form Costs</string>
+    <string name="talents">Talents</string>
+    <string name="talent">Talent</string>
+    <string name="talent_priority">Priority</string>
+    <string name="hypermax_priority">Hypermax Priority:</string>
+    <string name="description">Description</string>
+    <string name="back">Back</string>
+    <string name="search">Search</string>
+    <string name="help_pins">Help Pins</string>
+    <string name="search_hint">Search Units…</string>
+    <string name="unit_info">Unit Info</string>
+    <string name="cf_specials">CF Specials</string>
+    <string name="advent_drops">Advent Drops</string>
+    <string name="guide_detail">Guide Details</string>
+    <string name="got_it">Got it</string>
+    <string name="tab_intro">Introduction</string>
+    <string name="tab_list_bosses">Bosses</string>
+    <string name="tab_advent_intro">Intro</string>
+    <string name="tab_non_uber">Non-Ubers</string>
+    <string name="tab_elder">Elder Fruit</string>
+    <string name="tab_epic">Epic Seed</string>
+    <string name="tab_special">Special</string>
+    <string-array name="hypermax_priorities">
+        <item>Maximum Priority</item>
+        <item>High Priority</item>
+        <item>Medium Priority</item>
+        <item>Low Priority</item>
+        <item>Minimum Priority</item>
+    </string-array>
+    <string-array name="talent_priorities">
+        <item>Top Priority</item>
+        <item>High Priority</item>
+        <item>Medium Priority</item>
+        <item>Low Priority</item>
+        <item>Do Not Unlock</item>
+    </string-array>
+    <string name="reason">Reason</string>
+    <string-array name="xp_curves">
+        <item>Regular Rare Cat Curve</item>
+        <item>Regular Super Rare Cat Curve</item>
+        <item>Regular Uber Rare/Legend Rare/Legends Cat Curve</item>
+        <item>Bahamut Cat Curve</item>
+        <item>Crazed Cat Curve</item>
+        <item>Crazed Tank Cat Curve</item>
+        <item>Crazed Axe Cat Curve</item>
+        <item>Crazed Gross Cat Curve</item>
+        <item>Crazed Bird Cat Curve</item>
+        <item>Crazed Fish Cat Curve</item>
+        <item>Crazed Lizard Cat Curve</item>
+        <item>Crazed Titan Cat Curve</item>
+    </string-array>
+    <string name="xp_upgrade_costs">XP Upgrade Costs</string>
+    <string name="talent_priority_list">Talent Priority</string>
+    <string name="hypermax_priority_list">Hypermax Priority</string>
+    <string name="elder_epic_tf_priority">Elder/Epic TF Priority</string>
+    <string name="advents_guide">Advents Guide</string>
+    <string name="advent_stage_details">Stage Details</string>
+    <string name="appearance">Appearance</string>
+    <string name="toggle_list_mode">Toggle list view mode</string>
+    <string name="app_license">App license</string>
+    <string name="third_party_licenses">Third party licenses</string>
+    <string name="gpl_3">GNU General Public License 3.0</string>
+    <string name="apache_2">Apache License 2.0</string>
+    <string name="mit">MIT License</string>
+    <string name="unlicense">The Unlicense</string>
+    <string name="cannot_open_website">Can\'t open website, do you have a browser installed?</string>
+    <string name="app_version">Version: %s</string>
+    <string name="dont_ask_confirmation_again">Don\'t ask for confirmations again</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="behavior">Behavior</string>
+    <string name="ask_for_confirmation">Ask for confirmation</string>
+    <string name="ask_for_confirmation_subtext">Before opening website links</string>
+    <string name="go_to_website">Go to website</string>
+    <string name="setting_show_dialog_reminder">You can always choose to show these dialogs again via Settings > Show \"open website\" dialogs</string>
+    <string name="nothing_chosen">Nothing is chosen, cancelling…</string>
+    <string name="toggle_advent_guide_view">Toggle guide view mode</string>
+    <string name="prompt_toggle_guide_view">Do you want to view this guide in %s?</string>
+    <string name="tab_view">tab view</string>
+    <string name="full_doc_view">full document</string>
+    <string name="use_table_of_contents">Use Table of Contents</string>
+    <string name="use_table_of_contents_summary">Applies to Guides and Talent Priority</string>
+    <string name="export_success">Export successful</string>
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
+    <string name="useful_to_unlock_talents_by">Useful to Unlock Talents By:</string>
+    <string name="advent_boss_info">Boss info</string>
+    <string name="tf_priority_reason">Reason</string>
+    <string name="app_info">App info</string>
+    <string name="acknowledgements">Acknowledgements</string>
+    <string name="launch">Launch</string>
+    <string name="download">Download</string>
+    <string name="contribute">Contribute</string>
+    <string name="udp_feedback">UDP Feedback</string>
+    <string name="udp_donations">UDP Donations</string>
+    <string name="udp_credits">UDP Credits</string>
+    <string name="percent">%</string>
+    <string name="not_recently_used">Not recently used</string>
+    <string name="first_installed">First installed: %s</string>
+    <string name="last_updated">Last updated: %s</string>
+    <string name="view_on_wiki">View on Wiki</string>
+    <string name="ponos_quotes">PONOS\' Quotes</string>
+    <string name="license">License</string>
+    <string name="website">Website</string>
+    <string name="third_party_copyright">Copyright %d by %s under %s</string>
+    <string name="third_party_copyright_no_year">Copyright by %s under %s</string>
+    <string name="combo_type_level">%s Up (%s)</string>
+    <string name="unit_id">ID: %d</string>
+    <string name="random_unit">Random unit</string>
+    <string name="combo_atk">Unit Attack</string>
+    <string name="combo_def">Unit Defense</string>
+    <string name="combo_spd">Unit Speed</string>
+    <string name="combo_cannon_start">Cannon Start Level</string>
+    <string name="combo_worker_start">Worker Cat Start Level</string>
+    <string name="combo_starting_money">Starting Money</string>
+    <string name="combo_cannon_power">Cat Cannon Power</string>
+    <string name="combo_cannon_recharge">Cat Cannon Recharge</string>
+    <string name="combo_worker_speed">Worker Cat Speed</string>
+    <string name="combo_worker_max">Worker Cat Max</string>
+    <string name="combo_base_def">Cat Base Defense</string>
+    <string name="combo_research">Research Power</string>
+    <string name="combo_accounting">Accounting Power</string>
+    <string name="combo_study">Study Power</string>
+    <string name="combo_strong">\"Strong\" Effect</string>
+    <string name="combo_massive">\"Massive Damage\" Effect</string>
+    <string name="combo_resist">\"Resistant\" Effect</string>
+    <string name="combo_kb">\"Knockback\" Effect</string>
+    <string name="combo_slow">\"Slow\" Effect</string>
+    <string name="combo_freeze">\"Freeze\" Effect</string>
+    <string name="combo_weaken">\"Weaken\" Effect</string>
+    <string name="combo_strengthen">\"Strengthen\" Effect</string>
+    <string name="combo_witch">\"Witch Killer\" Effect</string>
+    <string name="combo_eva">\"Eva Angel Killer\" Effect</string>
+    <string name="combo_critical">\"Critical\" Rate</string>
+    <string name="catcombos">CatCombos</string>
+    <string name="view_catcombos">View CatCombos</string>
+    <string name="refresh">Refresh</string>
+    <string name="usage_stats">Usage Stats</string>
+    <string name="unit_traits">Unit Traits</string>
+    <string name="attack">Attack</string>
+    <string name="defense">Defense</string>
+    <string name="move_speed">Move Speed</string>
+    <string name="unit_abilities">Unit Abilities</string>
+    <string name="strong">Strong</string>
+    <string name="massive">Massive Damage</string>
+    <string name="resistant">Resistant</string>
+    <string name="knockback">Knockback</string>
+    <string name="slow">Slow</string>
+    <string name="freeze">Freeze</string>
+    <string name="weaken">Weaken</string>
+    <string name="strengthen">Strengthen</string>
+    <string name="critical">Critical</string>
+    <string name="cat_base">Cat Base</string>
+    <string name="starting_cannon">Starting Cannon</string>
+    <string name="attack_power">Attack Power</string>
+    <string name="recharge_speed">Recharge Speed</string>
+    <string name="base_defense">Base Defense</string>
+    <string name="money_worker_cat">Money - Worker Cat</string>
+    <string name="starting_money">Starting Money</string>
+    <string name="starting_level">Starting Level</string>
+    <string name="wallet">Wallet</string>
+    <string name="battle_result">Battle Result</string>
+    <string name="research">Research</string>
+    <string name="accounting">Accounting</string>
+    <string name="study">Study</string>
+    <string name="search_filter_combos">Search and Filter Combos</string>
+    <string name="no_results">No results</string>
+    <string name="reset">Reset</string>
+    <string name="search_combos_by_name">Search Combos by Name</string>
+    <string name="search_combos_by_unit">Search Combos by Unit</string>
+    <string name="combos">Combos</string>
+    <string name="misc">Miscellaneous</string>
+    <string name="unit_name">Unit Name (Contains)</string>
+    <string name="combo_name">Combo Name (Contains)</string>
+    <string name="all_units">All units</string>
+    <string name="no_type_specified">No type specified, searching in all types</string>
+    <string name="combo_effect">This combo will increase %s by %s.</string>
+    <string name="apply">Apply</string>
+    <string name="export">Export</string>
+    <string name="edit">Edit</string>
+    <string name="export_edited_image">Export edited image</string>
+    <string name="reset_image_msg">Do you want to reset editing this image?</string>
+    <string name="failed_save_img">Failed to save image</string>
+    <string name="text">Text</string>
+    <string name="add_text">Add text</string>
+    <string name="text_settings">Text settings</string>
+    <string name="brush">Brush</string>
+    <string name="draw">Draw</string>
+    <string name="brush_settings">Brush settings</string>
+    <string name="eraser">Eraser</string>
+    <string name="eraser_size">Eraser size</string>
+    <string name="filters">Filters</string>
+    <string name="img_editor">Welcome to the Image Editor!</string>
+    <string name="enter_text_to_add">Enter text to add…</string>
+    <string name="text_color">Text color</string>
+    <string name="please_enter_text">Please enter text</string>
+    <string name="shape">Shape</string>
+    <string name="line">Line</string>
+    <string name="oval">Oval</string>
+    <string name="rectangle">Rectangle</string>
+    <string name="size">Size</string>
+    <string name="opacity">Opacity</string>
+    <string name="color">Color</string>
+    <string name="edit_text">Edit text</string>
+    <string name="enter_text_to_replace">Enter text to replace…</string>
+    <string name="nothing_to_reset">Nothing to reset</string>
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
+    <string name="toggle_settings">Toggle settings view</string>
+    <string name="unit">Unit</string>
+    <string name="add_favorite_success">Successfully added favorite</string>
+    <string name="update_favorite_success">Successfully updated favorite</string>
+    <string name="please_input_reason">Please input reason</string>
+    <string name="favorite_reason_hint">Reason to like this unit</string>
+    <string name="add_to_favorites">Add to favorites</string>
+    <string name="favorite_units">Favorite Units</string>
+    <string name="confirm_delete">Do you really want to delete this item?</string>
+    <string name="import_export">Import/Export</string>
+    <string name="import_fav">Import</string>
+    <string name="select_units_to_import">Select units to import</string>
+    <string name="select_units_to_export">Select units to export</string>
+    <string name="select_units_to_delete">Select units to delete</string>
+    <string name="nothing_to_export">Nothing to export</string>
+    <string name="nothing_to_delete">Nothing to delete</string>
+    <string name="import_success">Import successful</string>
+    <string name="select_json">Select a .json file</string>
+    <string name="talent_legend_target">Target</string>
+    <string name="talent_legend_effect">Effect</string>
+    <string name="talent_legend_ability">Ability</string>
+    <string name="combo_effect_short">Combo Effect</string>
+    <string name="delete_success">Delete successful</string>
+    <string name="batch_delete">Batch delete</string>
+    <string name="png">PNG</string>
+    <string name="jpeg">JPEG</string>
+    <string name="webp">WEBP</string>
+    <string name="compression">Compression</string>
+    <string name="compression_note">Higher value means smaller file size, but the resulting image will be of lower quality.</string>
+    <string name="nothing_to_undo">Nothing to undo</string>
+    <string name="cancel_success">Successfully cancelled</string>
+    <string-array name="img_editor_filters">
+        <item>None</item>
+        <item>Auto Fix</item>
+        <item>Black &amp; White</item>
+        <item>Brightness</item>
+        <item>Contrast</item>
+        <item>Cross Process</item>
+        <item>Documentary</item>
+        <item>Due Tone</item>
+        <item>Fill Light</item>
+        <item>Fish Eye</item>
+        <item>Flip Vertical</item>
+        <item>Flip Horizontal</item>
+        <item>Grain</item>
+        <item>Grayscale</item>
+        <item>Lomish</item>
+        <item>Negative</item>
+        <item>Posterize</item>
+        <item>Rotate</item>
+        <item>Saturate</item>
+        <item>Sepia</item>
+        <item>Sharpen</item>
+        <item>Temperature</item>
+        <item>Tint</item>
+        <item>Vignette</item>
+    </string-array>
+    <string name="color_picker">Color picker</string>
+    <string name="default_color">Default</string>
+    <string name="color_picker_simple">Color picker (Simple)</string>
+    <string tools:override="true" name="copy">Copy</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="update">Update</string>
+    <string name="update_fav">Update favorite</string>
+    <string name="add_fav">Add favorite</string>
+    <string name="add">Add</string>
+    <string name="license_info">License info</string>
+    <string name="url">URL</string>
+    <string name="normally">Normally</string>
+    <string name="custom_tab">Custom Tab</string>
+    <string name="network_is_metered">Network is metered</string>
+    <string name="go">Go</string>
+    <string name="open_mode">Open mode</string>
+    <string name="highlight_text">Highlight text</string>
+    <string name="unknown">Unknown</string>
+    <string name="view_all_licenses">View all licenses</string>
+    <string name="all_licenses">All licenses</string>
+    <string name="no_favorite_units">You have no favorite units.\nTo add one, long-press the unit icon in grid mode or use the overflow menu in list mode.</string>
+    <string name="sm">Sm</string>
+    <string name="m">M</string>
+    <string name="l">L</string>
+    <string name="xl">XL</string>
+    <string name="third_party_licenses_subtext">View all of the stuff that made this app possible</string>
+    <string name="cc_by_nc_sa_4">CC BY-NC-SA 4.0 License</string>
+    <string name="udp">The Unit Description Project</string>
+    <string name="preview">Preview</string>
+    <string name="nothing_to_see_here">Nothing to see here.</string>
+    <string name="about_dev">About the developer</string>
+    <string name="lib_copyright_alt">Version %s by %s</string>
+    <string name="lib_copyright_alt_no_dev">Version %s</string>
+    <string name="stages">Stages</string>
+    <string name="table_of_contents">Table of contents</string>
+    <string name="please_select_a_brush_type">Please select a brush type</string>
+    <string name="gpl2_ce">GNU General Public License, version 2, with the Classpath Exception</string>
+    <string name="num_websites">%d websites</string>
+    <string name="pick_website_notice">This library has %d websites. Pick one from the list below.</string>
+    <string name="pick_website">Pick website</string>
+    <string name="cannot_read_file">Cannot read file</string>
+    <string name="search_text">Search text</string>
+    <string name="reasons">Reasons</string>
+    <string name="export_failed">Export failed</string>
+    <string name="wrong_or_malformed_zip_file_selected">Wrong or malformed zip file selected</string>
+    <string name="by_names">By Names</string>
+    <string name="by_types">By Types</string>
+    <string name="all_quotes">All quotes</string>
+    <string name="appearance_settings">Appearance settings</string>
+    <string name="favorite_units_subtext">VIew all your favorite units (and reasons to do so) here.</string>
+    <string name="im_feeling_lucky">I\'m feeling lucky</string>
+    <string name="random_units_subtext">Pick a random unit and show its info.</string>
+    <string name="import_failed">Import failed</string>
+    <string name="favorites_backup">Favorites backup</string>
+    <string name="backing_up_favorites">Backing up favorites</string>
+    <string name="favorites_notification_channel_desc">Notifications shown when backing up favorites</string>
+</resources>

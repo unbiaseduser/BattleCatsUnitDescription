@@ -1,0 +1,50 @@
+0|target_red|Target Red|Abilities will also affect Red enemies.
+1|target_float|Target Floating|Abilities will also affect Floating enemies.
+2|target_black|Target Black|Abilities will also affect Black enemies.
+3|target_angel|Target Angel|Abilities will also affect Angel enemies.
+4|target_alien|Target Alien|Abilities will also affect Alien enemies.
+5|target_metal|Target Metal|Abilities will also affect Metal enemies.
+6|target_zombie|Target Zombie|Abilities will also affect Zombie enemies.
+7|target_aku|Target Aku|Abilities will also affect Aku enemies.
+8|target_relic|Target Relic|Abilities will also affect Relic enemies.
+9|weaken|Weaken|Indicated enemy types will have their attack power reduced for a set period.
+10|freeze|Freeze|Indicated enemy types will become unable to move for a set amount of time.
+11|slow|Slow|Indicated enemy types will have their speed reduced for a set amount of time.
+12|resist|Resistant|Damage received from indicated enemy types will be reduced significantly.
+13|massive_dmg|Massive Damage|Indicated enemy types will take much more damage from unit attacks.
+14|kb|Knockback|Unit has a set chance to push indicated enemy types back towards their base.
+15|curse|Curse|Enemy cannot inflict negative status effects for a short time.
+16|dodge|Dodge Attack|Temporarily avoids all damage from attacks from the target enemy type.
+17|strengthen|Strengthen|After this unit's health falls below a set amount, its attacks grow much stronger.
+18|survive|Survives|After this unit's health falls below zero, it may heal itself by a small amount.
+19|crit|Critical|Attacks by this unit have a set chance of extra damage and can hurt Metal enemies.
+20|zkill|Zombie Killer|Units with this ability can prevent Zombie enemies from reviving.
+21|soulstrike|Soulstrike|Attacks can deliver damage to temporarily "dead" Zombie enemies.
+22|barrier_break|Barrier Breaker|Has a chance to nullify enemy barriers and deliver huge damage upon break.
+23|shield_pierce|Shield Piercing|Attacks have set chance to nullify Aku Shields and deliver huge damage.
+24|svg_blow|Savage Blow|Set chance to deal a large amount of extra damage.
+25|x2cash|Extra Money|Money rewards from defeating indicated enemy types will be increased.
+26|wave|Wave Attack|Attacks will strike all enemies in range, delivering extra damage from the energy wave released.
+27|surge|Surge Attack|Successful attacks deal extra damage to random sections in their attack area.
+28|weaken_immune|Immune to Weaken|Enemy attacks will not weaken the attacks of this unit.
+29|freeze_immune|Immune to Freeze|Enemy attacks will not freeze the movement of this unit.
+30|slow_immune|Immune to Slow|Enemy attacks will not cause slowdown against this unit.
+31|kb_immune|Immune to Knockback|Enemy attacks will not cause this unit to be knocked back.
+32|wave_immune|Immune to Waves|This unit does not take damage from Wave attacks.
+33|surge_immune|Evade Surge|Does not take Surge damage caused by enemy attacks.
+34|warp_immune|Warp Blocker|Enemy Warp abilities do not affect this unit.
+35|curse_immune|Immune to Curse|Immune to temporary status effects inflicted by enemy Curses.
+36|toxic_immune|Immune to Toxic|Immune to Toxic effects of enemy attacks!
+37|weaken_resist|Resist Weaken|Weaken effects caused by enemies are less likely to take effect.
+38|freeze_resist|Resist Freeze|Freeze effects caused by enemies are less likely to take effect.
+39|slow_resist|Resist Slow|Slow effects caused by enemies are less likely to take effect.
+40|kb_resist|Resist Knockback|Knockback effects caused by enemies are less likely to take effect.
+41|wave_resist|Resist Wave|Enemy Wave attacks cause less damage.
+42|surge_resist|Resist Surge Attack|Less damage from Enemy Surge attacks.
+43|curse_resist|Resist Curse|Curse effects caused by enemies are less likely to take effect.
+44|toxic_resist|Resistant to Toxic|Toxic effects caused by enemies are less likely to take effect.
+45|hp_up|Defense Buff|Base defense is permanently raised.
+46|atk_up|Attack Buff|Base attack is permanently raised.
+47|speed_up|Move Speed Up|Unit will move faster.
+48|cost_down|Cost Down|Unit's deploy cost is decreased.
+49|recharge|Recover Speed Up|Unit will be available for deployment sooner.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="talent_priorities">
+        <item>@string/top_priority</item>
+        <item>@string/high_priority</item>
+        <item>@string/medium_priority</item>
+        <item>@string/low_priority</item>
+        <item>@string/do_not_unlock</item>
+    </string-array>
+    <string-array name="talent_priority_unit_types">
+        <item>@string/rare_super_special</item>
+        <item>@string/uber</item>
+    </string-array>
+</resources>

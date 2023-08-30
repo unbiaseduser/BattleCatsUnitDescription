@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:minWidth="260dp"
+    android:minHeight="40dp"
+    android:targetCellHeight="1"
+    android:targetCellWidth="4"
+    android:maxResizeHeight="80dp"
+    android:resizeMode="vertical|horizontal"
+    android:updatePeriodMillis="900000"
+    android:widgetCategory="home_screen"
+    android:initialLayout="@layout/widget_quotes"
+    android:previewLayout="@layout/widget_quotes_android_12_preview_layout"
+    android:description="@string/ponos_quotes"
+    tools:ignore="UnusedAttribute">
+</appwidget-provider>

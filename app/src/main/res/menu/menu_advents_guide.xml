@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/text_search"
+        android:icon="@drawable/text_format"
+        android:title="@string/highlight_text"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/advents_toggle_guide_view"
+        android:title="@string/toggle_advent_guide_view"
+        tools:icon="@drawable/description"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/advents_go_to_website"
+        android:title="@string/go_to_website"
+        android:icon="@drawable/web"
+        app:showAsAction="ifRoom"/>
+
+</menu>

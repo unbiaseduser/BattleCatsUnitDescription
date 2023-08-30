@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+
+        <TableRow>
+
+            <TextView
+                android:text="@string/unit_id"
+                android:textSize="18sp"
+                android:layout_marginEnd="3dp"/>
+
+            <TextView
+                android:text="@string/unit_type"
+                android:textSize="18sp"
+                android:layout_marginStart="3dp"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/unit_id_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/unit_id_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/unit_type_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginStart="3dp"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+    <CheckBox
+        android:id="@+id/has_useful_to_own_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/has_useful_to_own_text"/>
+
+    <LinearLayout
+        android:id="@+id/useful_to_own_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/useful_to_own_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/useful_to_own_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/has_useful_to_tf_or_talent_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/has_useful_to_tf_or_talent_text"/>
+
+    <LinearLayout
+        android:id="@+id/useful_to_tf_or_talent_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/useful_to_tf_or_talent_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/useful_to_tf_or_talent_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/has_hypermax_priority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/has_hypermax_priority_text"/>
+
+    <LinearLayout
+        android:id="@+id/hypermax_priority_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hypermax_priority_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hypermax_priority_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

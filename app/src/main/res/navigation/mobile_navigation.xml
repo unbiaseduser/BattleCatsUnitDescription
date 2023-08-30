@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_udp">
+
+    <fragment
+        android:id="@+id/nav_udp"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.UnitDescFragment"
+        android:label="@string/menu_udp"
+        tools:layout="@layout/generic_tabs">
+        <action
+            android:id="@+id/go_to_unit_info"
+            app:destination="@id/nav_udp_unit_info" />
+        <action
+            android:id="@+id/go_to_favorites"
+            app:destination="@id/nav_favorites" />
+        <action
+            android:id="@+id/show_add_edit_favorites_dialog"
+            app:destination="@id/nav_add_edit_favorites"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_help_pins"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.HelpPinsFragment"
+        android:label="@string/help_pins"
+        tools:layout="@layout/generic_rcv_layout">
+        <action
+            android:id="@+id/go_to_elder_epic"
+            app:destination="@id/nav_elder_epic" />
+        <action
+            android:id="@+id/go_to_xp_cost"
+            app:destination="@id/nav_xp_cost" />
+        <action
+            android:id="@+id/go_to_talent_priority"
+            app:destination="@id/nav_talent_priority" />
+        <action
+            android:id="@+id/go_to_hypermax_priority"
+            app:destination="@id/nav_hypermax_priority" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_guides"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.GuidesFragment"
+        android:label="@string/menu_guides"
+        tools:layout="@layout/generic_rcv_layout">
+        <action
+            android:id="@+id/go_to_guide_detail"
+            app:destination="@id/nav_guide_detail" />
+        <action
+            android:id="@+id/go_to_guide_advent"
+            app:destination="@id/nav_guide_advent" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.SettingsFragment"
+        android:label="@string/menu_settings" >
+        <action
+            android:id="@+id/action_nav_settings_to_nav_appearance_settings"
+            app:destination="@id/nav_appearance_settings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.AboutFragment"
+        android:label="@string/menu_about">
+        <action
+            android:id="@+id/action_nav_about_to_nav_third_party_licenses"
+            app:destination="@id/nav_third_party_licenses" />
+        <action
+            android:id="@+id/show_app_license_dialog"
+            app:destination="@id/nav_third_party_license"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_udp_unit_info"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.unitdesc.UnitDescUnitInfoFragment">
+        <argument
+            android:name="unit"
+            app:argType="com.sixtyninefourtwenty.bcud.objects.Unit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_guide_detail"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.guidedetails.other.GuideDetailsFragment">
+        <argument
+            android:name="guide"
+            app:argType="com.sixtyninefourtwenty.bcud.objects.Guide" />
+        <action
+            android:id="@+id/action_nav_guide_detail_to_nav_combos"
+            app:destination="@id/nav_combos" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_advent_details"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.advent.AdventDetailsFragment"
+        android:label="@string/advent_stage_details">
+        <argument
+            android:name="stage"
+            app:argType="com.sixtyninefourtwenty.bcud.objects.AdventStage" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_guide_advent"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.guidedetails.advents.GuideDetailsAdventFragment"
+        android:label="@string/advents_guide">
+        <action
+            android:id="@+id/go_to_advent_details"
+            app:destination="@id/nav_advent_details" />
+        <action
+            android:id="@+id/show_select_advent_stage_dialog"
+            app:destination="@id/nav_select_advent"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_elder_epic"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.helppinsdetails.elderepictfpriority.ElderEpicFragment"
+        android:label="@string/elder_epic_tf_priority"
+        tools:layout="@layout/generic_tabs">
+        <action
+            android:id="@+id/action_nav_elder_epic_to_nav_udp_unit_info"
+            app:destination="@id/nav_udp_unit_info" />
+        <action
+            android:id="@+id/show_eep_dialog"
+            app:destination="@id/nav_elder_epic_reason"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_xp_cost"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.helppinsdetails.xpcost.XPCostFragment"
+        android:label="@string/xp_upgrade_costs" />
+    <fragment
+        android:id="@+id/nav_talent_priority"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.helppinsdetails.talentpriority.TalentPriorityFragment"
+        android:label="@string/talent_priority_list"
+        tools:layout="@layout/generic_tabs">
+        <action
+            android:id="@+id/action_nav_talent_priority_to_nav_udp_unit_info"
+            app:destination="@id/nav_udp_unit_info" />
+        <action
+            android:id="@+id/show_talent_details_dialog"
+            app:destination="@id/nav_talent_details"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_hypermax_priority"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.helppinsdetails.hypermaxpriority.HypermaxPriorityFragment"
+        android:label="@string/hypermax_priority_list"
+        tools:layout="@layout/generic_tabs">
+        <action
+            android:id="@+id/action_nav_hypermax_priority_to_nav_udp_unit_info"
+            app:destination="@id/nav_udp_unit_info" />
+        <action
+            android:id="@+id/show_add_edit_favorites_dialog"
+            app:destination="@id/nav_add_edit_favorites"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_misc"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.MiscFragment"
+        android:label="@string/misc"
+        tools:layout="@layout/fragment_misc">
+        <action
+            android:id="@+id/show_ponos_quotes_dialog"
+            app:destination="@id/nav_ponos_quotes"/>
+        <action
+            android:id="@+id/action_nav_misc_to_nav_favorites"
+            app:destination="@id/nav_favorites" />
+        <action
+            android:id="@+id/action_nav_misc_to_nav_udp_unit_info"
+            app:destination="@id/nav_udp_unit_info" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_third_party_licenses"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.ThirdPartyLicensesFragment"
+        android:label="@string/third_party_licenses"
+        tools:layout="@layout/generic_rcv_layout">
+        <action
+            android:id="@+id/show_third_party_license_dialog"
+            app:destination="@id/nav_third_party_license"/>
+        <action
+            android:id="@+id/show_lib_websites_dialog"
+            app:destination="@id/nav_lib_websites"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_combos"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.guidedetails.other.combos.CombosFragment"
+        android:label="@string/catcombos">
+        <action
+            android:id="@+id/go_to_unit_info_from_combos"
+            app:destination="@id/nav_udp_unit_info" />
+        <action
+            android:id="@+id/show_search_filter_combos_dialog"
+            app:destination="@id/nav_search_filter_combos"/>
+    </fragment>
+    <action
+        android:id="@+id/action_global_nav_udp_unit_info"
+        app:destination="@id/nav_udp_unit_info" />
+    <action
+        android:id="@+id/action_global_nav_guide_detail"
+        app:destination="@id/nav_guide_detail" />
+    <action
+        android:id="@+id/action_global_nav_elder_epic"
+        app:destination="@id/nav_elder_epic" />
+    <action
+        android:id="@+id/action_global_nav_talent_priority"
+        app:destination="@id/nav_talent_priority" />
+    <action
+        android:id="@+id/action_global_nav_hypermax_priority"
+        app:destination="@id/nav_hypermax_priority" />
+    <action
+        android:id="@+id/action_global_nav_xp_cost"
+        app:destination="@id/nav_xp_cost" />
+    <action
+        android:id="@+id/action_global_nav_guide_advent"
+        app:destination="@id/nav_guide_advent" />
+    <fragment
+        android:id="@+id/nav_favorites"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.FavoritesFragment"
+        android:label="@string/favorite_units">
+        <action
+            android:id="@+id/go_to_unit_info_from_favorites"
+            app:destination="@id/nav_udp_unit_info" />
+        <action
+            android:id="@+id/show_add_edit_favorites_dialog"
+            app:destination="@id/nav_add_edit_favorites"/>
+        <action
+            android:id="@+id/show_batch_ops_dialog"
+            app:destination="@+id/nav_batch_op"/>
+        <action
+            android:id="@+id/show_add_reason_dialog"
+            app:destination="@id/nav_add_reason"/>
+        <action
+            android:id="@+id/show_edit_reason_dialog"
+            app:destination="@id/nav_edit_reason"/>
+    </fragment>
+    <dialog
+        android:id="@+id/nav_add_edit_favorites"
+        android:name="com.sixtyninefourtwenty.bcud.ui.dialogs.AddEditFavoriteDialog"
+        tools:layout="@layout/dialog_add_edit_favorite">
+        <argument
+            android:name="unit"
+            app:argType="com.sixtyninefourtwenty.bcud.objects.Unit"/>
+        <action
+            android:id="@+id/show_add_reason_dialog"
+            app:destination="@id/nav_add_reason"/>
+        <action
+            android:id="@+id/show_edit_reason_dialog"
+            app:destination="@id/nav_edit_reason"/>
+    </dialog>
+    <dialog
+        android:id="@+id/nav_add_reason"
+        android:name="com.sixtyninefourtwenty.bcud.ui.dialogs.AddReasonDialog"
+        tools:layout="@layout/dialog_add_edit_reason">
+        <argument
+            android:name="unit_id"
+            app:argType="integer"/>
+    </dialog>
+    <dialog
+        android:id="@+id/nav_edit_reason"
+        android:name="com.sixtyninefourtwenty.bcud.ui.dialogs.EditReasonDialog"
+        tools:layout="@layout/dialog_add_edit_reason">
+        <argument
+            android:name="existing_reason"
+            app:argType="com.sixtyninefourtwenty.bcud.objects.favorites.FavoriteReason"/>
+    </dialog>
+    <dialog
+        android:id="@+id/nav_third_party_license"
+        android:name="com.sixtyninefourtwenty.bcud.ui.dialogs.ThirdPartyLicenseDialog"
+        tools:layout="@layout/generic_text_page">
+        <argument
+            android:name="license"
+            app:argType="com.sixtyninefourtwenty.bcud.enums.License"/>
+    </dialog>
+    <dialog
+        android:id="@+id/nav_elder_epic_reason"
+        android:name="com.sixtyninefourtwenty.bcud.ui.dialogs.ElderEpicTFPriorityDialog"
+        tools:layout="@layout/dialog_eep">
+        <argument
+            android:name="unit"
+            app:argType="com.sixtyninefourtwenty.bcud.objects.Unit" />
+        <argument
+            android:name="elder_epic"
+            app:argType="com.sixtyninefourtwenty.common.objects.ElderEpic"/>
+    </dialog>
+    <dialog
+        android:id="@+id/nav_ponos_quotes"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.MiscFragment$PonosQuotesDialog"/>
+    <dialog
+        android:id="@+id/nav_select_advent"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.guidedetails.advents.GuideDetailsAdventTabListFragment$SelectAdventStageDialog">
+        <argument
+            android:name="boss"
+            app:argType="com.sixtyninefourtwenty.bcud.objects.AdventBoss"/>
+        <action
+            android:id="@+id/go_to_advent_details"
+            app:destination="@id/nav_advent_details"/>
+    </dialog>
+    <dialog
+        android:id="@+id/nav_lib_websites"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.ThirdPartyLicensesFragment$LibWebsitesDialog">
+        <argument
+            android:name="websites"
+            app:argType="string[]"/>
+    </dialog>
+    <dialog
+        android:id="@+id/nav_talent_details"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.helppinsdetails.talentpriority.TalentPriorityTabFragment$TalentDetailsDialog">
+        <argument
+            android:name="talent"
+            app:argType="com.sixtyninefourtwenty.common.objects.Talent"/>
+    </dialog>
+    <dialog
+        android:id="@+id/nav_search_filter_combos"
+        android:name="com.sixtyninefourtwenty.bcud.ui.fragments.guidedetails.other.combos.CombosFragment$SearchFilterCombosDialog"/>
+
+    <fragment
+        android:id="@+id/nav_appearance_settings"
+        android:name="com.sixtyninefourtwenty.theming.preferences.ThemingPreferenceFragment"/>
+
+</navigation>

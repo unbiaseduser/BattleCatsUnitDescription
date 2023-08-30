@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/go_to_all_licenses"
+        android:title="@string/view_all_licenses"
+        android:icon="@drawable/description"
+        app:showAsAction="always"/>
+
+</menu>

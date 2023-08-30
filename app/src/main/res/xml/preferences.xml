@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/appearance">
+
+        <Preference
+            app:key="navigation_appearance_prefs"
+            app:title="@string/appearance_settings"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/behavior">
+
+        <SwitchPreferenceCompat
+            app:key="use_toc"
+            app:title="@string/use_table_of_contents"
+            app:icon="@drawable/toc"
+            app:defaultValue="true"
+            app:summary="@string/use_table_of_contents_summary"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

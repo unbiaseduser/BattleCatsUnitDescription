@@ -1,0 +1,124 @@
+24|-|-|Minimum
+25|-|-|Maximum
+437|-|-|Minimum
+462|-|-|Minimum
+622|-|-|Medium
+130|-|-|High
+172|-|-|Low
+268|-|-|High
+323|-|-|Low
+426|-|-|Medium (High for Primitive Souls)
+568|-|-|Maximum
+464|-|-|Medium
+532|-|-|Medium
+613|-|-|Medium
+352|-|-|Medium
+383|-|-|Low
+554|-|-|High
+18|EoC 1|Never|Low
+21|Crazed Gross, for Cool Japan|4 Crown SoL or Protein Cartel for Gobble spam|Medium (after talents)
+20|Crazed Gross, for Cool Japan|Never|Minimum
+19|Midgame for mid-SoL and advents, to use in Research Combo strats|Never|Low
+14|Never|Primitive Souls or 4 Crown SoL / UL|High (after talents)
+22|EoC 3 Moon|Aku Realms|Minimum
+12|Never|Wrath of Carnage or 4 Crown Boiling Spring|Low (4 crown SOL, after talents)
+13|4 Crown SoL|Wrath of Carnage|High (after talents)
+10|Li'l King Dragon/Jamiera|When you need a solid anti-Wave or 4 Crown SoL/UL|High (after talents)
+9|Never|Aku Realms|Medium (after talents)
+23|CotC 2 Aguham|Never|Low
+15|Never|SoL 35, for Bionic Seaweed|Low
+11|Mid-SoL / Advents for combo use|Never|Low
+60|Ashen Rain|Never|Low
+78|Fish Hell|Never|Low
+88|Anytime for its combos|Never|Low
+126|SoL 18, Dead Falls|SoL 35, Bionic Seaweed|Low
+154|SoL 18, for first appearance of Sir Metal Seal|SoL 35, for Bionic Seaweed|Low
+201|SoL 20 for Utopia Is Over There|SoL 35 for Bionic Seaweed|Low
+324|SoL 48, False Resurrection|Floor 41, for the cheese strat|Maximum
+379||SoL 35, Quarantine Isles, Bionic Seaweed|Heavenly Tower, Floor 28|Medium
+382|Floor 40|Floor 40|Minimum
+442|Manics|Heavenly Tower Floor 40|Low
+452|UL1, An Ancient Curse|Late UL, or 2/3 Crown UL|Medium
+507|4 Crown SoL|-|Medium
+521|Never|4 Crown UL|Low
+527|As soon as you can beat Queen V|-|Maximum
+528|Prelude to Ruin perhaps, if not then 4 Crown UL|-|Low (4 crown UL)
+531|HT 41-50 / 4 Crown SoL|UL / Z-Onel|Maximum (Lv 43 for Idi)
+539|Never|-|Low
+545|Never|-|Low
+553|Big Peng Z|-|Minimum
+581|Flow Like the Stream (Kappy)|-|Low
+621|Aku Realms|-|Low
+623|Never|-|Low
+630|Infernal Tower Floor 30 or 4 Crown SoL/UL|-|Low
+260|SoL 33, Pecking Order.|Aku Realms Mexico|Medium
+267|Feast of Betrayal, for first appearance of serious Metal Doge spam|March to Death, though helpful any time|Low
+284|No Plan A (Clionel)|Floor 40, for Yulala|Maximum
+287|CotC 1|Revenge of the Unholy / OS Graveyard|Medium
+273|SoL 35, Bionic Seaweed|March to Death|High (44+ to 1 shot 300% SMH)
+37|As soon as you own Li'l Dragon, for the combo.|4-Crown SoL|Low
+38|Into the Future chapter 2, for Cyberhorns|Cats of the Cosmos chapter 1, for Star Pengs and General GreGories|Medium
+41|As soon as possible. But at worst, SoL 16 for Star Ocean / SoL 17 for R. Ost debut.|Mid-game (e.g. SoL 28~) as enemies get tougher and the extra DPS helps keep her relevant.|High
+46|SoL 15, for first appearance of Metal One Horn|SoL 18 for first appearance of Sir Metal Seal|High
+47|4 Crown SoL|Also 4 Crown SoL|Medium
+48|SoL 7, for Bore or Attack on R-Cyclone, for Red Cyclone|Wrath of Bakoo / SoL-41 for Boiling Spring / 4 Crown SoL-26 for Berserkories|Low (higher if talented)
+49|Never|Also Never|Low
+50|Red, Black, White Cyclone|SoL 15, for Floating threats|Low
+51|Red, Black, White Cyclones|Li'l Flying|Low
+52|Mid-SoL where strats using Research combos become common and BioBone is handy to have|Sol 49 for Mecha-Bun.|Low
+55|SoL 7 for Bore debut, but replaceable|4 Crown SoL|Low
+56|N/A|Tiny Wings (Deadly), for Owlbrows|Low
+58|SoL 7 for Bores and other Reds|Around SoL 22 to keep up with buffed Red enemies|Medium
+145|Black Cyclone (or if you have alternatives for this, never)|Relic Cyclone and UL1, with Target Relic talent|Low
+146|Only Oncoming Maelstrom (Divine Cyclone)|UL 25 for the first St. Dober appearance without a backliner|Minimum
+147|Never|Also Never|Minimum
+148|Into the Future chapter 1 - Floating Continent, for Angelic Hippoes.|Into the Future chapter 2 - Alaska, for Angelic Gories.|Maximum
+149|Never|SoL 16|Maximum
+197|ItF 1|ItF 3 Moon|Low
+198|End of EoC3, to be able to clear Crazed Cat much easier|SoL 16, to use against R. Ost (Wave Immune Talent recommended by UL)|Low
+308|EOC 1 Outbreaks, as a basic anti-Zombie support unit|SoL 35, makes freezing Big Sal a little more consistent|Low
+325|ItF 1 Zombie Outbreaks|SoL 34 for first appearance of Zombies|Low
+376|ItF 1|CotC 1|Medium
+495|Never|Late Aku Realms|Low
+523|ItF 1 outbreaks|SoL 34 for first Zombies in SoL, or Daboo|High
+32|ItF 2 Mexico for early game Bores.|After ItF3, to access talents, though useful any time.|Maximum
+61|ItF 2 Mexico for Bore|Hannya|High
+35|Crazed Bird/Lizard|Manics or SoL 36/37 for Proc Parade/No Return Flights|Low
+33|Perfect Cyclone|Manic Macho Legs|High
+39|Red Cyclone|Realm of Carnage|Low
+36|ITF 1 Moon, to use against Cli-One|Manic Flying and the Mooths in Draconian, though useful any time|High
+40|Crazed Tank, as an extra attacker alongside Dragons|Manic Island, for DPS to Berserkory|Low
+31|Wrath of Red Cyclone, if lacking other 1200+ cost anti-Red/Floating CC|UL27 for The Prince's Woods|Low
+30|Red Cyclone Wrath|Never|Minimum
+150|Divine Cyclone|UL 24, for the debut of St. Dober|Low
+151|ItF 1, for Gory Black and Shadow Boxer K|SoL 23, for Black Premonition|High
+152|Any time post-EoC to combat stronger peon spam, but the earlier the better|As soon as possible after Growing Strange becomes available|High
+153|Oncoming Maelstrom if truly desperate|Never|Minimum
+199|ItF Great Abyss 1|ItF Great Abyss 2 for the Cyberhorns|High
+307|SoL 34 for the debut of Zombies|Any time, if you can talent her|High
+377|CotC 1 or SoL 43|CotC 3, Zyclone Revenge or UL|Low
+522|ItF 1 and anywhere early in SoL|When you get an Aku Seed|High
+129|Any time|Any time (requires Aku Fruit)|Minimum
+200|Parade of the Dead, for Daboo|-|-
+131|Manics|-|Minimum
+228|Never|-|Minimum
+276|None|-|Minimum
+314|Never|Also Never|Minimum
+332|Never|Also Never|Minimum
+589|Never|Also Never|Minimum
+144|Never|Also Never|Low
+237|F34, XP Megablitz (due to combo)|UL 1, for Primeval Cyclone|Minimum
+238|Any time, particularly if the player wishes to maximize their Dojo score|Also any time, for further improvement of Dojo Score|Minimum
+239|Crazed Cats|Mid-Late SoL, for improved CC versus various enemies|Minimum
+443|Manics|HT Floor 40|Minimum
+444|SoL 34 for Zombies debut|Never|Minimum
+445|Realm of Carnage, for rushing down Bores/Hannya|I'll Be Bug, for rushing down Professor A.|Medium
+446|March to Death, for combo use|Never|Minimum
+447|CotC 1|CotC 3|Medium
+520|Early UL to cover for lack of other anti-Relics|-|Low
+565|Never|-|Minimum
+566|SoL 17 for R. Ost debut|-|Low
+629|Aku Realms|-|Minimum
+636|Procrastinator Parade, SoL 36|-|Low
+645|Never|-|-
+654|Any time|-|-

@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.BattleCatsUnitDescription" parent="AppTheme.Material2">
+        <item name="materialPopupMenuStyle">@style/Widget.MPM.Menu</item>
+        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.PopupMenu.Large.White</item>
+    </style>
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <style name="Theme.BattleCatsUnitDescription" parent="AppTheme.Material2">
+        <item name="materialPopupMenuStyle">@style/Widget.MPM.Menu</item>
+    </style>
+
+    <style name="Theme.BattleCatsUnitDescription.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.BattleCatsUnitDescription.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

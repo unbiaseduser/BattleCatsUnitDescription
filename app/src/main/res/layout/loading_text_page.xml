@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kennyc.view.MultiStateView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:msv_loadingView="@layout/progress_bar_page"
+    app:msv_viewState="loading"
+    tools:msv_viewState="content">
+
+    <me.zhanghai.android.fastscroll.FastScrollScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:lineSpacingMultiplier="1.15"
+            tools:text="@tools:sample/lorem/random"
+            android:padding="6dp" />
+
+    </me.zhanghai.android.fastscroll.FastScrollScrollView>
+
+</com.kennyc.view.MultiStateView>

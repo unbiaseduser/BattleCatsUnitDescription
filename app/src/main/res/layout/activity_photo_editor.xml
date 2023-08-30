@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/semi_black_transparent"
+    tools:context=".ui.activities.PhotoEditorActivity"
+    tools:ignore="UnusedAttribute">
+
+    <ja.burhanrashid52.photoeditor.PhotoEditorView
+        android:id="@+id/photo_editor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/mode_indicator" />
+
+    <ImageView
+        android:id="@+id/reset"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_above="@id/mode_indicator"
+        android:layout_toStartOf="@id/undo"
+        android:padding="12dp"
+        android:src="@drawable/device_reset"
+        app:tint="@color/white"
+        android:foreground="@drawable/selectable_item_background_oval"
+        android:contentDescription="@string/reset"/>
+
+    <ImageView
+        android:id="@+id/undo"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_above="@id/mode_indicator"
+        android:layout_toStartOf="@id/redo"
+        android:padding="12dp"
+        android:src="@drawable/undo"
+        app:tint="@color/white"
+        android:foreground="@drawable/selectable_item_background_oval"
+        android:contentDescription="@string/undo"/>
+
+    <ImageView
+        android:id="@+id/redo"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_above="@id/mode_indicator"
+        android:layout_alignParentEnd="true"
+        android:padding="12dp"
+        android:src="@drawable/redo"
+        app:tint="@color/white"
+        android:foreground="@drawable/selectable_item_background_oval"
+        android:contentDescription="@string/redo"/>
+
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_above="@id/mode_indicator"
+        android:padding="12dp"
+        android:src="@drawable/settings"
+        app:tint="@color/white"
+        android:foreground="@drawable/selectable_item_background_oval"
+        android:contentDescription="@string/toggle_settings"/>
+
+    <ImageView
+        android:id="@+id/brush_settings"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_above="@id/mode_indicator"
+        android:layout_toEndOf="@id/settings"
+        android:padding="12dp"
+        android:foreground="@drawable/selectable_item_background_oval"
+        android:src="@drawable/brush"
+        android:visibility="gone"
+        app:tint="@color/white"
+        tools:visibility="visible"
+        android:contentDescription="@string/brush_settings"/>
+
+    <ImageView
+        android:id="@+id/save"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_above="@id/mode_indicator"
+        android:layout_centerHorizontal="true"
+        android:padding="12dp"
+        android:src="@drawable/save"
+        app:tint="@color/white"
+        android:foreground="@drawable/selectable_item_background_oval"
+        android:contentDescription="@string/export"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mode_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_edit"
+        android:gravity="center"
+        android:textColor="@color/white" />
+
+    <HorizontalScrollView
+        android:id="@+id/layout_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="36dp"
+                android:paddingVertical="10dp"
+                android:text="@string/text"
+                android:textColor="@color/white"
+                app:drawableTint="@color/white"
+                app:drawableTopCompat="@drawable/text_format"
+                android:foreground="?selectableItemBackground"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/brush"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="10dp"
+                android:text="@string/brush"
+                android:textColor="@color/white"
+                app:drawableTint="@color/white"
+                app:drawableTopCompat="@drawable/brush"
+                android:foreground="?selectableItemBackground"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/eraser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="10dp"
+                android:text="@string/eraser"
+                android:textColor="@color/white"
+                app:drawableTint="@color/white"
+                app:drawableTopCompat="@drawable/backspace"
+                android:foreground="?selectableItemBackground"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="10dp"
+                android:text="@string/filters"
+                android:textColor="@color/white"
+                app:drawableTint="@color/white"
+                app:drawableTopCompat="@drawable/auto_awesome"
+                android:foreground="?selectableItemBackground"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</RelativeLayout>
