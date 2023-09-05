@@ -90,10 +90,11 @@ public final class FavoritesFragment extends BaseViewBindingFragment<FragmentFav
                                     inputStream
                             )
                     );
-                    Futures.addCallback(future, new FutureCallbackLambdas<>(
-                            out -> MoreFutures.addIgnoreExceptionsCallback(favModel.addFavorites(out.getItems(), out.getReasons()),
-                                    ignored -> showSnackbar(R.string.import_success),
-                                    ContextCompat.getMainExecutor(requireContext())),
+                    final var f = Futures.transformAsync(future,
+                            out -> favModel.addFavorites(out.getItems(), out.getReasons()),
+                            ContextCompat.getMainExecutor(requireContext()));
+                    Futures.addCallback(f, new FutureCallbackLambdas<>(
+                            __ -> showSnackbar(R.string.import_success),
                             t -> new MaterialAlertDialogBuilder(requireContext())
                                     .setTitle(R.string.import_failed)
                                     .setMessage(Arrays.toString(t.getStackTrace()))
