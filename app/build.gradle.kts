@@ -63,6 +63,7 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":bottom-sheet-alert-dialog"))
+    implementation(project(":custom-action-mode"))
     implementation(libs.core)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -114,7 +115,6 @@ dependencies {
     implementation(libs.materialpopupmenuplus)
     implementation(libs.materialbanner)
     implementation(libs.materialspinner)
-    implementation(libs.customactionmode)
     implementation(libs.basefragments)
     implementation(libs.theming)
     implementation(libs.stuff)

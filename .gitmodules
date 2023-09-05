@@ -4,3 +4,6 @@
 [submodule "conflict-resolver"]
 	path = conflict-resolver
 	url = https://github.com/unbiaseduser/conflict-resolver
+[submodule "custom-action-mode"]
+	path = custom-action-mode
+	url = https://github.com/unbiaseduser/custom-action-mode
