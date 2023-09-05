@@ -31,12 +31,12 @@ public final class Utils {
     }
 
     public static ActivityResultLauncher<String> createImportTextLauncher(Fragment fragment,
-                                                                          ListeningExecutorService executorService,
+                                                                          Supplier<ListeningExecutorService> executorService,
                                                                           Consumer<String> onSuccess,
                                                                           Runnable onFailure) {
         return fragment.registerForActivityResult(new ActivityResultContracts.GetContent(), result -> {
             if (result != null) {
-                final var future = executorService.submit(() -> {
+                final var future = executorService.get().submit(() -> {
                     final var inputStream = fragment.requireContext().getContentResolver().openInputStream(result);
                     try (final var reader = new BufferedReader(new InputStreamReader(inputStream))) {
                         return CharStreams.toString(reader);
@@ -54,18 +54,18 @@ public final class Utils {
     public static ActivityResultLauncher<String> createImportTextLauncher(Fragment fragment,
                                                                           Consumer<String> onSuccess) {
         return createImportTextLauncher(fragment,
-                MyApplication.get(fragment.requireContext()).getThreadPool(),
+                () -> MyApplication.get(fragment.requireContext()).getThreadPool(),
                 onSuccess,
                 () -> Toast.makeText(fragment.requireContext(), R.string.import_failed, Toast.LENGTH_SHORT).show());
     }
 
     public static ActivityResultLauncher<String> createExportTextLauncher(Fragment fragment,
-                                                                          ListeningExecutorService executorService,
+                                                                          Supplier<ListeningExecutorService> executorService,
                                                                           Supplier<String> textToExport,
                                                                           Runnable onSuccess,
                                                                           Runnable onFailure) {
         return fragment.registerForActivityResult(new ActivityResultContracts.CreateDocument("application/json"), result -> {
-            final var future = executorService.<@Nullable Void>submit(() -> {
+            final var future = executorService.get().<@Nullable Void>submit(() -> {
                 final var outputStream = fragment.requireContext().getContentResolver().openOutputStream(result);
                 try (final var writer = new BufferedWriter(new OutputStreamWriter(outputStream))) {
                     writer.write(textToExport.get());
@@ -83,7 +83,7 @@ public final class Utils {
     public static ActivityResultLauncher<String> createExportTextLauncher(Fragment fragment,
                                                                           Supplier<String> textToExport) {
         return createExportTextLauncher(fragment,
-                MyApplication.get(fragment.requireContext()).getThreadPool(),
+                () -> MyApplication.get(fragment.requireContext()).getThreadPool(),
                 textToExport,
                 () -> Toast.makeText(fragment.requireContext(), R.string.export_successful, Toast.LENGTH_SHORT).show(),
                 () -> Toast.makeText(fragment.requireContext(), R.string.export_failed, Toast.LENGTH_SHORT).show());
