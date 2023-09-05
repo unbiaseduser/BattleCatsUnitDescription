@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     id("androidx.navigation.safeargs")
+    alias(libs.plugins.androidJunit5)
 }
 
 android {
@@ -50,6 +51,7 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":bottom-sheet-alert-dialog"))
+    implementation(project(":conflict-resolver"))
     implementation(libs.core)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -60,7 +62,6 @@ dependencies {
     coreLibraryDesugaring(libs.desugar.jdk.libs)
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
-    implementation(libs.conflictresolver)
     implementation(libs.stuff)
     implementation(libs.stuff.java)
     implementation(libs.kotlinjavacompat)

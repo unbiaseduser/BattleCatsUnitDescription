@@ -1,3 +1,6 @@
 [submodule "bottom-sheet-alert-dialog"]
 	path = bottom-sheet-alert-dialog
 	url = https://github.com/unbiaseduser/bottom-sheet-alert-dialog
+[submodule "conflict-resolver"]
+	path = conflict-resolver
+	url = https://github.com/unbiaseduser/conflict-resolver

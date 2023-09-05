@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     id("androidx.navigation.safeargs")
+    alias(libs.plugins.androidJunit5)
 }
 
 android {
