@@ -61,6 +61,7 @@ android {
 dependencies {
 
     implementation(project(":common"))
+    implementation(project(":bottom-sheet-alert-dialog"))
     implementation(libs.core)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -111,7 +112,6 @@ dependencies {
     implementation(libs.flowlayout)
     implementation(libs.materialpopupmenuplus)
     implementation(libs.materialbanner)
-    implementation(libs.bottomsheetalertdialog)
     implementation(libs.materialspinner)
     implementation(libs.customactionmode)
     implementation(libs.basefragments)

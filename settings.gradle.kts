@@ -18,3 +18,5 @@ rootProject.name = "Battle Cats Unit Description"
 include (":app")
 include(":data-generator")
 include(":common")
+include(":bottom-sheet-alert-dialog")
+project(":bottom-sheet-alert-dialog").projectDir = File("bottom-sheet-alert-dialog/bottom-sheet-alert-dialog")

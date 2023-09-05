@@ -49,6 +49,7 @@ dependencies {
     }
 
     implementation(project(":common"))
+    implementation(project(":bottom-sheet-alert-dialog"))
     implementation(libs.core)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -60,7 +61,6 @@ dependencies {
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
     implementation(libs.conflictresolver)
-    implementation(libs.bottomsheetalertdialog)
     implementation(libs.stuff)
     implementation(libs.stuff.java)
     implementation(libs.kotlinjavacompat)
