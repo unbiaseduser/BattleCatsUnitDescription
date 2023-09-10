@@ -19,7 +19,7 @@ import com.sixtyninefourtwenty.bcud.utils.AssetMarkdownFileParsing;
 import com.sixtyninefourtwenty.bcud.utils.Utils;
 import com.sixtyninefourtwenty.bcud.utils.fragments.BaseViewBindingFragment;
 import com.sixtyninefourtwenty.common.utils.MoreFutures;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 import com.sixtyninefourtwenty.javastuff.concurrent.LifecycleAwareFutureContainer;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -67,7 +67,7 @@ public final class GuideDetailsFragment extends BaseViewBindingFragment<LoadingT
             if (!guide.getUrl().equals("https://thanksfeanor.pythonanywhere.com/guides/documents/catcombos.html")) {
                 combo.setVisible(false).setEnabled(false);
             } else {
-                final var icon = Assets.createDrawableFromAsset(requireContext().getAssets(), "img/combo_big.png");
+                final var icon = AssetsJava.createDrawableFromAsset(requireContext().getAssets(), "img/combo_big.png");
                 if (icon != null) {
                     combo.setIcon(icon);
                 }

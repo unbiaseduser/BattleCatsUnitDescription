@@ -7,7 +7,7 @@ import android.content.res.AssetManager;
 import com.google.common.collect.ImmutableList;
 import com.sixtyninefourtwenty.bcud.utils.Utils;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -34,7 +34,7 @@ public final class PonosQuoteData {
     }
 
     public PonosQuoteData(AssetManager assets) {
-        this(Assets.openQuietly(assets, "text/MainMenu_en.csv"));
+        this(AssetsJava.openQuietly(assets, "text/MainMenu_en.csv"));
     }
 
     @Getter

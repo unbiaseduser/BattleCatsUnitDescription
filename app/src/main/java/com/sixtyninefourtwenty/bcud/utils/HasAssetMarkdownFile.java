@@ -1,6 +1,6 @@
 package com.sixtyninefourtwenty.bcud.utils;
 
-import static com.sixtyninefourtwenty.javastuff.Assets.readEntireTextFile;
+import static com.sixtyninefourtwenty.javastuff.AssetsJava.readEntireTextFile;
 
 import android.content.Context;
 import android.content.res.AssetManager;

@@ -14,7 +14,7 @@ import com.sixtyninefourtwenty.bcud.objects.Unit;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.utils.CommonConstants;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import java.util.function.IntFunction;
 
@@ -28,12 +28,12 @@ public final class ComboParser {
     private final ImmutableList<String[]> allCombosDataFileLines;
 
     public ComboParser(AssetManager assets) {
-        final var permittedComboFileLineIndicesArr = DATA_DELIMITER_COMMA.split(requireNonNull(Assets.readFirstFileLine(assets, "text/combos/supported_combo_line_indices.txt")));
+        final var permittedComboFileLineIndicesArr = DATA_DELIMITER_COMMA.split(requireNonNull(AssetsJava.readFirstFileLine(assets, "text/combos/supported_combo_line_indices.txt")));
         permittedComboFileLineIndices = new IntArrayList(permittedComboFileLineIndicesArr.length);
         for (final var s : permittedComboFileLineIndicesArr) {
             permittedComboFileLineIndices.add(parseInt(s));
         }
-        allCombosDataFileLines = Assets.readTextFileLines(assets, "text/combos/NyancomboData.csv", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.COMMA)).collect(new ImmutableListCollector<>()));
+        allCombosDataFileLines = AssetsJava.readTextFileLines(assets, "text/combos/NyancomboData.csv", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.COMMA)).collect(new ImmutableListCollector<>()));
     }
 
     public ImmutableList<Combo> createCombos(Iterable<Unit> unitsToSearchFrom) {

@@ -5,7 +5,7 @@ import android.content.res.AssetManager;
 import com.google.common.collect.ImmutableList;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -28,7 +28,7 @@ public final class ComboNameParser implements ComboNameSupplier {
     }
 
     public ComboNameParser(AssetManager assets) {
-        this(Assets.openQuietly(assets, "text/combos/Nyancombo_en.csv"));
+        this(AssetsJava.openQuietly(assets, "text/combos/Nyancombo_en.csv"));
     }
 
     @Override

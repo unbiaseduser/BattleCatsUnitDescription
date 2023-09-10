@@ -9,7 +9,7 @@ import com.konloch.util.FastStringUtils;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.objects.TFMaterial;
 import com.sixtyninefourtwenty.common.utils.CommonConstants;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,7 +42,7 @@ public final class TFMaterialInfoParser implements TFMaterialInfoSupplier {
     }
 
     public TFMaterialInfoParser(AssetManager assets) {
-        this(Assets.openQuietly(assets, "text/GatyaitemName.csv"));
+        this(AssetsJava.openQuietly(assets, "text/GatyaitemName.csv"));
     }
 
     @Override

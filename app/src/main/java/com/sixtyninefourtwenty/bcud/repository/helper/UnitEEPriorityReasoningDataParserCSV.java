@@ -10,7 +10,7 @@ import com.sixtyninefourtwenty.common.objects.ElderEpic;
 import com.sixtyninefourtwenty.common.utils.CommonConstants;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
 import com.sixtyninefourtwenty.common.utils.Validations;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -37,7 +37,7 @@ public final class UnitEEPriorityReasoningDataParserCSV implements UnitEEPriorit
     }
 
     public UnitEEPriorityReasoningDataParserCSV(AssetManager assets) {
-        this(Assets.openQuietly(assets, "text/eep_data.txt"));
+        this(AssetsJava.openQuietly(assets, "text/eep_data.txt"));
     }
 
     @Override

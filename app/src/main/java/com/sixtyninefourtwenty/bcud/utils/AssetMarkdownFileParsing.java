@@ -7,7 +7,7 @@ import com.google.common.cache.Cache;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -36,7 +36,7 @@ public final class AssetMarkdownFileParsing {
                                                                Markwon markwon,
                                                                @Nullable Cache<String, String> cache) {
         return executorService.submit(() -> {
-            final var result = cache != null ? cache.get(path, () -> Assets.readEntireTextFile(context.getAssets(), path)) : Assets.readEntireTextFile(context.getAssets(), path);
+            final var result = cache != null ? cache.get(path, () -> AssetsJava.readEntireTextFile(context.getAssets(), path)) : AssetsJava.readEntireTextFile(context.getAssets(), path);
             return markwon.toMarkdown(result);
         });
     }

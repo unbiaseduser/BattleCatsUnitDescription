@@ -9,7 +9,7 @@ import com.sixtyninefourtwenty.bcud.objects.Guide;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.utils.CommonConstants;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import lombok.Getter;
 
@@ -34,8 +34,8 @@ public final class GuideDataDataSet implements GuideData {
     private ImmutableList<Guide> loadGuides(GuideIdentifier identifier, String textFileDir, AssetManager assets) {
         final var list = new ImmutableList.Builder<Guide>();
         final var fileLines = switch (identifier) {
-            case GUIDES -> Assets.readTextFileLines(assets, "text/guide_list.txt", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.PIPE)).collect(new ImmutableListCollector<>()));
-            case HELP_PINS -> Assets.readTextFileLines(assets, "text/help_pin_list.txt", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.PIPE)).collect(new ImmutableListCollector<>()));
+            case GUIDES -> AssetsJava.readTextFileLines(assets, "text/guide_list.txt", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.PIPE)).collect(new ImmutableListCollector<>()));
+            case HELP_PINS -> AssetsJava.readTextFileLines(assets, "text/help_pin_list.txt", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.PIPE)).collect(new ImmutableListCollector<>()));
         };
         for (final var line : fileLines) {
             list.add(new Guide(line[0], textFileDir + line[1], line[2]));

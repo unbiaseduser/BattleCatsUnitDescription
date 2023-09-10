@@ -6,7 +6,7 @@ import com.konloch.util.FastStringUtils;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.utils.CommonConstants;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -31,7 +31,7 @@ public final class UnitDescPageTextsParserCSV implements UnitDescPageTextsSuppli
     }
 
     public UnitDescPageTextsParserCSV(AssetManager assets) {
-        this(Assets.openQuietly(assets, "text/unit_desc_page_texts.txt"));
+        this(AssetsJava.openQuietly(assets, "text/unit_desc_page_texts.txt"));
     }
 
     @Override

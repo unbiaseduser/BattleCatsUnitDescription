@@ -9,7 +9,7 @@ import com.konloch.util.FastStringUtils;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.objects.Talent;
 import com.sixtyninefourtwenty.common.utils.CommonConstants;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,7 +42,7 @@ public final class TalentInfoParser implements TalentInfoSupplier {
     }
 
     public TalentInfoParser(AssetManager assets) {
-        this(Assets.openQuietly(assets, "text/nyankoPictureBook2_en.csv"));
+        this(AssetsJava.openQuietly(assets, "text/nyankoPictureBook2_en.csv"));
     }
 
     @Override

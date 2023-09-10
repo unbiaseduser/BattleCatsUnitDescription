@@ -9,7 +9,7 @@ import com.sixtyninefourtwenty.common.objects.ElderEpic;
 import com.sixtyninefourtwenty.common.objects.UnitEEPriorityData;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
 import com.sixtyninefourtwenty.common.utils.Validations;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import org.json.JSONArray;
 
@@ -30,7 +30,7 @@ public final class UnitEEPriorityReasoningDataParser implements UnitEEPriorityRe
     }
 
     public UnitEEPriorityReasoningDataParser(AssetManager assets) {
-        this(Assets.readEntireTextFile(assets,"text/unit_eep_data.json"));
+        this(AssetsJava.readEntireTextFile(assets,"text/unit_eep_data.json"));
     }
 
     @Override

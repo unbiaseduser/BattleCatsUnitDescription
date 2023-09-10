@@ -5,7 +5,7 @@ import android.content.res.AssetManager;
 import com.google.common.collect.ImmutableList;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
-import com.sixtyninefourtwenty.javastuff.Assets;
+import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -34,7 +34,7 @@ public final class ComboEffectDescParser implements ComboEffectDescSupplier {
     }
 
     public ComboEffectDescParser(AssetManager assets) {
-        this(Assets.openQuietly(assets, "text/combos/Nyancombo1_en.csv"), Assets.openQuietly(assets, "text/combos/Nyancombo2_en.csv"));
+        this(AssetsJava.openQuietly(assets, "text/combos/Nyancombo1_en.csv"), AssetsJava.openQuietly(assets, "text/combos/Nyancombo2_en.csv"));
     }
 
     @Override

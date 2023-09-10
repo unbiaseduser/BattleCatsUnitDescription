@@ -53,6 +53,7 @@ dependencies {
     implementation(project(":bottom-sheet-alert-dialog"))
     implementation(project(":conflict-resolver"))
     implementation(project(":stuff"))
+    implementation(project(":stuff-java"))
     implementation(libs.core)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -63,7 +64,6 @@ dependencies {
     coreLibraryDesugaring(libs.desugar.jdk.libs)
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
-    implementation(libs.stuff.java)
     implementation(libs.kotlinjavacompat)
     implementation(libs.guava)
 

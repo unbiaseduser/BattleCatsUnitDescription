@@ -13,3 +13,6 @@
 [submodule "stuff"]
 	path = stuff
 	url = https://github.com/unbiaseduser/stuff
+[submodule "stuff-java"]
+	path = stuff-java
+	url = https://github.com/unbiaseduser/stuff-java
