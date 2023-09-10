@@ -5,5 +5,9 @@
     <mapping directory="$PROJECT_DIR$/bottom-sheet-alert-dialog" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/conflict-resolver" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/custom-action-mode" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/material-spinner" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/stuff" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/stuff-java" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/theming" vcs="Git" />
   </component>
 </project>
