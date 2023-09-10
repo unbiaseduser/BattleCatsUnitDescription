@@ -19,10 +19,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.sixtyninefourtwenty.bcud.ui.activities.MainActivity;
 import com.sixtyninefourtwenty.bcud.utils.Utils;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
-import com.sixtyninefourtwenty.stuff.SnackbarDuration;
 import com.sixtyninefourtwenty.stuff.Snackbars;
 import com.sixtyninefourtwenty.stuff.SystemServices;
-import com.sixtyninefourtwenty.stuff.ToastDuration;
 import com.sixtyninefourtwenty.stuff.Toasts;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -81,17 +79,17 @@ public abstract non-sealed class BaseDialogFragment<V extends View> extends Dial
     }
 
     @Override
-    public final Toast makeToast(int textRes, ToastDuration duration) {
+    public final Toast makeToast(int textRes, int duration) {
         return com.sixtyninefourtwenty.stuff.Toasts.makeToast(requireContext(), textRes, duration);
     }
 
     @Override
-    public final Toast makeToast(CharSequence text, ToastDuration duration) {
+    public final Toast makeToast(CharSequence text, int duration) {
         return Toasts.makeToast(requireContext(), text, duration);
     }
 
     @Override
-    public final Snackbar makeSnackbar(int textRes, SnackbarDuration duration) {
+    public final Snackbar makeSnackbar(int textRes, int duration) {
         if (requireActivity() instanceof MainActivity ma) {
             return com.sixtyninefourtwenty.stuff.Snackbars.makeSnackbar(ma.getRootView(), textRes, duration);
         } else {
@@ -101,7 +99,7 @@ public abstract non-sealed class BaseDialogFragment<V extends View> extends Dial
     }
 
     @Override
-    public final Snackbar makeSnackbar(CharSequence text, SnackbarDuration duration) {
+    public final Snackbar makeSnackbar(CharSequence text, int duration) {
         if (requireActivity() instanceof MainActivity ma) {
             return com.sixtyninefourtwenty.stuff.Snackbars.makeSnackbar(ma.getRootView(), text, duration);
         } else {

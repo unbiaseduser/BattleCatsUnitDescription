@@ -37,6 +37,7 @@ android {
 
 dependencies {
 
+    implementation(project(":stuff"))
     implementation(libs.appcompat)
     implementation(libs.material)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
@@ -44,7 +45,6 @@ dependencies {
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
     implementation(libs.guava)
-    implementation(libs.stuff)
     implementation(libs.stuff.java)
     implementation(libs.kotlinjavacompat)
     implementation(libs.vavr)

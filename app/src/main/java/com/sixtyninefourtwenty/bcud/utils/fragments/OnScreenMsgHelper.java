@@ -2,21 +2,20 @@ package com.sixtyninefourtwenty.bcud.utils.fragments;
 
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
-import com.sixtyninefourtwenty.stuff.SnackbarDuration;
-import com.sixtyninefourtwenty.stuff.ToastDuration;
 
 @NonNullTypesByDefault
 public sealed interface OnScreenMsgHelper permits BaseBottomSheetAlertDialogFragment, BaseBottomSheetDialogFragment, BaseDialogFragment, BaseFragment {
     default Toast makeToast(int textRes) {
-        return makeToast(textRes, ToastDuration.SHORT);
+        return makeToast(textRes, Toast.LENGTH_SHORT);
     }
     default Toast makeToast(CharSequence text) {
-        return makeToast(text, ToastDuration.SHORT);
+        return makeToast(text, Toast.LENGTH_SHORT);
     }
-    Toast makeToast(int textRes, ToastDuration duration);
-    Toast makeToast(CharSequence text, ToastDuration duration);
+    Toast makeToast(int textRes, int duration);
+    Toast makeToast(CharSequence text, int duration);
     default void showToast(int textRes) {
         makeToast(textRes).show();
     }
@@ -24,13 +23,13 @@ public sealed interface OnScreenMsgHelper permits BaseBottomSheetAlertDialogFrag
         makeToast(text).show();
     }
     default Snackbar makeSnackbar(int textRes) {
-        return makeSnackbar(textRes, SnackbarDuration.SHORT);
+        return makeSnackbar(textRes, BaseTransientBottomBar.LENGTH_SHORT);
     }
     default Snackbar makeSnackbar(CharSequence text) {
-        return makeSnackbar(text, SnackbarDuration.SHORT);
+        return makeSnackbar(text, BaseTransientBottomBar.LENGTH_SHORT);
     }
-    Snackbar makeSnackbar(int textRes, SnackbarDuration duration);
-    Snackbar makeSnackbar(CharSequence text, SnackbarDuration duration);
+    Snackbar makeSnackbar(int textRes, int duration);
+    Snackbar makeSnackbar(CharSequence text, int duration);
     default void showSnackbar(int textRes) {
         makeSnackbar(textRes).show();
     }

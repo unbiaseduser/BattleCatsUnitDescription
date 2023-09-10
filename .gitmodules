@@ -10,3 +10,6 @@
 [submodule "material-spinner"]
 	path = material-spinner
 	url = https://github.com/unbiaseduser/material-spinner
+[submodule "stuff"]
+	path = stuff
+	url = https://github.com/unbiaseduser/stuff
