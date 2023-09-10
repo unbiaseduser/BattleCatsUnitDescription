@@ -118,8 +118,6 @@ dependencies {
     implementation(libs.flowlayout)
     implementation(libs.materialpopupmenuplus)
     implementation(libs.materialbanner)
-    implementation(libs.basefragments)
-    implementation(libs.kotlinjavacompat)
     implementation(libs.materialaboutlibraryplus)
     implementation(libs.vavr)
     implementation(libs.faststringutils)

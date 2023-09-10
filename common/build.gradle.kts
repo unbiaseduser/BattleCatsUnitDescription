@@ -46,7 +46,6 @@ dependencies {
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
     implementation(libs.guava)
-    implementation(libs.kotlinjavacompat)
     implementation(libs.vavr)
     implementation(libs.faststringutils)
 

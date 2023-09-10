@@ -64,7 +64,6 @@ dependencies {
     coreLibraryDesugaring(libs.desugar.jdk.libs)
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
-    implementation(libs.kotlinjavacompat)
     implementation(libs.guava)
 
     testImplementation(libs.androidx.test.ext.junit)
