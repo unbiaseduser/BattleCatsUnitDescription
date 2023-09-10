@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/bottom-sheet-alert-dialog" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/conflict-resolver" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/custom-action-mode" vcs="Git" />
   </component>
 </project>

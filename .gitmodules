@@ -7,3 +7,6 @@
 [submodule "custom-action-mode"]
 	path = custom-action-mode
 	url = https://github.com/unbiaseduser/custom-action-mode
+[submodule "material-spinner"]
+	path = material-spinner
+	url = https://github.com/unbiaseduser/material-spinner

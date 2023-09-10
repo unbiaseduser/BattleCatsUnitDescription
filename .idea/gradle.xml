@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/conflict-resolver/conflict-resolver" />
             <option value="$PROJECT_DIR$/custom-action-mode/custom-action-mode" />
             <option value="$PROJECT_DIR$/data-generator" />
+            <option value="$PROJECT_DIR$/material-spinner/material-spinner" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
