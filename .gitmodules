@@ -16,3 +16,6 @@
 [submodule "stuff-java"]
 	path = stuff-java
 	url = https://github.com/unbiaseduser/stuff-java
+[submodule "theming"]
+	path = theming
+	url = https://github.com/unbiaseduser/theming
