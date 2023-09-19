@@ -1,6 +1,6 @@
 package com.sixtyninefourtwenty.bcud.ui.fragments;
 
-import static com.sixtyninefourtwenty.common.utils.ChangeOnlyQueryTextListener.changeOnly;
+import static com.sixtyninefourtwenty.stuff.listeners.ChangeOnlyQueryTextListener.changeOnly;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

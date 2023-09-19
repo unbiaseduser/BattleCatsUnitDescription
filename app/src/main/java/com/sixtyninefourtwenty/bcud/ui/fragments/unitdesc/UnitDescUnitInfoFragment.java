@@ -1,6 +1,6 @@
 package com.sixtyninefourtwenty.bcud.ui.fragments.unitdesc;
 
-import static com.sixtyninefourtwenty.common.utils.ShortenedOnLongClickListener.shortened;
+import static com.sixtyninefourtwenty.stuff.listeners.ShortOnLongClickListener.shorten;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -149,7 +149,7 @@ public final class UnitDescUnitInfoFragment extends BaseViewBindingFragment<Frag
                 .setText(tooltip)
                 .setLifecycleOwner(getViewLifecycleOwner())
                 .build()::showAlignBottom);
-        view.setOnLongClickListener(shortened(v -> startActivity(new Intent(requireContext(), PhotoEditorActivity.class)
+        view.setOnLongClickListener(shorten(v -> startActivity(new Intent(requireContext(), PhotoEditorActivity.class)
                 .putExtra("img_to_edit", Utils.drawableToBitmap(view.getDrawable())))));
     }
 

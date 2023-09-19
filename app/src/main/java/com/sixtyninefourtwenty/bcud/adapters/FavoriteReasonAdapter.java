@@ -1,6 +1,6 @@
 package com.sixtyninefourtwenty.bcud.adapters;
 
-import static com.sixtyninefourtwenty.common.utils.ShortenedOnLongClickListener.shortened;
+import static com.sixtyninefourtwenty.stuff.listeners.ShortOnLongClickListener.shorten;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +56,7 @@ public final class FavoriteReasonAdapter extends ListAdapter<FavoriteReason, Fav
         public ViewHolder(ListItemReasonBinding binding, ObjIntConsumer<View> onReasonLongClick) {
             super(binding.getRoot());
             this.binding = binding;
-            binding.getRoot().setOnLongClickListener(shortened(v -> onReasonLongClick.accept(v, getAbsoluteAdapterPosition())));
+            binding.getRoot().setOnLongClickListener(shorten(v -> onReasonLongClick.accept(v, getAbsoluteAdapterPosition())));
         }
     }
 }

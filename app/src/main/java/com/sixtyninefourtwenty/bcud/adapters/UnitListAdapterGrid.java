@@ -1,6 +1,6 @@
 package com.sixtyninefourtwenty.bcud.adapters;
 
-import static com.sixtyninefourtwenty.common.utils.ShortenedOnLongClickListener.shortened;
+import static com.sixtyninefourtwenty.stuff.listeners.ShortOnLongClickListener.shorten;
 
 import android.content.Context;
 import android.view.View;
@@ -65,7 +65,7 @@ public final class UnitListAdapterGrid extends ListAdapter<Unit, UnitListAdapter
             super(icon);
             this.icon = icon;
             itemView.setOnClickListener(v -> onItemClickListener.accept(getAbsoluteAdapterPosition()));
-            itemView.setOnLongClickListener(shortened(v -> onItemLongClickListener.accept(v, getAbsoluteAdapterPosition())));
+            itemView.setOnLongClickListener(shorten(v -> onItemLongClickListener.accept(v, getAbsoluteAdapterPosition())));
         }
     }
 }
