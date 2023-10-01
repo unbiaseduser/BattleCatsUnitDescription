@@ -41,7 +41,7 @@ public final class UnitExplanationParser implements UnitExplanationSupplier {
             }
             final Function<String[], String> parseDesc = parts -> Stream.of(parts)
                     .drop(1)
-                    .takeUntil(String::isEmpty)
+                    .takeUntil(part -> part.isEmpty() || part.contains("\u000E"))
                     .collect(joining(" "));
             final var unitHasTF = lines.get(2).length > 0 && !lines.get(2)[0].equals(lines.get(1)[0]);
             data.put(unitId, new Unit.Explanation(
