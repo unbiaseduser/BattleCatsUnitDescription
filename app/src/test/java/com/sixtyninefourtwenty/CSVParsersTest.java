@@ -1,12 +1,12 @@
 package com.sixtyninefourtwenty;
 
+import static com.sixtyninefourtwenty.TestUtils.createUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.google.common.collect.ImmutableList;
-import com.sixtyninefourtwenty.bcud.objects.Unit;
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitEEPriorityReasoningDataParserCSV;
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitHPDataParserCSV;
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitParserCSV;
@@ -67,8 +67,8 @@ class CSVParsersTest {
         final var emptyEpicCats = parser.createElderEpicPriorityList(ElderEpic.EPIC, ImmutableList.of());
         assertTrue(emptyEpicCats.isEmpty());
 
-        final var fakeSlapstickCats = createFakeUnit(152, UnitBaseData.Type.SUPER_RARE);
-        final var fakeDancerCat = createFakeUnit(10, UnitBaseData.Type.CF_SPECIAL);
+        final var fakeSlapstickCats = createUnit(152, UnitBaseData.Type.SUPER_RARE);
+        final var fakeDancerCat = createUnit(10, UnitBaseData.Type.CF_SPECIAL);
         final var unitListOfSlapstickAndDancerCats = ImmutableList.of(fakeSlapstickCats, fakeDancerCat);
         final var elderListThatShouldContainSlapstickCats = parser.createElderEpicPriorityList(ElderEpic.ELDER, unitListOfSlapstickAndDancerCats);
         //Slapstick has elder TF, so returned unit list should contain it
@@ -85,8 +85,8 @@ class CSVParsersTest {
         final var emptySpecialMaxPriorityList = parser.createHypermaxPriorityList(Hypermax.Priority.MAX, Hypermax.UnitType.SPECIAL, ImmutableList.of());
         assertTrue(emptySpecialMaxPriorityList.isEmpty());
 
-        final var fakeBahamutCat = createFakeUnit(25, UnitBaseData.Type.STORY_LEGEND);
-        final var fakeValkyrieCat = createFakeUnit(24, UnitBaseData.Type.STORY_LEGEND);
+        final var fakeBahamutCat = createUnit(25, UnitBaseData.Type.STORY_LEGEND);
+        final var fakeValkyrieCat = createUnit(24, UnitBaseData.Type.STORY_LEGEND);
 
         final var specialMaxPriorityListThatShouldContainOnlyBahamutCat = parser.createHypermaxPriorityList(Hypermax.Priority.MAX, Hypermax.UnitType.SPECIAL, ImmutableList.of(fakeBahamutCat, fakeValkyrieCat));
         assertTrue(specialMaxPriorityListThatShouldContainOnlyBahamutCat.contains(fakeBahamutCat));
@@ -116,8 +116,8 @@ class CSVParsersTest {
 
         final var emptyNonUberTopPriorityTalentList = parser.createTalentPriorityList(Talent.Priority.TOP, Talent.UnitType.NON_UBER, ImmutableList.of());
         assertTrue(emptyNonUberTopPriorityTalentList.isEmpty());
-        final var fakeSanzoCat = createFakeUnit(50, UnitBaseData.Type.RARE);
-        final var fakeBahamutCat = createFakeUnit(25, UnitBaseData.Type.STORY_LEGEND);
+        final var fakeSanzoCat = createUnit(50, UnitBaseData.Type.RARE);
+        final var fakeBahamutCat = createUnit(25, UnitBaseData.Type.STORY_LEGEND);
         final var nonUberTopPriorityUnitListThatShouldContainSanzoCat = parser.createTalentPriorityList(Talent.Priority.TOP, Talent.UnitType.NON_UBER, ImmutableList.of(fakeSanzoCat, fakeBahamutCat));
         assertTrue(nonUberTopPriorityUnitListThatShouldContainSanzoCat.contains(fakeSanzoCat));
         assertFalse(nonUberTopPriorityUnitListThatShouldContainSanzoCat.contains(fakeBahamutCat));
@@ -137,15 +137,6 @@ class CSVParsersTest {
         final var goldCatfruitData = catGodTfMaterialList.get(1);
         assertEquals(1, goldCatfruitData.getQuantity());
         assertEquals(TFMaterial.GOLD, goldCatfruitData.getMaterial());
-    }
-
-    private Unit createFakeUnit(int unitId, UnitBaseData.Type type) {
-        return new Unit(
-                unitId,
-                type,
-                ImmutableList.of(),
-                ImmutableList.of()
-        );
     }
 
 }
