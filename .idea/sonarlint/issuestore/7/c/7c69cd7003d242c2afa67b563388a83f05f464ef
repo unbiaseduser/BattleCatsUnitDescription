@@ -1,5 +1,0 @@
-
-s
-java:S6204n"^Replace this usage of 'Stream.collect(Collectors.toUnmodifiableList())' with 'Stream.toList()'(·Êﬁ8
-s
-java:S6204|"^Replace this usage of 'Stream.collect(Collectors.toUnmodifiableList())' with 'Stream.toList()'(·Êﬁ8
