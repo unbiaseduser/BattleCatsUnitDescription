@@ -46,11 +46,13 @@ commonmark = "0.21.0"
 markwon = "4.6.2"
 fulldraggabledrawer = "1.0.3"
 photoeditor = "3.0.1"
-colorpicker = "2.3"
+colorpicker = "2.0"
 betterlinkmovementmethod = "2.2.0"
 switchicon = "1.4.0"
 vavr = "0.10.4"
 faststringutils = "1.3.0"
+lib-integrations = "1"
+bottom-sheet-alert-dialog = "1.1"
 
 
 [libraries]
@@ -112,7 +114,7 @@ markwon-recycler = { module = "io.noties.markwon:recycler", version.ref = "markw
 markwon-recycler-table = { module = "io.noties.markwon:recycler-table", version.ref = "markwon" }
 fulldraggabledrawer = { module = "com.drakeet.drawer:drawer", version.ref = "fulldraggabledrawer" }
 photoeditor = { module = "com.burhanrashid52:photoeditor", version.ref = "photoeditor" }
-colorpicker = { module = "com.github.Dhaval2404:ColorPicker", version.ref = "colorpicker" }
+colorpicker = { module = "com.github.unbiaseduser.custom-preferences:colorpicker", version.ref = "colorpicker" }
 betterlinkmovementmethod = { module = "me.saket:better-link-movement-method", version.ref = "betterlinkmovementmethod" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-guava = { module = "androidx.room:room-guava", version.ref = "room" }
@@ -120,6 +122,9 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 switchicon = { module = "com.github.zagum:Android-SwitchIcon", version.ref = "switchicon" }
 vavr = { module = "io.vavr:vavr", version.ref = "vavr" }
 faststringutils = { module = "com.konloch:FastStringUtils", version.ref = "faststringutils" }
+custompreferencesthemingintegration = { module = "com.github.unbiaseduser.library-integrations:custom-preferences-theming-integration", version.ref = "lib-integrations" }
+themingpreferenceintegration = { module = "com.github.unbiaseduser.library-integrations:theming-preference-integration", version.ref = "lib-integrations" }
+bottomsheetalertdialog = { module = "com.github.unbiaseduser:bottom-sheet-alert-dialog", version.ref = "bottom-sheet-alert-dialog" }
 
 
 [plugins]

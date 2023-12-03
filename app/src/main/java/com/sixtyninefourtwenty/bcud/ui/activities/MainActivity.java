@@ -19,7 +19,7 @@ import com.sixtyninefourtwenty.bcud.utils.AppPreferences;
 import com.sixtyninefourtwenty.bcud.utils.Constants;
 import com.sixtyninefourtwenty.customactionmode.AbstractActionMode;
 import com.sixtyninefourtwenty.customactionmode.FadingActionMode;
-import com.sixtyninefourtwenty.theming.ActivityTheming;
+import com.sixtyninefourtwenty.theming.preferences.ActivityThemingWithPreferences;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -48,7 +48,7 @@ public final class MainActivity extends AppCompatActivity {
         createNotificationChannels();
         prefs = AppPreferences.get(this);
         setFirstInstallSettings();
-        ActivityTheming.applyTheming(this,
+        ActivityThemingWithPreferences.applyThemingWithPreferences(this,
                 R.style.Theme_BattleCatsUnitDescription,
                 R.style.Theme_BattleCatsUnitDescription_Material3_Android11,
                 R.style.Theme_BattleCatsUnitDescription_Material3);

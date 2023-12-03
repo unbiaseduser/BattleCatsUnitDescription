@@ -1,5 +1,6 @@
 <resources>
-    <style name="Theme.BattleCatsUnitDescription.Material3.Android11" parent="AppTheme.Material3.CustomColors">
+    <style name="Theme.BattleCatsUnitDescription.Material3.Android11" parent="AppTheme.Material3.CustomColors.WithCustomPreferences">
         <item name="materialPopupMenuStyle">@style/Widget.MPM.Menu.Material3</item>
+        <item name="bsadTitleStyle">?attr/themeDependantTitleStyle</item>
     </style>
 </resources>

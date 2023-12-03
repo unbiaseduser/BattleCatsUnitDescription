@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.github.dhaval2404.colorpicker.ColorPickerDialog;
+import com.github.dhaval2404.colorpicker.MaterialColorPicker;
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -211,7 +212,7 @@ public final class PhotoEditorActivity extends AppCompatActivity {
                         currentlySelectedColor[0] = color;
                     })
                     .show());
-            binding.pickColorSimple.setOnClickListener(v -> new MaterialColorPickerDialog.Builder(requireContext())
+            binding.pickColorSimple.setOnClickListener(v -> new MaterialColorPicker.Builder(requireContext())
                     .setTitle(R.string.color_picker_simple)
                     .setPositiveButton(android.R.string.ok)
                     .setNegativeButton(android.R.string.cancel)
@@ -281,7 +282,7 @@ public final class PhotoEditorActivity extends AppCompatActivity {
                         currentlySelectedColor[0] = color;
                     })
                     .show());
-            binding.pickColorSimple.setOnClickListener(v -> new MaterialColorPickerDialog.Builder(requireContext())
+            binding.pickColorSimple.setOnClickListener(v -> new MaterialColorPicker.Builder(requireContext())
                     .setTitle(R.string.color_picker_simple)
                     .setPositiveButton(android.R.string.ok)
                     .setNegativeButton(android.R.string.cancel)

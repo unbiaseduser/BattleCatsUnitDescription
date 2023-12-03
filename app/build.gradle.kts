@@ -62,12 +62,10 @@ android {
 dependencies {
 
     implementation(project(":common"))
-    implementation(project(":bottom-sheet-alert-dialog"))
     implementation(project(":custom-action-mode"))
     implementation(project(":material-spinner"))
     implementation(project(":stuff"))
     implementation(project(":stuff-java"))
-    implementation(project(":theming"))
     implementation(libs.core)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -121,6 +119,9 @@ dependencies {
     implementation(libs.materialaboutlibraryplus)
     implementation(libs.vavr)
     implementation(libs.faststringutils)
+    implementation(libs.custompreferencesthemingintegration)
+    implementation(libs.themingpreferenceintegration)
+    implementation(libs.bottomsheetalertdialog)
 
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)

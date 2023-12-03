@@ -1,6 +1,7 @@
 <resources>
     <style name="Theme.BattleCatsUnitDescription" parent="AppTheme.Material2">
         <item name="materialPopupMenuStyle">@style/Widget.MPM.Menu</item>
+        <item name="bsadTitleStyle">?attr/themeDependantTitleStyle</item>
     </style>
 
     <style name="Theme.BattleCatsUnitDescription.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

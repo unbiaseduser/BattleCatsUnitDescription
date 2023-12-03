@@ -50,7 +50,6 @@ dependencies {
     }
 
     implementation(project(":common"))
-    implementation(project(":bottom-sheet-alert-dialog"))
     implementation(project(":conflict-resolver"))
     implementation(project(":stuff"))
     implementation(project(":stuff-java"))
@@ -65,6 +64,9 @@ dependencies {
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
     implementation(libs.guava)
+    implementation(libs.custompreferencesthemingintegration)
+    implementation(libs.themingpreferenceintegration)
+    implementation(libs.bottomsheetalertdialog)
 
     testImplementation(libs.androidx.test.ext.junit)
     testImplementation(libs.junit)
