@@ -15,11 +15,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.IntentCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.github.dhaval2404.colorpicker.ColorPickerDialog;
 import com.github.dhaval2404.colorpicker.MaterialColorPicker;
-import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
@@ -98,7 +98,7 @@ public final class PhotoEditorActivity extends AppCompatActivity {
         binding = ActivityPhotoEditorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         final var srcImageView = binding.photoEditor.getSource();
-        final var bitmap = getIntent().<Bitmap>getParcelableExtra("img_to_edit");
+        final var bitmap = IntentCompat.getParcelableExtra(getIntent(), "img_to_edit", Bitmap.class);
         if (bitmap != null) {
             srcImageView.setImageBitmap(bitmap);
         } else {
