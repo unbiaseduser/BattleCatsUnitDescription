@@ -1,7 +1,5 @@
 package com.sixtyninefourtwenty.bcud.utils;
 
-import static java.util.Objects.requireNonNull;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -11,8 +9,9 @@ import com.google.common.collect.ImmutableList;
 import com.sixtyninefourtwenty.bcud.MyApplication;
 import com.sixtyninefourtwenty.bcud.R;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
+import com.sixtyninefourtwenty.stuff.Preferences;
+import com.sixtyninefourtwenty.stuff.preferences.StringPreferenceValue;
 
-import kotlin.collections.CollectionsKt;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -33,32 +32,9 @@ public final class AppPreferences {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    private String getString(String key, String defaultValue) {
-        return requireNonNull(preferences.getString(key, defaultValue));
-    }
-
-    private interface StringValueEnum {
-        String getValue();
-    }
-
-    private <E extends Enum<E> & StringValueEnum> E getStringValueEnum(Iterable<E> values, String key, E defaultValue) {
-        final var prefValue = getString(key, defaultValue.getValue());
-        return CollectionsKt.first(values, value -> value.getValue().equals(prefValue));
-    }
-
-    private interface IntValueEnum {
-        int getValue();
-    }
-
-    @SuppressWarnings("unused")
-    private <E extends Enum<E> & IntValueEnum> E getIntValueEnum(Iterable<E> values, String key, E defaultValue) {
-        final var prefValue = preferences.getInt(key, defaultValue.getValue());
-        return CollectionsKt.first(values, value -> value.getValue() == prefValue);
-    }
-
     @AllArgsConstructor
     @Getter
-    public enum ListViewMode implements StringValueEnum {
+    public enum ListViewMode implements StringPreferenceValue {
         LIST("list"),
         GRID("grid");
         private final String value;
@@ -66,16 +42,16 @@ public final class AppPreferences {
     }
 
     public ListViewMode getListViewMode() {
-        return getStringValueEnum(ListViewMode.VALUES, "list_mode", ListViewMode.GRID);
+        return Preferences.getStringValue(preferences, "list_mode", ListViewMode.VALUES, ListViewMode.GRID);
     }
 
     public void setListViewMode(ListViewMode value) {
-        preferences.edit().putString("list_mode", value.getValue()).apply();
+        Preferences.putStringValue(preferences.edit(), "list_mode", value).apply();
     }
 
     @AllArgsConstructor
     @Getter
-    public enum AdventViewMode implements StringValueEnum {
+    public enum AdventViewMode implements StringPreferenceValue {
         TABS("tabs"),
         TEXT("texts");
         private final String value;
@@ -83,11 +59,11 @@ public final class AppPreferences {
     }
 
     public AdventViewMode getAdventViewMode() {
-        return getStringValueEnum(AdventViewMode.VALUES, "advent_view_mode", AdventViewMode.TABS);
+        return Preferences.getStringValue(preferences, "advent_view_mode", AdventViewMode.VALUES, AdventViewMode.TABS);
     }
 
     public void setAdventViewMode(AdventViewMode value) {
-        preferences.edit().putString("advent_view_mode", value.getValue()).apply();
+        Preferences.putStringValue(preferences.edit(), "advent_view_mode", value).apply();
     }
 
     public boolean getUseToc() {
