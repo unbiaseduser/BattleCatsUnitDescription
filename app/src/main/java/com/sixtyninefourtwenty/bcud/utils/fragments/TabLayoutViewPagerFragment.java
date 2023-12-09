@@ -13,7 +13,7 @@ import com.sixtyninefourtwenty.common.utils.TabLayoutViewPagerScreen;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public abstract class TabLayoutViewPagerFragment extends BaseFragment<View> {
+public abstract class TabLayoutViewPagerFragment extends BaseFragment<@NonNull View> {
     protected abstract RecyclerView.Adapter<?> getPagerAdapter(@NonNull LayoutInflater inflater, @Nullable ViewGroup container);
     protected boolean shouldTabsBeScrollable() {
         return false;

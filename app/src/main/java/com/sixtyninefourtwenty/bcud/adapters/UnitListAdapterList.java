@@ -47,7 +47,7 @@ public final class UnitListAdapterList extends ListAdapter<Unit, UnitListAdapter
         holder.binding.unitName.setText(unit.getExplanation(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()).getName(Unit.Form.FIRST));
     }
 
-    static final class UnitListViewHolderList extends RecyclerView.ViewHolder {
+    public static final class UnitListViewHolderList extends RecyclerView.ViewHolder {
         private final ListItemUnitListBinding binding;
 
         public UnitListViewHolderList(ListItemUnitListBinding binding, IntConsumer onItemClickListener, ObjIntConsumer<View> onButtonMenuClickListener) {

@@ -16,10 +16,10 @@ import java.util.List;
 import kotlin.collections.CollectionsKt;
 import lombok.Getter;
 
+@Getter
 @NonNullTypesByDefault
 public final class AdventDataDataSet implements AdventData {
 
-    @Getter
     private final ImmutableList<AdventBoss> bosses;
 
     public AdventDataDataSet(AssetManager assets) {

@@ -59,7 +59,7 @@ public final class TFMaterialAdapter extends ListAdapter<TFMaterialData, TFMater
         holder.binding.number.setText(Formatting.formatANumber(holder.binding.getRoot().getContext(), mat.getQuantity()));
     }
 
-    static final class ViewHolder extends RecyclerView.ViewHolder {
+    public static final class ViewHolder extends RecyclerView.ViewHolder {
         private final ListItemTfMaterialBinding binding;
 
         public ViewHolder(ListItemTfMaterialBinding binding, ObjIntConsumer<View> onIconClickListener) {

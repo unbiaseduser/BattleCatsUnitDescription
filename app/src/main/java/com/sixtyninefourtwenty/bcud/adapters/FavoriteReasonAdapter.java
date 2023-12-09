@@ -50,7 +50,7 @@ public final class FavoriteReasonAdapter extends ListAdapter<FavoriteReason, Fav
         holder.binding.reason.setText(getItem(position).getReason());
     }
 
-    static final class ViewHolder extends RecyclerView.ViewHolder {
+    public static final class ViewHolder extends RecyclerView.ViewHolder {
         private final ListItemReasonBinding binding;
 
         public ViewHolder(ListItemReasonBinding binding, ObjIntConsumer<View> onReasonLongClick) {

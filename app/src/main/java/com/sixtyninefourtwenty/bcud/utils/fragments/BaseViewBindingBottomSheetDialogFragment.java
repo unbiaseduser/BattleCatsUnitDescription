@@ -34,6 +34,7 @@ public abstract class BaseViewBindingBottomSheetDialogFragment<VB extends ViewBi
         setup(binding, savedInstanceState);
     }
 
+    @SuppressWarnings("unused")
     protected void onCleanup(@NonNull VB binding) {}
 
     @Override

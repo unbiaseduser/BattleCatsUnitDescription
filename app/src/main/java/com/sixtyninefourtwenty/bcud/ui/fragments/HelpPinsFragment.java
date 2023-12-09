@@ -14,7 +14,7 @@ import com.sixtyninefourtwenty.bcud.utils.fragments.BaseFragment;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public final class HelpPinsFragment extends BaseFragment<RecyclerView> {
+public final class HelpPinsFragment extends BaseFragment<@NonNull RecyclerView> {
 
     @Override
     protected @NonNull RecyclerView initView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {

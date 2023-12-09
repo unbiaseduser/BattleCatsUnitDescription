@@ -32,7 +32,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.List;
 
-public final class CombosFragment extends BaseViewBindingFragment<FragmentCombosBinding> {
+public final class CombosFragment extends BaseViewBindingFragment<@NonNull FragmentCombosBinding> {
     private final MenuProvider provider = new MenuProvider() {
         @Override
         public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
@@ -67,7 +67,7 @@ public final class CombosFragment extends BaseViewBindingFragment<FragmentCombos
         requireActivity().addMenuProvider(provider, getViewLifecycleOwner());
     }
 
-    public static final class SearchFilterCombosDialog extends BaseViewBindingBottomSheetAlertDialogFragment<DialogSearchFilterCombosBinding> {
+    public static final class SearchFilterCombosDialog extends BaseViewBindingBottomSheetAlertDialogFragment<@NonNull DialogSearchFilterCombosBinding> {
 
         private ComboDataViewModel model;
 

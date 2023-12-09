@@ -27,13 +27,13 @@ import com.sixtyninefourtwenty.bcud.repository.helper.UnitExplanationSupplier;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.objects.UnitBaseData;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+
+import lombok.Getter;
 
 @NonNullTypesByDefault
 public final class ComboDataViewModel extends ViewModel {
@@ -73,16 +73,14 @@ public final class ComboDataViewModel extends ViewModel {
         savedStateHandle.set(CURRENTLY_USED_FILTERS_KEY, currentlyUsedFilters);
     }
 
+    /**
+     * -- GETTER --
+     *  Persists combo name query across searches.
+     */
+    @Getter
     private String currentQueryByName;
 
-    /**
-     * Persists combo name query across searches.
-     */
-    public String getCurrentQueryByName() {
-        return currentQueryByName;
-    }
-
-    public void setCurrentQueryByName(@NonNull String currentQueryByName) {
+    public void setCurrentQueryByName(String currentQueryByName) {
         savedStateHandle.set(CURRENT_QUERY_BY_NAME_KEY, currentQueryByName);
         this.currentQueryByName = requireNonNull(currentQueryByName);
     }
@@ -96,7 +94,7 @@ public final class ComboDataViewModel extends ViewModel {
         return currentQueryByUnit;
     }
 
-    public void setCurrentQueryByUnit(@NonNull String query) {
+    public void setCurrentQueryByUnit(String query) {
         savedStateHandle.set(CURRENT_QUERY_BY_UNIT_KEY, query);
         currentQueryByUnit.setValue(requireNonNull(query));
     }

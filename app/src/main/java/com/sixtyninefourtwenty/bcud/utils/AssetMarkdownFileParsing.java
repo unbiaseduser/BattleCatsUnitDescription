@@ -9,6 +9,7 @@ import com.google.common.util.concurrent.ListeningExecutorService;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 import io.noties.markwon.Markwon;
@@ -20,17 +21,17 @@ public final class AssetMarkdownFileParsing {
         throw new UnsupportedOperationException();
     }
 
-    public static ListenableFuture<Spanned> parseFromObject(ListeningExecutorService executorService,
-                                                            HasAssetMarkdownFile subject,
-                                                            Context context,
-                                                            Markwon markwon) {
+    public static ListenableFuture<@NonNull Spanned> parseFromObject(ListeningExecutorService executorService,
+                                                                     HasAssetMarkdownFile subject,
+                                                                     Context context,
+                                                                     Markwon markwon) {
         return executorService.submit(() -> {
             final var result = subject.readFileContent(context.getAssets());
             return markwon.toMarkdown(result);
         });
     }
 
-    public static ListenableFuture<Spanned> parseArbitraryFile(ListeningExecutorService executorService,
+    public static ListenableFuture<@NonNull Spanned> parseArbitraryFile(ListeningExecutorService executorService,
                                                                Context context,
                                                                String path,
                                                                Markwon markwon,
@@ -41,7 +42,7 @@ public final class AssetMarkdownFileParsing {
         });
     }
 
-    public static ListenableFuture<Spanned> parseArbitraryFile(ListeningExecutorService executorService,
+    public static ListenableFuture<@NonNull Spanned> parseArbitraryFile(ListeningExecutorService executorService,
                                                                Context context,
                                                                String path,
                                                                Markwon markwon) {

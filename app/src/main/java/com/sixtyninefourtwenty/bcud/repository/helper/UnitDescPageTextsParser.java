@@ -22,6 +22,7 @@ public final class UnitDescPageTextsParser implements UnitDescPageTextsSupplier 
     private final Int2ObjectMap<Unit.DescPageTexts> data = new Int2ObjectOpenHashMap<>();
 
     @SneakyThrows
+    @SuppressWarnings("unused")
     public UnitDescPageTextsParser(String json) {
         UnitBaseData.SERIALIZER.listFromJson(new JSONArray(json))
                 .forEach(d -> data.put(d.getUnitId(), new Unit.DescPageTexts(

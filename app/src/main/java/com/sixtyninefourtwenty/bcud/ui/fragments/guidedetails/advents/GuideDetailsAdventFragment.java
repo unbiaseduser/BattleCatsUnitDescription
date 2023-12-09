@@ -33,7 +33,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.List;
 
-public final class GuideDetailsAdventFragment extends BaseFragment<FrameLayout> {
+public final class GuideDetailsAdventFragment extends BaseFragment<@NonNull FrameLayout> {
     private AppSettingsViewModel settingsViewModel;
     private FutureContainer futureContainer;
     private final MenuProvider provider = new MenuProvider() {

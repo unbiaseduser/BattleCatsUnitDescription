@@ -18,6 +18,7 @@ import io.vavr.collection.Stream;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
+@Getter
 public final class PonosQuoteData {
 
     @SneakyThrows
@@ -37,7 +38,6 @@ public final class PonosQuoteData {
         this(AssetsJava.openQuietly(assets, "text/MainMenu_en.csv"));
     }
 
-    @Getter
     private final ImmutableList<String> quotes;
 
 }

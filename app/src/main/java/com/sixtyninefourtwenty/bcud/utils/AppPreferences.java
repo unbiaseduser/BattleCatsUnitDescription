@@ -50,6 +50,7 @@ public final class AppPreferences {
         int getValue();
     }
 
+    @SuppressWarnings("unused")
     private <E extends Enum<E> & IntValueEnum> E getIntValueEnum(Iterable<E> values, String key, E defaultValue) {
         final var prefValue = preferences.getInt(key, defaultValue.getValue());
         return CollectionsKt.first(values, value -> value.getValue() == prefValue);
@@ -101,6 +102,7 @@ public final class AppPreferences {
         preferences.edit().putBoolean("first_launch", value).apply();
     }
 
+    @SuppressWarnings("unused")
     public boolean resetSetting(String key) {
         if (preferences.contains(key)) {
             preferences.edit().remove(key).apply();

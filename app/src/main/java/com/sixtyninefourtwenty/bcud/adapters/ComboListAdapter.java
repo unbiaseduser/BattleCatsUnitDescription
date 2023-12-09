@@ -79,7 +79,7 @@ public final class ComboListAdapter extends ListAdapter<Combo, ComboListAdapter.
         }
     }
 
-    static final class ViewHolder extends RecyclerView.ViewHolder {
+    public static final class ViewHolder extends RecyclerView.ViewHolder {
         private final ListItemComboBinding binding;
 
         public ViewHolder(ListItemComboBinding binding, RecyclerView.RecycledViewPool pool) {

@@ -25,7 +25,7 @@ import io.noties.markwon.recycler.MarkwonAdapter;
 import io.noties.markwon.recycler.table.TableEntry;
 import io.noties.markwon.recycler.table.TableEntryPlugin;
 
-public final class XPCostFragment extends BaseViewBindingFragment<FragmentXpCostBinding> {
+public final class XPCostFragment extends BaseViewBindingFragment<@NonNull FragmentXpCostBinding> {
     private final MenuProvider provider = new MenuProvider() {
         @Override
         public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {

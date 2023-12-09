@@ -58,7 +58,7 @@ public final class UnitListAdapterGrid extends ListAdapter<Unit, UnitListAdapter
         AssetImageLoading.loadAssetImage(holder.icon, getItem(position).getLatestFormIconPath(MyApplication.get(holder.icon.getContext()).getUnitExplanationData()));
     }
 
-    static final class UnitListGridViewHolder extends RecyclerView.ViewHolder {
+    public static final class UnitListGridViewHolder extends RecyclerView.ViewHolder {
         private final ImageView icon;
 
         public UnitListGridViewHolder(ImageView icon, IntConsumer onItemClickListener, ObjIntConsumer<View> onItemLongClickListener) {

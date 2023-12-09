@@ -23,7 +23,7 @@ import com.sixtyninefourtwenty.javastuff.concurrent.LifecycleAwareFutureContaine
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public final class ThirdPartyLicenseDialog extends BaseViewBindingBottomSheetAlertDialogFragment<GenericTextPageBinding> {
+public final class ThirdPartyLicenseDialog extends BaseViewBindingBottomSheetAlertDialogFragment<@NonNull GenericTextPageBinding> {
 
     private License license;
 
@@ -33,7 +33,7 @@ public final class ThirdPartyLicenseDialog extends BaseViewBindingBottomSheetAle
     }
 
     @Override
-    protected View initDialogView(GenericTextPageBinding binding) {
+    protected @NonNull View initDialogView(GenericTextPageBinding binding) {
         license = ThirdPartyLicenseDialogArgs.fromBundle(requireArguments()).getLicense();
         return new BottomSheetAlertDialogFragmentViewBuilder(binding.getRoot(), this, license.isLicenseLong())
                 .setTitle(R.string.license_info)

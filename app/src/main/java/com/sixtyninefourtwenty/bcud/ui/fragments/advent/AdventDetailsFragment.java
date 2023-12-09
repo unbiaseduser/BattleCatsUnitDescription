@@ -13,7 +13,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import me.zhanghai.android.fastscroll.FastScrollerBuilder;
 
-public final class AdventDetailsFragment extends BaseViewBindingFragment<FragmentAdventDetailsBinding> {
+public final class AdventDetailsFragment extends BaseViewBindingFragment<@NonNull FragmentAdventDetailsBinding> {
 
     @Override
     protected @NonNull FragmentAdventDetailsBinding initBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {

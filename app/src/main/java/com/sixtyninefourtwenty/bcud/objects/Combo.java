@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcud.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -75,6 +77,7 @@ public class Combo implements Parcelable {
         @IntRange(from = 0)
         private final int index;
 
+        @SuppressWarnings("unused")
         public String getEffectDesc(ComboEffectDescSupplier supplier, Type type) {
             return supplier.getDesc(type.getIndex(), index);
         }
@@ -84,8 +87,8 @@ public class Combo implements Parcelable {
 
     private Combo(Parcel in) {
         Function<Parcel, ImmutableList<Pair<Unit, Unit.Form>>> readUnitList = parcel -> {
-            var units = parcel.createTypedArrayList(Unit.CREATOR);
-            var nums = parcel.createIntArray();
+            var units = requireNonNull(parcel.createTypedArrayList(Unit.CREATOR));
+            var nums = requireNonNull(parcel.createIntArray());
             var list = new ImmutableList.Builder<Pair<Unit, Unit.Form>>();
             for (int i = 0; i < units.size(); i++) {
                 list.add(new Pair<>(units.get(i), Unit.Form.values()[nums[i]]));
@@ -94,10 +97,10 @@ public class Combo implements Parcelable {
         };
 
         index = in.readInt();
-        type = (Type) in.readSerializable();
-        level = (Level) in.readSerializable();
+        type = (Type) requireNonNull(in.readSerializable());
+        level = (Level) requireNonNull(in.readSerializable());
         unitsAndForms = readUnitList.apply(in);
-        units = ImmutableList.copyOf(in.createTypedArrayList(Unit.CREATOR));
+        units = ImmutableList.copyOf(requireNonNull(in.createTypedArrayList(Unit.CREATOR)));
     }
 
     public static final Creator<Combo> CREATOR = new Creator<>() {

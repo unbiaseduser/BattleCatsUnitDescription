@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcud.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -30,9 +32,9 @@ public class Guide implements Parcelable, HasAssetMarkdownFile {
     String url;
 
     private Guide(Parcel in) {
-        title = in.readString();
-        fileToLoad = in.readString();
-        url = in.readString();
+        title = requireNonNull(in.readString());
+        fileToLoad = requireNonNull(in.readString());
+        url = requireNonNull(in.readString());
     }
 
     public static final Creator<Guide> CREATOR = new Creator<>() {

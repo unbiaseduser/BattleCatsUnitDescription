@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcud.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -33,10 +35,10 @@ public class AdventBoss implements Parcelable {
 
     private AdventBoss(Parcel in) {
         bossId = in.readInt();
-        name = in.readString();
-        info = in.readString();
-        wikiUrl = in.readString();
-        stages = ImmutableList.copyOf(in.createTypedArrayList(AdventStage.CREATOR));
+        name = requireNonNull(in.readString());
+        info = requireNonNull(in.readString());
+        wikiUrl = requireNonNull(in.readString());
+        stages = ImmutableList.copyOf(requireNonNull(in.createTypedArrayList(AdventStage.CREATOR)));
     }
 
     public static final Creator<AdventBoss> CREATOR = new Creator<>() {

@@ -73,7 +73,7 @@ import java.util.function.ObjIntConsumer;
 import kotlin.collections.CollectionsKt;
 import lombok.AllArgsConstructor;
 
-public final class FavoritesFragment extends BaseViewBindingFragment<FragmentFavoritesBinding> {
+public final class FavoritesFragment extends BaseViewBindingFragment<@NonNull FragmentFavoritesBinding> {
     private FavoritesAdapter adapter;
     private FavoritesDataViewModel favModel;
     private SelectionTracker<Long> selectionTracker;

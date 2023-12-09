@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
-public final class GuideDetailsAdventTabListFragment extends BaseFragment<RecyclerView> {
+public final class GuideDetailsAdventTabListFragment extends BaseFragment<@NonNull RecyclerView> {
 
     @Override
     protected @NonNull RecyclerView initView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -51,7 +51,7 @@ public final class GuideDetailsAdventTabListFragment extends BaseFragment<Recycl
                         .show()));
     }
 
-    public static final class SelectAdventStageDialog extends BaseDialogFragment<RecyclerView> {
+    public static final class SelectAdventStageDialog extends BaseDialogFragment<@NonNull RecyclerView> {
 
         @Override
         protected @NonNull RecyclerView initView(@NonNull LayoutInflater inflater) {

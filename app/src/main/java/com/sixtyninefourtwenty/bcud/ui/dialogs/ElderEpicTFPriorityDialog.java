@@ -20,7 +20,7 @@ import com.sixtyninefourtwenty.bottomsheetalertdialog.DialogButtonProperties;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public final class ElderEpicTFPriorityDialog extends BaseViewBindingBottomSheetAlertDialogFragment<DialogEepBinding> {
+public final class ElderEpicTFPriorityDialog extends BaseViewBindingBottomSheetAlertDialogFragment<@NonNull DialogEepBinding> {
 
     @Override
     protected @NonNull DialogEepBinding initBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -28,7 +28,7 @@ public final class ElderEpicTFPriorityDialog extends BaseViewBindingBottomSheetA
     }
 
     @Override
-    protected View initDialogView(@NonNull DialogEepBinding binding) {
+    protected @NonNull View initDialogView(@NonNull DialogEepBinding binding) {
         return new BottomSheetAlertDialogFragmentViewBuilder(binding.getRoot(), this)
                 .setTitle(R.string.reason)
                 .setPositiveButton(DialogButtonProperties.ofOnlyText(R.string.got_it))

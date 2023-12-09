@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcud.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -30,10 +32,10 @@ public class AdventStage implements Parcelable, HasAssetMarkdownFile {
 
     private AdventStage(Parcel in) {
         bossId = in.readInt();
-        img = in.readString();
-        name = in.readString();
-        filePath = in.readString();
-        wikiUrl = in.readString();
+        img = requireNonNull(in.readString());
+        name = requireNonNull(in.readString());
+        filePath = requireNonNull(in.readString());
+        wikiUrl = requireNonNull(in.readString());
     }
 
     public static final Creator<AdventStage> CREATOR = new Creator<>() {

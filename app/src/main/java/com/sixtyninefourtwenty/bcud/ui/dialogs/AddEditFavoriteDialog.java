@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public final class AddEditFavoriteDialog extends BaseViewBindingBottomSheetAlertDialogFragment<DialogAddEditFavoriteBinding> {
+public final class AddEditFavoriteDialog extends BaseViewBindingBottomSheetAlertDialogFragment<@NonNull DialogAddEditFavoriteBinding> {
     private boolean isUpdate = false;
     private Unit unit;
     private final FavoriteReasonAdapter adapter = new FavoriteReasonAdapter((adapter, v, reason) -> new PopupMenuBuilder(requireContext(), v)

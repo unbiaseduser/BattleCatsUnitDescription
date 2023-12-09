@@ -42,6 +42,7 @@ public abstract class BaseViewBindingBottomSheetAlertDialogFragment<VB extends V
         setup(binding, savedInstanceState);
     }
 
+    @SuppressWarnings("unused")
     protected void onCleanup(@NonNull VB binding) {}
 
     @Override

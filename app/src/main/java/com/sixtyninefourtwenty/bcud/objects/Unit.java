@@ -73,6 +73,7 @@ public class Unit implements Parcelable {
             };
         }
 
+        @SuppressWarnings("unused")
         public String getDescription(Form form) {
             return switch (form) {
                 case FIRST -> firstFormDescription;
@@ -122,6 +123,9 @@ public class Unit implements Parcelable {
         return supplier.getExplanation(id);
     }
 
+    // this method is used in ElderEpicTFPriorityDialog by a unit got thru safe args, but android
+    // studio doesn't recognize the generated args class
+    @SuppressWarnings("unused")
     public String getEEPriorityReasoning(UnitEEPriorityReasoningSupplier supplier, ElderEpic elderEpic) {
         return supplier.getPriorityReasoningForUnitWithId(id, elderEpic);
     }
@@ -139,7 +143,7 @@ public class Unit implements Parcelable {
     }
 
     public ImmutableList<Talent> getTalents(Talent.Priority priority) {
-        return talentMap.getOrDefault(priority, ImmutableList.of());
+        return requireNonNull(talentMap.getOrDefault(priority, ImmutableList.of()));
     }
 
     public String getUdpUrl() {
@@ -212,8 +216,8 @@ public class Unit implements Parcelable {
 
         id = in.readInt();
         type = requireNonNull((UnitBaseData.Type) in.readSerializable());
-        tfMaterialData = ImmutableList.copyOf(in.createTypedArrayList(TFMaterialData.CREATOR));
-        talentData = ImmutableList.copyOf(in.createTypedArrayList(TalentData.CREATOR));
+        tfMaterialData = ImmutableList.copyOf(requireNonNull(in.createTypedArrayList(TFMaterialData.CREATOR)));
+        talentData = ImmutableList.copyOf(requireNonNull(in.createTypedArrayList(TalentData.CREATOR)));
         readTalentMapping.accept(in, talentMap);
     }
 
@@ -222,7 +226,7 @@ public class Unit implements Parcelable {
 
         Consumer<Parcel> writeTalentMapping = parcel -> {
             for (final var priority : Talent.Priority.values()) {
-                final var list = talentMap.getOrDefault(priority, ImmutableList.of());
+                final var list = requireNonNull(talentMap.getOrDefault(priority, ImmutableList.of()));
                 parcel.writeStringList(CollectionsKt.map(list, Object::toString));
             }
         };

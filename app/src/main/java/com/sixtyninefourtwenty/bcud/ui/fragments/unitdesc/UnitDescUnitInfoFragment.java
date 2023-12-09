@@ -39,7 +39,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 
-public final class UnitDescUnitInfoFragment extends BaseViewBindingFragment<FragmentUdpUnitInfoBinding> {
+public final class UnitDescUnitInfoFragment extends BaseViewBindingFragment<@NonNull FragmentUdpUnitInfoBinding> {
     private ComboListAdapter comboListAdapter;
     private TFMaterialAdapter tfMaterialAdapter;
     private ComboDataViewModel comboDataViewModel;

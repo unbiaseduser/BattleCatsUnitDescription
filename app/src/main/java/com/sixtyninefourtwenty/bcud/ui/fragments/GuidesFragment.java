@@ -19,7 +19,7 @@ import com.sixtyninefourtwenty.bcud.utils.fragments.BaseFragment;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public final class GuidesFragment extends BaseFragment<RecyclerView> {
+public final class GuidesFragment extends BaseFragment<@NonNull RecyclerView> {
 
     private final MenuProvider provider = new MenuProvider() {
         @Override

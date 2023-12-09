@@ -13,6 +13,7 @@ import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import lombok.Getter;
 
+@Getter
 @NonNullTypesByDefault
 @Immutable
 public final class GuideDataDataSet implements GuideData {
@@ -22,9 +23,7 @@ public final class GuideDataDataSet implements GuideData {
         helpPins = loadGuides(GuideIdentifier.HELP_PINS, "", assets);
     }
 
-    @Getter
     private final ImmutableList<Guide> guides;
-    @Getter
     private final ImmutableList<Guide> helpPins;
 
     private enum GuideIdentifier {

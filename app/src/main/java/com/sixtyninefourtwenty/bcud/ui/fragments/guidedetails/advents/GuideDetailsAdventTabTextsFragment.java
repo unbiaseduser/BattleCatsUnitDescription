@@ -19,7 +19,7 @@ import com.sixtyninefourtwenty.javastuff.concurrent.LifecycleAwareFutureContaine
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public final class GuideDetailsAdventTabTextsFragment extends BaseViewBindingFragment<LoadingTextPageBinding> {
+public final class GuideDetailsAdventTabTextsFragment extends BaseViewBindingFragment<@NonNull LoadingTextPageBinding> {
 
     @Override
     protected @NonNull LoadingTextPageBinding initBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {

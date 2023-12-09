@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
-public final class ThirdPartyLicensesFragment extends BaseFragment<RecyclerView> {
+public final class ThirdPartyLicensesFragment extends BaseFragment<@NonNull RecyclerView> {
 
     @Override
     protected @NonNull RecyclerView initView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -52,7 +52,7 @@ public final class ThirdPartyLicensesFragment extends BaseFragment<RecyclerView>
                 license -> navigate(ThirdPartyLicensesFragmentDirections.showThirdPartyLicenseDialog(license))));
     }
 
-    public static final class LibWebsitesDialog extends BaseViewBindingDialogFragment<DialogLibWebsitesBinding> {
+    public static final class LibWebsitesDialog extends BaseViewBindingDialogFragment<@NonNull DialogLibWebsitesBinding> {
 
         @Override
         protected @NonNull DialogLibWebsitesBinding initBinding(@NonNull LayoutInflater inflater) {

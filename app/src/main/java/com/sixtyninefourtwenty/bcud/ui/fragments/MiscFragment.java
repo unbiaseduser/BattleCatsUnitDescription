@@ -34,7 +34,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiConsumer;
 import java.util.function.ObjIntConsumer;
 
-public final class MiscFragment extends BaseViewBindingFragment<FragmentMiscBinding> {
+public final class MiscFragment extends BaseViewBindingFragment<@NonNull FragmentMiscBinding> {
 
     private final UniqueIntRandom intRandom = new UniqueIntRandom();
     private ImmutableList<String> ponosQuotes;
@@ -64,7 +64,7 @@ public final class MiscFragment extends BaseViewBindingFragment<FragmentMiscBind
         binding.ponosQuote.setText(ponosQuotes.get(intRandom.nextInt(ponosQuotes.size())));
     }
 
-    public static final class PonosQuotesDialog extends BaseBottomSheetAlertDialogFragment<RecyclerView> {
+    public static final class PonosQuotesDialog extends BaseBottomSheetAlertDialogFragment<@NonNull RecyclerView> {
 
         @NonNull
         @Override

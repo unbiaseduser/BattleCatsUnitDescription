@@ -17,7 +17,7 @@ import com.sixtyninefourtwenty.stuff.Views;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public final class EditReasonDialog extends BaseViewBindingBottomSheetAlertDialogFragment<DialogAddEditReasonBinding> {
+public final class EditReasonDialog extends BaseViewBindingBottomSheetAlertDialogFragment<@NonNull DialogAddEditReasonBinding> {
 
     public static final String CALLBACK_KEY = "edit_reason_callback";
     private FavoriteReason existingReason;

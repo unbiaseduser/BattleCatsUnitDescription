@@ -3,7 +3,6 @@ package com.sixtyninefourtwenty.bcud.objects.favorites;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -13,6 +12,7 @@ import androidx.room.PrimaryKey;
 
 import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -77,6 +77,7 @@ public final class FavoriteReason implements Parcelable {
     public static final JsonSerializer<FavoriteReason> SERIALIZER = new JsonSerializer<>() {
         @Override
         @SneakyThrows
+        @NonNull
         public JSONObject toJson(FavoriteReason obj) {
             return new JSONObject()
                     .put("uid", obj.uid)

@@ -27,7 +27,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import lombok.AllArgsConstructor;
 
-public final class GuideDetailsFragment extends BaseViewBindingFragment<LoadingTextPageBinding> {
+public final class GuideDetailsFragment extends BaseViewBindingFragment<@NonNull LoadingTextPageBinding> {
 
     @Override
     protected @NonNull LoadingTextPageBinding initBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {

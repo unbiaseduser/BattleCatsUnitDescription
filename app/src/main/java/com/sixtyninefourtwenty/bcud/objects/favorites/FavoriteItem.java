@@ -3,13 +3,13 @@ package com.sixtyninefourtwenty.bcud.objects.favorites;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -46,6 +46,7 @@ public final class FavoriteItem implements Parcelable {
     public static final JsonSerializer<FavoriteItem> SERIALIZER = new JsonSerializer<>() {
         @Override
         @SneakyThrows
+        @NonNull
         public JSONObject toJson(FavoriteItem obj) {
             return new JSONObject()
                     .put("unit_id", obj.unitId);

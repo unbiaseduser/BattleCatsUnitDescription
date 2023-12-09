@@ -39,7 +39,7 @@ import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 import java.util.function.ObjIntConsumer;
 
-public abstract class TalentPriorityTabFragment extends BaseViewBindingFragment<HpTpTabBinding> {
+public abstract class TalentPriorityTabFragment extends BaseViewBindingFragment<@NonNull HpTpTabBinding> {
     protected abstract Talent.UnitType getTalentPriorityType();
 
     @Override

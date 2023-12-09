@@ -28,7 +28,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import me.zhanghai.android.fastscroll.FastScrollerBuilder;
 
-public abstract class UnitDescTabFragment extends BaseViewBindingFragment<GenericSearchableListBinding> {
+public abstract class UnitDescTabFragment extends BaseViewBindingFragment<@NonNull GenericSearchableListBinding> {
     protected abstract UnitBaseData.Type getUnitType();
 
     @Override

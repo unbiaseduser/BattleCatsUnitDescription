@@ -19,7 +19,7 @@ import com.sixtyninefourtwenty.javastuff.concurrent.LifecycleAwareFutureContaine
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public final class HypermaxPriorityTabTextsFragment extends BaseViewBindingFragment<GenericTextPageBinding> {
+public final class HypermaxPriorityTabTextsFragment extends BaseViewBindingFragment<@NonNull GenericTextPageBinding> {
 
     @Override
     protected @NonNull GenericTextPageBinding initBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {

@@ -45,6 +45,7 @@ public final class MarkwonBuilderWrapper {
         return this;
     }
 
+    @SuppressWarnings("unused")
     public MarkwonBuilderWrapper tables() {
         builder.usePlugin(TablePlugin.create(context));
         return this;

@@ -34,6 +34,7 @@ public abstract class BaseViewBindingFragment<VB extends ViewBinding> extends Ba
         setup(binding, savedInstanceState);
     }
 
+    @SuppressWarnings("unused")
     protected void onCleanup(@NonNull VB binding) {}
 
     @Override

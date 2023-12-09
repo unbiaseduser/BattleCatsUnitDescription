@@ -25,7 +25,7 @@ import com.sixtyninefourtwenty.materialpopupmenu.builder.SectionBuilder;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public abstract class HypermaxPriorityTabFragment extends BaseViewBindingFragment<HpTpTabBinding> {
+public abstract class HypermaxPriorityTabFragment extends BaseViewBindingFragment<@NonNull HpTpTabBinding> {
     protected abstract Hypermax.UnitType getHypermaxPriorityType();
 
     @Override

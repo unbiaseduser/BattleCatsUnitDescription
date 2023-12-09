@@ -50,7 +50,7 @@ public final class GuidesListAdapter extends ListAdapter<Guide, GuidesListAdapte
         holder.binding.title.setText(guide.getTitle());
     }
 
-    static final class ViewHolder extends RecyclerView.ViewHolder {
+    public static final class ViewHolder extends RecyclerView.ViewHolder {
         private final ListItemGuideBinding binding;
 
         public ViewHolder(ListItemGuideBinding binding, IntConsumer onItemClickListener) {

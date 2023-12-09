@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
-public abstract class ElderEpicTabFragment extends BaseFragment<RecyclerView> {
+public abstract class ElderEpicTabFragment extends BaseFragment<@NonNull RecyclerView> {
     protected abstract ElderEpic getElderEpic();
 
     @Override
