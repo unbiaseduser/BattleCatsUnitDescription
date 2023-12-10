@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.common.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -9,8 +11,8 @@ import androidx.annotation.StringRes;
 
 import com.sixtyninefourtwenty.common.R;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
-import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 import com.sixtyninefourtwenty.common.utils.Validations;
+import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 
 import org.json.JSONObject;
 
@@ -85,7 +87,7 @@ public class UnitBaseData implements Parcelable {
     }
 
     public String getTextForInfo(Info info) {
-        return miscInfoTexts.getOrDefault(info, "");
+        return requireNonNull(miscInfoTexts.getOrDefault(info, ""));
     }
 
     public boolean hasInfo(Info info) {
@@ -111,7 +113,7 @@ public class UnitBaseData implements Parcelable {
 
     private UnitBaseData(Parcel in) {
         unitId = in.readInt();
-        type = (Type) in.readSerializable();
+        type = (Type) requireNonNull(in.readSerializable());
         for (final var miscInfo : Info.values()) {
             final var text = in.readString();
             if (Validations.isValidInfoString(text)) {

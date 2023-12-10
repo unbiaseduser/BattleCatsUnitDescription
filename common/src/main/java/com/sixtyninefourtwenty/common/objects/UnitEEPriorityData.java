@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.common.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -45,8 +47,8 @@ public class UnitEEPriorityData implements Parcelable {
 
     private UnitEEPriorityData(Parcel in) {
         unitId = in.readInt();
-        elderEpic = (ElderEpic) in.readSerializable();
-        text = in.readString();
+        elderEpic = (ElderEpic) requireNonNull(in.readSerializable());
+        text = requireNonNull(in.readString());
     }
 
     public static final Creator<UnitEEPriorityData> CREATOR = new Creator<>() {

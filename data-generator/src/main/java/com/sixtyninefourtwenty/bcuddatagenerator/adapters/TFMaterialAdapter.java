@@ -68,7 +68,7 @@ public final class TFMaterialAdapter extends ListAdapter<TFMaterialData, TFMater
         holder.binding.quantity.setText(holder.binding.getRoot().getContext().getString(R.string.quantity_num, item.getQuantity()));
     }
 
-    static final class ViewHolder extends RecyclerView.ViewHolder {
+    public static final class ViewHolder extends RecyclerView.ViewHolder {
         private final ListItemTfMaterialBinding binding;
 
         @SuppressLint("ClickableViewAccessibility")

@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.common.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -42,8 +44,8 @@ public class TalentData implements Parcelable {
     };
 
     private TalentData(Parcel in) {
-        talent = (Talent) in.readSerializable();
-        priority = (Talent.Priority) in.readSerializable();
+        talent = (Talent) requireNonNull(in.readSerializable());
+        priority = (Talent.Priority) requireNonNull(in.readSerializable());
     }
 
     public static final Creator<TalentData> CREATOR = new Creator<>() {

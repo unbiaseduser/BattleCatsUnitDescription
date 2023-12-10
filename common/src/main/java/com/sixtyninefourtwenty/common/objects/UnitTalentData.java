@@ -1,12 +1,14 @@
 package com.sixtyninefourtwenty.common.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
+import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 
 import org.json.JSONObject;
 
@@ -50,8 +52,8 @@ public class UnitTalentData implements Parcelable {
 
     private UnitTalentData(Parcel in) {
         unitId = in.readInt();
-        unitType = (Talent.UnitType) in.readSerializable();
-        talents = in.createTypedArrayList(TalentData.CREATOR);
+        unitType = (Talent.UnitType) requireNonNull(in.readSerializable());
+        talents = requireNonNull(in.createTypedArrayList(TalentData.CREATOR));
     }
 
     public static final Creator<UnitTalentData> CREATOR = new Creator<>() {

@@ -70,7 +70,7 @@ public final class TalentDataAdapter extends ListAdapter<TalentData, TalentDataA
         holder.binding.priorityText.setText(context.getString(R.string.priority_str, context.getString(item.getPriority().getText())));
     }
 
-    static final class ViewHolder extends RecyclerView.ViewHolder {
+    public static final class ViewHolder extends RecyclerView.ViewHolder {
         private final ListItemTalentDataBinding binding;
 
         @SuppressLint("ClickableViewAccessibility")

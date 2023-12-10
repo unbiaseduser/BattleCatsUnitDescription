@@ -1,12 +1,14 @@
 package com.sixtyninefourtwenty.common.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
+import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 
 import org.json.JSONObject;
 
@@ -46,8 +48,8 @@ public class UnitHypermaxData implements Parcelable {
 
     private UnitHypermaxData(Parcel in) {
         unitId = in.readInt();
-        priority = (Hypermax.Priority) in.readSerializable();
-        type = (Hypermax.UnitType) in.readSerializable();
+        priority = (Hypermax.Priority) requireNonNull(in.readSerializable());
+        type = (Hypermax.UnitType) requireNonNull(in.readSerializable());
     }
 
     public static final Creator<UnitHypermaxData> CREATOR = new Creator<>() {

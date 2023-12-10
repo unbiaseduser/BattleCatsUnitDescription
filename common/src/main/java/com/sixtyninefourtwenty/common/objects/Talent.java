@@ -81,11 +81,11 @@ public enum Talent {
         return supplier.getInfo(index);
     }
 
+    @Getter
     @AllArgsConstructor
     public enum Priority {
         TOP(R.string.top_priority), HIGH(R.string.high_priority), MID(R.string.medium_priority), LOW(R.string.low_priority), DONT(R.string.do_not_unlock);
 
-        @Getter
         @StringRes
         private final int text;
     }

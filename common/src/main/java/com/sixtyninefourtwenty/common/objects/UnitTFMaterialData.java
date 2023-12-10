@@ -1,12 +1,14 @@
 package com.sixtyninefourtwenty.common.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
+import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 
 import org.json.JSONObject;
 
@@ -48,7 +50,7 @@ public class UnitTFMaterialData implements Parcelable {
 
     private UnitTFMaterialData(Parcel in) {
         unitId = in.readInt();
-        materials = in.createTypedArrayList(TFMaterialData.CREATOR);
+        materials = requireNonNull(in.createTypedArrayList(TFMaterialData.CREATOR));
     }
 
     public static final Creator<UnitTFMaterialData> CREATOR = new Creator<>() {

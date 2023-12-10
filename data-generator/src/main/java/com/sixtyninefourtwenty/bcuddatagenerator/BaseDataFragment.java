@@ -37,7 +37,6 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 import java.util.function.IntConsumer;
 
 public final class BaseDataFragment extends Fragment {

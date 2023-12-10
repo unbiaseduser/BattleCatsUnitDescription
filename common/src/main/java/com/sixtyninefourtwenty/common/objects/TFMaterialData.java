@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.common.objects;
 
+import static java.util.Objects.requireNonNull;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -46,7 +48,7 @@ public class TFMaterialData implements Parcelable {
     };
 
     private TFMaterialData(Parcel in) {
-        material = (TFMaterial) in.readSerializable();
+        material = (TFMaterial) requireNonNull(in.readSerializable());
         quantity = in.readInt();
     }
 

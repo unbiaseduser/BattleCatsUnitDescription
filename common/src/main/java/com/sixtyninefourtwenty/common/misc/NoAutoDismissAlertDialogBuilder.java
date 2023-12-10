@@ -63,6 +63,7 @@ public final class NoAutoDismissAlertDialogBuilder {
         this.onPositiveButtonClick = listener;
     }
 
+    @SuppressWarnings("unused")
     public NoAutoDismissAlertDialogBuilder setNeutralButton(int text,
                                                              boolean dismissOnNeutral,
                                                              @Nullable DialogInterface.OnClickListener listener) {
@@ -71,6 +72,7 @@ public final class NoAutoDismissAlertDialogBuilder {
         return this;
     }
 
+    @SuppressWarnings("unused")
     public NoAutoDismissAlertDialogBuilder setNeutralButton(@Nullable CharSequence text,
                                                             boolean dismissOnNeutral,
                                                             @Nullable DialogInterface.OnClickListener listener) {
