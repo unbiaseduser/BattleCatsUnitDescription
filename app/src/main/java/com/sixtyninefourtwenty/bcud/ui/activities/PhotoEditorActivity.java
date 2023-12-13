@@ -175,7 +175,7 @@ public final class PhotoEditorActivity extends AppCompatActivity {
         });
     }
 
-    public static final class AddEditTextDialog extends BaseViewBindingDialogFragment<DialogImgEditAddTextBinding> {
+    public static final class AddEditTextDialog extends BaseViewBindingDialogFragment<@NonNull DialogImgEditAddTextBinding> {
 
         public static final String EDIT_TEXT_REQUEST_KEY = "edit_text_request";
         public static final String ADD_TEXT_REQUEST_KEY = "add_text_request";
@@ -245,7 +245,7 @@ public final class PhotoEditorActivity extends AppCompatActivity {
         }
     }
 
-    public static final class BrushSettingsDialog extends BaseViewBindingDialogFragment<DialogImgEditBrushSettingsBinding> {
+    public static final class BrushSettingsDialog extends BaseViewBindingDialogFragment<@NonNull DialogImgEditBrushSettingsBinding> {
 
         private final int[] currentlySelectedColor = new int[1];
         public static final String BRUSH_SETTINGS_REQUEST_KEY = "brush_settings";
@@ -319,7 +319,7 @@ public final class PhotoEditorActivity extends AppCompatActivity {
         }
     }
 
-    public static final class ExportImageDialog extends BaseViewBindingDialogFragment<DialogImgEditExportBinding> {
+    public static final class ExportImageDialog extends BaseViewBindingDialogFragment<@NonNull DialogImgEditExportBinding> {
 
         public static final String EXPORT_IMG_REQUEST_KEY = "export_img_request";
 
