@@ -134,6 +134,7 @@ bottomsheetalertdialog = { module = "com.github.unbiaseduser:bottom-sheet-alert-
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 androidJunit5 = { id = "de.mannodermaus.android-junit5", version.ref = "android-junit5" }
+room = { id = "androidx.room", version.ref = "room" }
 
 
 [bundles]

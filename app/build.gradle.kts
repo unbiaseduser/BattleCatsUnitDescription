@@ -3,6 +3,11 @@ plugins {
     alias(libs.plugins.androidApplication)
     id("androidx.navigation.safeargs")
     alias(libs.plugins.androidJunit5)
+    id("androidx.room")
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 android {
@@ -21,8 +26,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas",
-                    "room.incremental" to "true"
+                    "room.incremental" to "true" //wait why did I add this?
                 )
             }
         }
