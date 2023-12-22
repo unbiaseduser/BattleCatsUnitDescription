@@ -49,7 +49,7 @@ public final class ThirdPartyLicensesFragment extends BaseFragment<@NonNull Recy
                         navigate(ThirdPartyLicensesFragmentDirections.showLibWebsitesDialog(websites.toArray(new String[0])));
                     }
                 },
-                license -> navigate(ThirdPartyLicensesFragmentDirections.showThirdPartyLicenseDialog(license))));
+                license -> openWebsite(license.getLicenseUrl())));
     }
 
     public static final class LibWebsitesDialog extends BaseViewBindingDialogFragment<@NonNull DialogLibWebsitesBinding> {

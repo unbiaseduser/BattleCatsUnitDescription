@@ -1,6 +1,8 @@
 package com.sixtyninefourtwenty.bcud.ui.fragments;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
@@ -40,7 +42,7 @@ public final class AboutFragment extends MaterialAboutFragment {
                                 .setIcon(R.drawable.gavel)
                                 .setTitle(R.string.app_license)
                                 .setSubtext(R.string.gpl_3)
-                                .setOnClickAction(() -> nav.navigate(AboutFragmentDirections.showAppLicenseDialog(License.GPL3)))
+                                .setOnClickAction(() -> Utils.handleOpenWebsite(this, License.GPL3.getLicenseUrl()))
                                 .build())
                         .addItem(new ActionItem.Builder()
                                 .setIcon(R.drawable.description)

@@ -69,9 +69,6 @@
         <action
             android:id="@+id/action_nav_about_to_nav_third_party_licenses"
             app:destination="@id/nav_third_party_licenses" />
-        <action
-            android:id="@+id/show_app_license_dialog"
-            app:destination="@id/nav_third_party_license"/>
     </fragment>
 
     <fragment
@@ -174,9 +171,6 @@
         android:label="@string/third_party_licenses"
         tools:layout="@layout/generic_rcv_layout">
         <action
-            android:id="@+id/show_third_party_license_dialog"
-            app:destination="@id/nav_third_party_license"/>
-        <action
             android:id="@+id/show_lib_websites_dialog"
             app:destination="@id/nav_lib_websites"/>
     </fragment>
@@ -261,14 +255,6 @@
         <argument
             android:name="existing_reason"
             app:argType="com.sixtyninefourtwenty.bcud.objects.favorites.FavoriteReason"/>
-    </dialog>
-    <dialog
-        android:id="@+id/nav_third_party_license"
-        android:name="com.sixtyninefourtwenty.bcud.ui.dialogs.ThirdPartyLicenseDialog"
-        tools:layout="@layout/generic_text_page">
-        <argument
-            android:name="license"
-            app:argType="com.sixtyninefourtwenty.bcud.enums.License"/>
     </dialog>
     <dialog
         android:id="@+id/nav_elder_epic_reason"
