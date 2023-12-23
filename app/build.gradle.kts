@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
+    implementation(libs.recyclerview)
     implementation(libs.recyclerview.selection)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
     implementation(libs.lifecycle.livedata.ktx)

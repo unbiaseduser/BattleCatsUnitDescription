@@ -39,6 +39,7 @@ dependencies {
     implementation(project(":stuff"))
     implementation(project(":stuff-java"))
     implementation(libs.appcompat)
+    implementation(libs.recyclerview)
     implementation(libs.material)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 

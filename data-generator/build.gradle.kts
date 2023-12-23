@@ -54,6 +54,7 @@ dependencies {
     implementation(project(":stuff-java"))
     implementation(libs.core)
     implementation(libs.appcompat)
+    implementation(libs.recyclerview)
     implementation(libs.material)
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
