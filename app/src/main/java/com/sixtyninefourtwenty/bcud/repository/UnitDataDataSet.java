@@ -8,15 +8,10 @@ import com.sixtyninefourtwenty.bcud.objects.Combo;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
 import com.sixtyninefourtwenty.bcud.repository.helper.ComboParser;
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitEEPriorityReasoningDataParser;
-import com.sixtyninefourtwenty.bcud.repository.helper.UnitEEPriorityReasoningDataParserCSV;
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitHPDataParser;
-import com.sixtyninefourtwenty.bcud.repository.helper.UnitHPDataParserCSV;
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitParser;
-import com.sixtyninefourtwenty.bcud.repository.helper.UnitParserCSV;
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitTFMaterialDataParser;
-import com.sixtyninefourtwenty.bcud.repository.helper.UnitTFMaterialDataParserCSV;
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitTalentDataParser;
-import com.sixtyninefourtwenty.bcud.repository.helper.UnitTalentDataParserCSV;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.objects.ElderEpic;
 import com.sixtyninefourtwenty.common.objects.Hypermax;
@@ -26,27 +21,27 @@ import com.sixtyninefourtwenty.common.objects.UnitBaseData;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import kotlin.collections.CollectionsKt;
 import kotlin.io.TextStreamsKt;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
 @Immutable
 @NonNullTypesByDefault
-public final class UnitDataDataSet implements UnitData {
+@Getter
+public final class UnitDataDataSet implements VerboseUnitData {
 
     @SneakyThrows
-    public UnitDataDataSet(AssetManager assets, boolean useCsvParsers) {
+    public UnitDataDataSet(AssetManager assets) {
         try (final var unitTfMaterialDataReader = new BufferedReader(new InputStreamReader(assets.open("text/unit_tf_material_data.json")));
              final var unitEepDataReader = new BufferedReader(new InputStreamReader(assets.open("text/unit_eep_data.json")));
              final var unitTalentDataReader = new BufferedReader(new InputStreamReader(assets.open("text/unit_talent_data.json")));
              final var unitHypermaxDataReader = new BufferedReader(new InputStreamReader(assets.open("text/unit_hypermax_data.json")));
              final var unitBaseDataReader = new BufferedReader(new InputStreamReader(assets.open("text/unit_base_data.json")))) {
-            final var tfMaterialDataParser = useCsvParsers ? new UnitTFMaterialDataParserCSV(assets.open("text/unit_material_data.txt")) : new UnitTFMaterialDataParser(TextStreamsKt.readText(unitTfMaterialDataReader));
-            final var eePriorityDataParser = useCsvParsers ? new UnitEEPriorityReasoningDataParserCSV(assets.open("text/eep_data.txt")) : new UnitEEPriorityReasoningDataParser(TextStreamsKt.readText(unitEepDataReader));
-            final var talentDataParser = useCsvParsers ? new UnitTalentDataParserCSV(assets.open("text/tp_data.txt")) : new UnitTalentDataParser(TextStreamsKt.readText(unitTalentDataReader));
-            final var hpDataParser = useCsvParsers ? new UnitHPDataParserCSV(assets.open("text/hp_data.txt")) : new UnitHPDataParser(TextStreamsKt.readText(unitHypermaxDataReader));
-            final var unitParser = useCsvParsers ? new UnitParserCSV(assets.open("text/unit_data.txt")) : new UnitParser(TextStreamsKt.readText(unitBaseDataReader));
+            final var tfMaterialDataParser = new UnitTFMaterialDataParser(TextStreamsKt.readText(unitTfMaterialDataReader));
+            final var eePriorityDataParser = new UnitEEPriorityReasoningDataParser(TextStreamsKt.readText(unitEepDataReader));
+            final var talentDataParser = new UnitTalentDataParser(TextStreamsKt.readText(unitTalentDataReader));
+            final var hpDataParser = new UnitHPDataParser(TextStreamsKt.readText(unitHypermaxDataReader));
+            final var unitParser = new UnitParser(TextStreamsKt.readText(unitBaseDataReader));
             storyLegends = unitParser.createMainList(UnitBaseData.Type.STORY_LEGEND,
                     tfMaterialDataParser::getMaterialListForUnitWithId,
                     talentDataParser::getTalentListForUnitWithId);
@@ -116,7 +111,6 @@ public final class UnitDataDataSet implements UnitData {
     private final ImmutableList<Unit> adventDrops;
     private final ImmutableList<Unit> cfSpecials;
     private final ImmutableList<Unit> ubers;
-    @Getter
     private final ImmutableList<Unit> allUnits;
     private final ImmutableList<Unit> specialMaxPriority;
     private final ImmutableList<Unit> specialHighPriority;
@@ -145,88 +139,6 @@ public final class UnitDataDataSet implements UnitData {
     private final ImmutableList<Unit> uberDoNotUnlock;
     private final ImmutableList<Unit> elderList;
     private final ImmutableList<Unit> epicList;
-    @Getter
     private final ImmutableList<Combo> allCombos;
 
-    @Override
-    public ImmutableList<Unit> getMainList(UnitBaseData.Type type) {
-        return switch (type) {
-            case STORY_LEGEND -> storyLegends;
-            case CF_SPECIAL -> cfSpecials;
-            case ADVENT_DROP -> adventDrops;
-            case RARE -> rares;
-            case SUPER_RARE -> superRares;
-            case UBER -> ubers;
-            case LEGEND_RARE -> legendRares;
-        };
-    }
-
-    @Override
-    public ImmutableList<Unit> getHypermaxPriorityList(Hypermax.Priority priority, Hypermax.UnitType type) {
-        return switch (priority) {
-            case MAX -> switch (type) {
-                case SPECIAL -> specialMaxPriority;
-                case RARE -> rareMaxPriority;
-                case SUPER_RARE -> superRareMaxPriority;
-            };
-            case HIGH -> switch (type) {
-                case SPECIAL -> specialHighPriority;
-                case RARE -> rareHighPriority;
-                case SUPER_RARE -> superRareHighPriority;
-            };
-            case MID -> switch (type) {
-                case SPECIAL -> specialMidPriority;
-                case RARE -> rareMidPriority;
-                case SUPER_RARE -> superRareMidPriority;
-            };
-            case LOW -> switch (type) {
-                case SPECIAL -> specialLowPriority;
-                case RARE -> rareLowPriority;
-                case SUPER_RARE -> superRareLowPriority;
-            };
-            case MIN -> switch (type) {
-                case SPECIAL -> specialMinPriority;
-                case RARE -> rareMinPriority;
-                case SUPER_RARE -> superRareMinPriority;
-            };
-        };
-    }
-
-    @Override
-    public ImmutableList<Unit> getTalentPriorityList(Talent.Priority priority, Talent.UnitType type) {
-        return switch (priority) {
-            case TOP -> switch (type) {
-                case NON_UBER -> nonUberTopPriority;
-                case UBER -> uberTopPriority;
-            };
-            case HIGH -> switch (type) {
-                case NON_UBER -> nonUberHighPriority;
-                case UBER -> uberHighPriority;
-            };
-            case MID -> switch (type) {
-                case NON_UBER -> nonUberMidPriority;
-                case UBER -> uberMidPriority;
-            };
-            case LOW -> switch (type) {
-                case NON_UBER -> nonUberLowPriority;
-                case UBER -> uberLowPriority;
-            };
-            case DONT -> switch (type) {
-                case NON_UBER -> nonUberDoNotUnlock;
-                case UBER -> uberDoNotUnlock;
-            };
-        };
-    }
-
-    @Override
-    public ImmutableList<Unit> getElderEpicList(ElderEpic elderEpic) {
-        return switch (elderEpic) {
-            case ELDER -> elderList;
-            case EPIC -> epicList;
-        };
-    }
-
-    public ImmutableList<Combo> findCombosContainingUnit(Unit unit) {
-        return ImmutableList.copyOf(CollectionsKt.filter(allCombos, combo -> combo.getUnits().contains(unit)));
-    }
 }

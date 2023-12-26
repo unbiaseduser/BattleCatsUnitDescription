@@ -15,7 +15,7 @@ import com.sixtyninefourtwenty.bcud.repository.GuideData;
 import com.sixtyninefourtwenty.bcud.repository.GuideDataDataSet;
 import com.sixtyninefourtwenty.bcud.repository.PonosQuoteData;
 import com.sixtyninefourtwenty.bcud.repository.UnitData;
-import com.sixtyninefourtwenty.bcud.repository.UnitDataDataSet;
+import com.sixtyninefourtwenty.bcud.repository.UnitDataDataSetCSV;
 import com.sixtyninefourtwenty.bcud.repository.helper.ComboEffectDescParser;
 import com.sixtyninefourtwenty.bcud.repository.helper.ComboEffectDescSupplier;
 import com.sixtyninefourtwenty.bcud.repository.helper.ComboNameParser;
@@ -82,7 +82,7 @@ public final class MyApplication extends Application {
         return getDescPageTextData(true);
     }
 
-    private final Lazy<UnitData> unitData = LazyKt.lazy(LazyThreadSafetyMode.NONE, () -> new UnitDataDataSet(getAssets(), true));
+    private final Lazy<UnitData> unitData = LazyKt.lazy(LazyThreadSafetyMode.NONE, () -> new UnitDataDataSetCSV(getAssets()));
 
     public UnitData getUnitData() {
         return unitData.getValue();
