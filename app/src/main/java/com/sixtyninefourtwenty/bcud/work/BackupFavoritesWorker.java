@@ -8,11 +8,13 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.documentfile.provider.DocumentFile;
 import androidx.work.Data;
 import androidx.work.ForegroundInfo;
 import androidx.work.Worker;
@@ -72,6 +74,19 @@ public final class BackupFavoritesWorker extends Worker {
             }
         } catch (IOException e) {
             return Result.failure();
+        }
+    }
+
+    @Override
+    public void onStopped() {
+        final var outputUri = Uri.parse(requireNonNull(getInputData().getString(OUTPUT_URI_KEY)));
+        final var file = requireNonNull(DocumentFile.fromSingleUri(getApplicationContext(), outputUri));
+        if (file.exists()) {
+            final var deleteSuccess = file.delete();
+            if (!deleteSuccess) {
+                Log.e(getClass().getSimpleName(), "Failed to delete probably corrupted backup file");
+
+            }
         }
     }
 
