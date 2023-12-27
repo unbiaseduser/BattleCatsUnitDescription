@@ -298,7 +298,7 @@ public final class FavoritesFragment extends BaseViewBindingFragment<@NonNull Fr
             final var reasons = item.getValue();
             final var unit = unitData.getUnitById(item.getKey().getUnitId());
             AssetImageLoading.loadAssetImage(holder.binding.unitIcon, unit.getLatestFormIconPath(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()));
-            holder.binding.unitName.setText(unit.getExplanation(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()).getName(Unit.Form.SECOND));
+            holder.binding.unitName.setText(unit.getExplanation(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()).getSecondFormName());
 
             if (selectionTracker.isSelected((long) item.getKey().getUnitId())) {
                 holder.binding.cb.setVisibility(View.VISIBLE);

@@ -44,7 +44,7 @@ public final class UnitListAdapterList extends ListAdapter<Unit, UnitListAdapter
     public void onBindViewHolder(@NonNull UnitListViewHolderList holder, int position) {
         final var unit = getItem(position);
         AssetImageLoading.loadAssetImage(holder.binding.unitIcon, unit.getLatestFormIconPath(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()));
-        holder.binding.unitName.setText(unit.getExplanation(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()).getName(Unit.Form.FIRST));
+        holder.binding.unitName.setText(unit.getExplanation(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()).getFirstFormName());
     }
 
     public static final class UnitListViewHolderList extends RecyclerView.ViewHolder {

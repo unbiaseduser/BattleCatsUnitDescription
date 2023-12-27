@@ -21,6 +21,7 @@ import com.sixtyninefourtwenty.common.objects.TalentData;
 import com.sixtyninefourtwenty.common.objects.UnitBaseData;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -60,30 +61,15 @@ public class Unit implements Parcelable {
     public static class Explanation {
         String firstFormName;
         String secondFormName;
+        @Nullable
         String trueFormName;
         String firstFormDescription;
         String secondFormDescription;
+        @Nullable
         String trueFormDescription;
 
-        public String getName(Form form) {
-            return switch (form) {
-                case FIRST -> firstFormName;
-                case SECOND -> secondFormName;
-                case TRUE -> trueFormName;
-            };
-        }
-
-        @SuppressWarnings("unused")
-        public String getDescription(Form form) {
-            return switch (form) {
-                case FIRST -> firstFormDescription;
-                case SECOND -> secondFormDescription;
-                case TRUE -> trueFormDescription;
-            };
-        }
-
         public boolean hasTf() {
-            return !trueFormName.isEmpty();
+            return trueFormName != null;
         }
 
     }

@@ -79,15 +79,15 @@ public final class UnitDescUnitInfoFragment extends BaseViewBindingFragment<@Non
     private void setup(Unit unit, UDPUnitInfoFragmentMenu menu, FragmentUdpUnitInfoBinding binding) {
         final var unitExplanationData = MyApplication.get(requireContext()).getUnitExplanationData();
         menu.setUnit(unit);
-        setToolbarTitle(unit.getExplanation(unitExplanationData).getName(Unit.Form.FIRST));
+        setToolbarTitle(unit.getExplanation(unitExplanationData).getFirstFormName());
         AssetImageLoading.loadAssetImage(binding.iconFirstForm, unit.getIconPathForForm(Unit.Form.FIRST, MyApplication.get(requireContext()).getUnitExplanationData()));
-        setupClicks(binding.iconFirstForm, unit.getExplanation(unitExplanationData).getName(Unit.Form.FIRST));
+        setupClicks(binding.iconFirstForm, unit.getExplanation(unitExplanationData).getFirstFormName());
         AssetImageLoading.loadAssetImage(binding.iconSecondForm, unit.getIconPathForForm(Unit.Form.SECOND, MyApplication.get(requireContext()).getUnitExplanationData()));
-        setupClicks(binding.iconSecondForm, unit.getExplanation(unitExplanationData).getName(Unit.Form.SECOND));
+        setupClicks(binding.iconSecondForm, unit.getExplanation(unitExplanationData).getSecondFormName());
         if (unit.hasTF(unitExplanationData)) {
             binding.iconThirdForm.setVisibility(View.VISIBLE);
             AssetImageLoading.loadAssetImage(binding.iconThirdForm, unit.getIconPathForForm(Unit.Form.TRUE, MyApplication.get(requireContext()).getUnitExplanationData()));
-            setupClicks(binding.iconThirdForm, unit.getExplanation(unitExplanationData).getName(Unit.Form.TRUE));
+            setupClicks(binding.iconThirdForm, unit.getExplanation(unitExplanationData).getTrueFormName());
         } else {
             binding.iconThirdForm.setVisibility(View.GONE);
         }

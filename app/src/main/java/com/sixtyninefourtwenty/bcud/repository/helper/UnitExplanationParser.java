@@ -47,10 +47,10 @@ public final class UnitExplanationParser implements UnitExplanationSupplier {
             data.put(unitId, new Unit.Explanation(
                     lines.get(0)[0],
                     lines.get(1)[0],
-                    unitHasTF ? lines.get(2)[0] : "",
+                    unitHasTF ? lines.get(2)[0] : null,
                     parseDesc.apply(lines.get(0)),
                     parseDesc.apply(lines.get(1)),
-                    unitHasTF ? parseDesc.apply(lines.get(2)) : ""
+                    unitHasTF ? parseDesc.apply(lines.get(2)) : null
             ));
         }
     }

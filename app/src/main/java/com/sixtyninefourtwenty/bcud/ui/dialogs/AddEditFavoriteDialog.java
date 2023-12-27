@@ -91,7 +91,7 @@ public final class AddEditFavoriteDialog extends BaseViewBindingBottomSheetAlert
         final var model = FavoritesDataViewModel.get(this);
         unit = AddEditFavoriteDialogArgs.fromBundle(requireArguments()).getUnit();
         AssetImageLoading.loadAssetImage(binding.unitIconAlt, unit.getLatestFormIconPath(MyApplication.get(requireContext()).getUnitExplanationData()));
-        binding.unitNameAlt.setText(unit.getExplanation(MyApplication.get(requireContext()).getUnitExplanationData()).getName(Unit.Form.FIRST));
+        binding.unitNameAlt.setText(unit.getExplanation(MyApplication.get(requireContext()).getUnitExplanationData()).getFirstFormName());
         binding.reasonsList.setAdapter(adapter);
         binding.addReason.setOnClickListener(v -> navigate(AddEditFavoriteDialogDirections.showAddReasonDialog(unit.getId())));
         MoreFutures.addIgnoreExceptionsCallback(model.findFavoriteByUnitId(unit.getId()), result -> {

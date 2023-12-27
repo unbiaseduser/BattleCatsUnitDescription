@@ -143,7 +143,7 @@ public abstract class TalentPriorityTabFragment extends BaseViewBindingFragment<
             for (int i = talents.size(); i < Unit.MAX_NUM_OF_TALENTS; i++) {
                 holder.icons[i].setVisibility(View.GONE);
             }
-            holder.binding.unitName.setText(unit.getExplanation(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()).getName(Unit.Form.FIRST));
+            holder.binding.unitName.setText(unit.getExplanation(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()).getFirstFormName());
         }
 
         private static final class ViewHolder extends RecyclerView.ViewHolder {
