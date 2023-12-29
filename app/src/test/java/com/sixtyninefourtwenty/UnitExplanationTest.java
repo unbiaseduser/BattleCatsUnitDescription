@@ -3,6 +3,7 @@ package com.sixtyninefourtwenty;
 import static com.sixtyninefourtwenty.TestUtils.createUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -55,8 +56,8 @@ class UnitExplanationTest {
         assertEquals("The will of one in flowing robes is the law! And so, he forced his way into the Cat Army. 100% Slow vs Relics, Area Surge attacks.", ex.getFirstFormDescription());
         assertEquals("Mystic Uril", ex.getSecondFormName());
         assertEquals("Fabled martial artist who sealed away the demon king. ...says the parrot. This mask is a gift from his grandchild. 100% Slow vs Relics, Area Surge attacks.", ex.getSecondFormDescription());
-        assertTrue(ex.getTrueFormName().isEmpty());
-        assertTrue(ex.getTrueFormDescription().isEmpty());
+        assertNull(ex.getTrueFormName());
+        assertNull(ex.getTrueFormDescription());
     }
 
     @Test
