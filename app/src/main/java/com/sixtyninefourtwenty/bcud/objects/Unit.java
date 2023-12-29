@@ -27,6 +27,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import kotlin.collections.CollectionsKt;
 import lombok.AccessLevel;
@@ -146,7 +147,8 @@ public class Unit implements Parcelable {
 
     public Unit(int id, UnitBaseData.Type type,
                 ImmutableList<TFMaterialData> tfMaterialData,
-                ImmutableList<TalentData> talentData) {
+                ImmutableList<TalentData> talentData,
+                Function<TalentData, Talent> talentDataToTalent) {
         this.id = id;
         this.type = type;
         this.tfMaterialData = tfMaterialData;
@@ -154,7 +156,7 @@ public class Unit implements Parcelable {
         for (final var priority : Talent.Priority.values()) {
             final var talentsForPriority = CollectionsKt.filter(talentData, data -> data.getPriority() == priority);
             if (!talentsForPriority.isEmpty()) {
-                talentMap.put(priority, ImmutableList.copyOf(CollectionsKt.map(talentsForPriority, TalentData::getTalent)));
+                talentMap.put(priority, ImmutableList.copyOf(CollectionsKt.map(talentsForPriority, talentDataToTalent::apply)));
             }
         }
     }
@@ -193,9 +195,9 @@ public class Unit implements Parcelable {
 
         BiConsumer<Parcel, Map<Talent.Priority, ImmutableList<Talent>>> readTalentMapping = (parcel, mapping) -> {
             for (final var priority : Talent.Priority.values()) {
-                final var list = parcel.createStringArrayList();
+                final var list = parcel.createTypedArrayList(Talent.CREATOR);
                 if (list != null && !list.isEmpty()) {
-                    mapping.put(priority, ImmutableList.copyOf(CollectionsKt.map(list, Talent::valueOf)));
+                    mapping.put(priority, ImmutableList.copyOf(list));
                 }
             }
         };
@@ -213,7 +215,7 @@ public class Unit implements Parcelable {
         Consumer<Parcel> writeTalentMapping = parcel -> {
             for (final var priority : Talent.Priority.values()) {
                 final var list = requireNonNull(talentMap.getOrDefault(priority, ImmutableList.of()));
-                parcel.writeStringList(CollectionsKt.map(list, Object::toString));
+                parcel.writeTypedList(list);
             }
         };
 

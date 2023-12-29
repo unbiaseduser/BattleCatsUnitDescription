@@ -14,7 +14,6 @@ import com.sixtyninefourtwenty.bcud.repository.helper.UnitTFMaterialDataParserCS
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitTalentDataParserCSV;
 import com.sixtyninefourtwenty.common.objects.ElderEpic;
 import com.sixtyninefourtwenty.common.objects.Hypermax;
-import com.sixtyninefourtwenty.common.objects.TFMaterial;
 import com.sixtyninefourtwenty.common.objects.Talent;
 import com.sixtyninefourtwenty.common.objects.UnitBaseData;
 import com.sixtyninefourtwenty.common.utils.Validations;
@@ -26,6 +25,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+
+import kotlin.random.Random;
 
 class CSVParsersTest {
 
@@ -98,7 +99,8 @@ class CSVParsersTest {
         final var parser = new UnitParserCSV(Files.newInputStream(unitDataTextFile));
         final var storyLegends = parser.createMainList(UnitBaseData.Type.STORY_LEGEND,
                 unitId -> ImmutableList.of(),
-                unitId -> ImmutableList.of());
+                unitId -> ImmutableList.of(),
+                data -> new Talent(Random.Default.nextInt(), ""));
         //Can't use createFakeUnit() here bc units created by unit parser has miscellaneous info filled in and those by the method doesn't
         //Should contain Valkyrie Cat
         assertTrue(storyLegends.stream().anyMatch(unit -> unit.getId() == 24));
@@ -133,10 +135,10 @@ class CSVParsersTest {
         assertEquals(2, catGodTfMaterialList.size());
         final var xpData = catGodTfMaterialList.get(0);
         assertEquals(1000000, xpData.getQuantity());
-        assertEquals(TFMaterial.XP, xpData.getMaterial());
+        assertEquals(6, xpData.getMaterialIndex()); //XP
         final var goldCatfruitData = catGodTfMaterialList.get(1);
         assertEquals(1, goldCatfruitData.getQuantity());
-        assertEquals(TFMaterial.GOLD, goldCatfruitData.getMaterial());
+        assertEquals(44, goldCatfruitData.getMaterialIndex()); //gold catfruit
     }
 
 }

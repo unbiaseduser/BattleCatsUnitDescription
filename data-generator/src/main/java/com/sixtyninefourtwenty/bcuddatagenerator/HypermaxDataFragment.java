@@ -27,9 +27,9 @@ import com.sixtyninefourtwenty.bcuddatagenerator.databinding.ListItemUnitHyperma
 import com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddUnitHypermaxDataDialog;
 import com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditUnitHypermaxDataDialog;
 import com.sixtyninefourtwenty.bcuddatagenerator.utils.Utils;
+import com.sixtyninefourtwenty.common.objects.UnitHypermaxData;
 import com.sixtyninefourtwenty.common.utils.Misc;
 import com.sixtyninefourtwenty.conflictresolver.ListImportConflictResolver;
-import com.sixtyninefourtwenty.common.objects.UnitHypermaxData;
 import com.sixtyninefourtwenty.stuff.ListAdapters;
 
 import org.json.JSONArray;

@@ -17,8 +17,6 @@ import com.sixtyninefourtwenty.common.objects.Talent;
 import com.sixtyninefourtwenty.common.objects.TalentData;
 import com.sixtyninefourtwenty.common.utils.SpinnerAdapters;
 
-import java.util.Arrays;
-
 public abstract class AbstractTalentDialog extends AppCompatDialogFragment {
 
     private DialogAddTalentBinding binding;
@@ -37,8 +35,10 @@ public abstract class AbstractTalentDialog extends AppCompatDialogFragment {
     @Override
     public final Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         binding = DialogAddTalentBinding.inflate(getLayoutInflater());
-        binding.talentPicker.setAdapter(SpinnerAdapters.createWithAndroidResources(requireContext(), Arrays.stream(Talent.values())
-                .map(talent -> talent.getInfo(MyApplication.get(requireContext()).getTalentInfo()).getAbilityName())
+        final var app = MyApplication.get(requireContext());
+        final var talents = app.getTalentData().getTalents();
+        binding.talentPicker.setAdapter(SpinnerAdapters.createWithAndroidResources(requireContext(), talents.stream()
+                .map(talent -> talent.getInfo(app.getTalentInfo()).getAbilityName())
                 .toArray(String[]::new)));
         binding.talentPriorityPicker.setAdapter(SpinnerAdapters.createWithAndroidResources(requireContext(), getResources().getStringArray(R.array.talent_priorities)));
         return new NoAutoDismissAlertDialogBuilder(requireContext())
@@ -50,7 +50,7 @@ public abstract class AbstractTalentDialog extends AppCompatDialogFragment {
                         return;
                     }
                     onValidInput(new TalentData(
-                            Talent.values()[binding.talentPicker.getSelectedItemPosition()],
+                            talents.get(binding.talentPicker.getSelectedItemPosition()).getIndex(),
                             Talent.Priority.values()[binding.talentPriorityPicker.getSelectedItemPosition()]
                     ));
                     dismiss();

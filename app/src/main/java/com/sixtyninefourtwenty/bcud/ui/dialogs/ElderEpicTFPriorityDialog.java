@@ -43,7 +43,7 @@ public final class ElderEpicTFPriorityDialog extends BaseViewBindingBottomSheetA
         final var tfMaterials = unit.getTfMaterialData();
         binding.tfMaterialsList.setLayoutManager(new GridLayoutManager(requireContext(), Unit.MAX_NUM_OF_TF_MATERIALS));
         binding.tfMaterialsList.setAdapter(new TFMaterialAdapter(tfMaterials, (v, material) -> BalloonFactory.createWithUsualSettings(requireContext())
-                .setText(material.getMaterial().getInfo(MyApplication.get(requireContext()).getMaterialInfo()).getName())
+                .setText(material.getMaterial(MyApplication.get(requireContext()).getMaterialData()).getInfo(MyApplication.get(requireContext()).getMaterialInfo()).getName())
                 .build()
                 .showAlignTop(v)));
     }

@@ -1,10 +1,10 @@
 package com.sixtyninefourtwenty.bcuddatagenerator;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
+import com.sixtyninefourtwenty.common.application.CommonApplication;
 import com.sixtyninefourtwenty.common.objects.repository.TFMaterialInfoParser;
 import com.sixtyninefourtwenty.common.objects.repository.TFMaterialInfoSupplier;
 import com.sixtyninefourtwenty.common.objects.repository.TalentInfoParser;
@@ -18,7 +18,7 @@ import kotlin.LazyKt;
 import kotlin.LazyThreadSafetyMode;
 import lombok.Getter;
 
-public final class MyApplication extends Application {
+public final class MyApplication extends CommonApplication {
 
     private final Lazy<TFMaterialInfoSupplier> materialInfo = LazyKt.lazy(LazyThreadSafetyMode.NONE, () -> new TFMaterialInfoParser(getAssets()));
 

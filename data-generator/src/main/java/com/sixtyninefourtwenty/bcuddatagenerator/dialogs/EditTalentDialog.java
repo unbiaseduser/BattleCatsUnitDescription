@@ -3,6 +3,7 @@ package com.sixtyninefourtwenty.bcuddatagenerator.dialogs;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.sixtyninefourtwenty.bcuddatagenerator.MyApplication;
 import com.sixtyninefourtwenty.bcuddatagenerator.R;
 import com.sixtyninefourtwenty.common.objects.TalentData;
 import com.sixtyninefourtwenty.common.utils.MoreArrays;
@@ -41,7 +42,8 @@ public final class EditTalentDialog extends AbstractTalentDialog {
 
     @Override
     protected boolean checkDuplicateTalentIndex(int index) {
-        if (index == getExistingTalent().getTalent().ordinal()) {
+        final var talentData = MyApplication.get(requireContext()).getTalentData();
+        if (index == talentData.getTalents().indexOf(getExistingTalent().getTalent(talentData))) {
             return false;
         }
         return MoreArrays.contains(args.getValue().getExistingTalentIndices(), index);

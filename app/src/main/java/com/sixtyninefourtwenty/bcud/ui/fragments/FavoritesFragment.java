@@ -35,7 +35,6 @@ import com.sixtyninefourtwenty.bcud.R;
 import com.sixtyninefourtwenty.bcud.adapters.FavoriteReasonAdapter;
 import com.sixtyninefourtwenty.bcud.databinding.FragmentFavoritesBinding;
 import com.sixtyninefourtwenty.bcud.databinding.ListItemFavoriteBinding;
-import com.sixtyninefourtwenty.bcud.objects.Unit;
 import com.sixtyninefourtwenty.bcud.objects.favorites.FavoriteItem;
 import com.sixtyninefourtwenty.bcud.objects.favorites.FavoriteReason;
 import com.sixtyninefourtwenty.bcud.repository.UnitData;

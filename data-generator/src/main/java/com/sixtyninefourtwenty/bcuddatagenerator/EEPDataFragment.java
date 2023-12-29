@@ -27,9 +27,9 @@ import com.sixtyninefourtwenty.bcuddatagenerator.databinding.ListItemUnitEepData
 import com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddUnitEEPDataDialog;
 import com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditUnitEEPDataDialog;
 import com.sixtyninefourtwenty.bcuddatagenerator.utils.Utils;
+import com.sixtyninefourtwenty.common.objects.UnitEEPriorityData;
 import com.sixtyninefourtwenty.common.utils.Misc;
 import com.sixtyninefourtwenty.conflictresolver.ListImportConflictResolver;
-import com.sixtyninefourtwenty.common.objects.UnitEEPriorityData;
 import com.sixtyninefourtwenty.stuff.ListAdapters;
 
 import org.json.JSONArray;

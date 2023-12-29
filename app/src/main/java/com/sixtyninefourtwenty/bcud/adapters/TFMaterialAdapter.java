@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sixtyninefourtwenty.bcud.MyApplication;
 import com.sixtyninefourtwenty.bcud.databinding.ListItemTfMaterialBinding;
 import com.sixtyninefourtwenty.bcud.utils.AssetImageLoading;
 import com.sixtyninefourtwenty.common.objects.TFMaterialData;
@@ -24,7 +25,7 @@ public final class TFMaterialAdapter extends ListAdapter<TFMaterialData, TFMater
     private static final DiffUtil.ItemCallback<TFMaterialData> MATERIAL_DIFFER = new DiffUtil.ItemCallback<>() {
         @Override
         public boolean areItemsTheSame(@NonNull TFMaterialData oldItem, @NonNull TFMaterialData newItem) {
-            return oldItem.getMaterial() == newItem.getMaterial();
+            return oldItem.getMaterialIndex() == newItem.getMaterialIndex();
         }
 
         @Override
@@ -55,8 +56,9 @@ public final class TFMaterialAdapter extends ListAdapter<TFMaterialData, TFMater
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final var mat = getItem(position);
-        AssetImageLoading.loadAssetImage(holder.binding.icon, mat.getMaterial().getPathToIcon());
-        holder.binding.number.setText(Formatting.formatANumber(holder.binding.getRoot().getContext(), mat.getQuantity()));
+        final var context = holder.binding.getRoot().getContext();
+        AssetImageLoading.loadAssetImage(holder.binding.icon, mat.getMaterial(MyApplication.get(context).getMaterialData()).getPathToIcon());
+        holder.binding.number.setText(Formatting.formatANumber(context, mat.getQuantity()));
     }
 
     public static final class ViewHolder extends RecyclerView.ViewHolder {

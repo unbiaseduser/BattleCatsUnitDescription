@@ -38,11 +38,14 @@ public abstract class AbstractUnitTFMaterialDataDialog extends BottomSheetDialog
     private final TFMaterialAdapter adapter = new TFMaterialAdapter(
             (tfMaterial, a) -> new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.delete)
-                    .setMessage(getString(R.string.delete_item_confirmation, tfMaterial.getMaterial().getInfo(MyApplication.get(requireContext()).getMaterialInfo()).getName()))
+                    .setMessage(getString(R.string.delete_item_confirmation, tfMaterial.getMaterial(MyApplication.get(requireContext()).getMaterialData()).getInfo(MyApplication.get(requireContext()).getMaterialInfo()).getName()))
                     .setPositiveButton(android.R.string.ok, (dialog, which) -> ListAdapters.removeElement(a, tfMaterial))
                     .setNegativeButton(android.R.string.cancel, null)
                     .show(),
-            (tfMaterial, a) -> NavHostFragment.findNavController(this).navigate(getShowEditTFMaterialDialogDirections(tfMaterial, a.getCurrentList().stream().mapToInt(data -> data.getMaterial().ordinal()).toArray())),
+            (tfMaterial, a) -> {
+                final var materialData = MyApplication.get(requireContext()).getMaterialData();
+                NavHostFragment.findNavController(this).navigate(getShowEditTFMaterialDialogDirections(tfMaterial, a.getCurrentList().stream().mapToInt(data -> materialData.getMaterials().indexOf(data.getMaterial(materialData))).toArray()));
+            },
             dragDropMaterial::startDrag
     );
 
@@ -107,7 +110,8 @@ public abstract class AbstractUnitTFMaterialDataDialog extends BottomSheetDialog
             if (adapter.getItemCount() == 6) {
                 Toast.makeText(requireContext(), R.string.max_materials_error, Toast.LENGTH_SHORT).show();
             } else {
-                NavHostFragment.findNavController(this).navigate(getShowAddTFMaterialDialogDirections(adapter.getCurrentList().stream().mapToInt(data -> data.getMaterial().ordinal()).toArray()));
+                final var materialData = MyApplication.get(requireContext()).getMaterialData();
+                NavHostFragment.findNavController(this).navigate(getShowAddTFMaterialDialogDirections(adapter.getCurrentList().stream().mapToInt(data -> materialData.getMaterials().indexOf(data.getMaterial(materialData))).toArray()));
             }
         });
 

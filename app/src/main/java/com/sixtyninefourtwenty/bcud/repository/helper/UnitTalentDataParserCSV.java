@@ -46,7 +46,7 @@ public final class UnitTalentDataParserCSV implements UnitTalentDataSupplier {
                     final var priority = Talent.Priority.valueOf(parts[1]);
                     for (int i = 2; i < parts.length; i++) {
                         list.add(new TalentData(
-                                Talent.fromIndex(Integer.parseInt(parts[i])),
+                                Integer.parseInt(parts[i]),
                                 priority));
                     }
                     return list;

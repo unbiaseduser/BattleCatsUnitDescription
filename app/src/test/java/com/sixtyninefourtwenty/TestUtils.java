@@ -2,6 +2,7 @@ package com.sixtyninefourtwenty;
 
 import com.google.common.collect.ImmutableList;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
+import com.sixtyninefourtwenty.common.objects.Talent;
 import com.sixtyninefourtwenty.common.objects.UnitBaseData;
 
 public final class TestUtils {
@@ -13,7 +14,8 @@ public final class TestUtils {
                 unitId,
                 type,
                 ImmutableList.of(),
-                ImmutableList.of()
+                ImmutableList.of(),
+                data -> new Talent(0, "")
         );
     }
 

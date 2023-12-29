@@ -32,7 +32,7 @@ public class UnitTFMaterialData implements Parcelable {
         @NonNull
         @Override
         @SneakyThrows
-        public JSONObject toJson(@NonNull UnitTFMaterialData obj) {
+        public JSONObject toJson(UnitTFMaterialData obj) {
             return new JSONObject()
                     .put("unit_id", obj.unitId)
                     .put("materials", TFMaterialData.SERIALIZER.listToJson(obj.materials));

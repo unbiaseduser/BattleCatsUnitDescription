@@ -41,13 +41,19 @@ public abstract class AbstractUnitTalentDataDialog extends BottomSheetDialogFrag
     );
 
     private final TalentDataAdapter adapter = new TalentDataAdapter(
-            (talent, a) -> new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle(R.string.delete)
-                    .setMessage(getString(R.string.delete_item_confirmation, talent.getTalent().getInfo(MyApplication.get(requireContext()).getTalentInfo()).getAbilityName()))
-                    .setPositiveButton(android.R.string.ok, (dialog, which) -> ListAdapters.removeElement(a, talent))
-                    .setNegativeButton(android.R.string.cancel, null)
-                    .show(),
-            (talent, a) -> NavHostFragment.findNavController(this).navigate(getShowEditTalentDialogDirections(talent, a.getCurrentList().stream().mapToInt(t -> t.getTalent().ordinal()).toArray())),
+            (talent, a) -> {
+                final var talentData = MyApplication.get(requireContext()).getTalentData();
+                new MaterialAlertDialogBuilder(requireContext())
+                        .setTitle(R.string.delete)
+                        .setMessage(getString(R.string.delete_item_confirmation, talent.getTalent(talentData).getInfo(MyApplication.get(requireContext()).getTalentInfo()).getAbilityName()))
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> ListAdapters.removeElement(a, talent))
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .show();
+            },
+            (talent, a) -> {
+                final var talentData = MyApplication.get(requireContext()).getTalentData();
+                NavHostFragment.findNavController(this).navigate(getShowEditTalentDialogDirections(talent, a.getCurrentList().stream().mapToInt(t -> talentData.getTalents().indexOf(t.getTalent(talentData))).toArray()));
+            },
             dragDropTalents::startDrag
     );
 
@@ -112,7 +118,8 @@ public abstract class AbstractUnitTalentDataDialog extends BottomSheetDialogFrag
             if (adapter.getItemCount() == 6) {
                 Toast.makeText(requireContext(), R.string.max_talents_error, Toast.LENGTH_SHORT).show();
             } else {
-                NavHostFragment.findNavController(this).navigate(getShowAddTalentDialogDirections(adapter.getCurrentList().stream().mapToInt(d -> d.getTalent().ordinal()).toArray()));
+                final var talentData = MyApplication.get(requireContext()).getTalentData();
+                NavHostFragment.findNavController(this).navigate(getShowAddTalentDialogDirections(adapter.getCurrentList().stream().mapToInt(d -> talentData.getTalents().indexOf(d.getTalent(talentData))).toArray()));
             }
         });
 

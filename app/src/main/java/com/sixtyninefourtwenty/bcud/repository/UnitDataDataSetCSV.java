@@ -1,8 +1,9 @@
 package com.sixtyninefourtwenty.bcud.repository;
 
-import android.content.res.AssetManager;
+import android.content.Context;
 
 import com.google.common.collect.ImmutableList;
+import com.sixtyninefourtwenty.bcud.MyApplication;
 import com.sixtyninefourtwenty.bcud.objects.Combo;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
 import com.sixtyninefourtwenty.bcud.repository.helper.ComboParser;
@@ -15,7 +16,10 @@ import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.objects.ElderEpic;
 import com.sixtyninefourtwenty.common.objects.Hypermax;
 import com.sixtyninefourtwenty.common.objects.Talent;
+import com.sixtyninefourtwenty.common.objects.TalentData;
 import com.sixtyninefourtwenty.common.objects.UnitBaseData;
+
+import java.util.function.Function;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -25,33 +29,42 @@ import lombok.SneakyThrows;
 public final class UnitDataDataSetCSV implements VerboseUnitData {
 
     @SneakyThrows
-    public UnitDataDataSetCSV(AssetManager assets) {
+    public UnitDataDataSetCSV(Context context) {
+        final var assets = context.getAssets();
         final var tfMaterialDataParser = new UnitTFMaterialDataParserCSV(assets.open("text/unit_material_data.txt"));
         final var eePriorityDataParser = new UnitEEPriorityReasoningDataParserCSV(assets.open("text/eep_data.txt"));
         final var talentDataParser = new UnitTalentDataParserCSV(assets.open("text/tp_data.txt"));
         final var hpDataParser = new UnitHPDataParserCSV(assets.open("text/hp_data.txt"));
         final var unitParser = new UnitParserCSV(assets.open("text/unit_data.txt"));
+        final Function<TalentData, Talent> talentDataToTalentFunction = data -> data.getTalent(MyApplication.get(context).getTalentData());
         storyLegends = unitParser.createMainList(UnitBaseData.Type.STORY_LEGEND,
                 tfMaterialDataParser::getMaterialListForUnitWithId,
-                talentDataParser::getTalentListForUnitWithId);
+                talentDataParser::getTalentListForUnitWithId,
+                talentDataToTalentFunction);
         rares = unitParser.createMainList(UnitBaseData.Type.RARE,
                 tfMaterialDataParser::getMaterialListForUnitWithId,
-                talentDataParser::getTalentListForUnitWithId);
+                talentDataParser::getTalentListForUnitWithId,
+                talentDataToTalentFunction);
         superRares = unitParser.createMainList(UnitBaseData.Type.SUPER_RARE,
                 tfMaterialDataParser::getMaterialListForUnitWithId,
-                talentDataParser::getTalentListForUnitWithId);
+                talentDataParser::getTalentListForUnitWithId,
+                talentDataToTalentFunction);
         legendRares = unitParser.createMainList(UnitBaseData.Type.LEGEND_RARE,
                 tfMaterialDataParser::getMaterialListForUnitWithId,
-                talentDataParser::getTalentListForUnitWithId);
+                talentDataParser::getTalentListForUnitWithId,
+                talentDataToTalentFunction);
         adventDrops = unitParser.createMainList(UnitBaseData.Type.ADVENT_DROP,
                 tfMaterialDataParser::getMaterialListForUnitWithId,
-                talentDataParser::getTalentListForUnitWithId);
+                talentDataParser::getTalentListForUnitWithId,
+                talentDataToTalentFunction);
         cfSpecials = unitParser.createMainList(UnitBaseData.Type.CF_SPECIAL,
                 tfMaterialDataParser::getMaterialListForUnitWithId,
-                talentDataParser::getTalentListForUnitWithId);
+                talentDataParser::getTalentListForUnitWithId,
+                talentDataToTalentFunction);
         ubers = unitParser.createMainList(UnitBaseData.Type.UBER,
                 tfMaterialDataParser::getMaterialListForUnitWithId,
-                talentDataParser::getTalentListForUnitWithId);
+                talentDataParser::getTalentListForUnitWithId,
+                talentDataToTalentFunction);
         allUnits = new ImmutableList.Builder<Unit>()
                 .addAll(storyLegends)
                 .addAll(cfSpecials)

@@ -12,13 +12,10 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import com.sixtyninefourtwenty.bcuddatagenerator.MyApplication;
 import com.sixtyninefourtwenty.bcuddatagenerator.R;
 import com.sixtyninefourtwenty.bcuddatagenerator.databinding.DialogAddTfMaterialBinding;
-import com.sixtyninefourtwenty.common.objects.TFMaterial;
-import com.sixtyninefourtwenty.common.objects.TFMaterialData;
 import com.sixtyninefourtwenty.common.misc.NoAutoDismissAlertDialogBuilder;
+import com.sixtyninefourtwenty.common.objects.TFMaterialData;
 import com.sixtyninefourtwenty.common.utils.Formatting;
 import com.sixtyninefourtwenty.common.utils.SpinnerAdapters;
-
-import java.util.Arrays;
 
 public abstract class AbstractTFMaterialDialog extends AppCompatDialogFragment {
 
@@ -39,8 +36,10 @@ public abstract class AbstractTFMaterialDialog extends AppCompatDialogFragment {
     public final Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         binding = DialogAddTfMaterialBinding.inflate(getLayoutInflater());
         final var existingMaterial = getExistingMaterial();
-        binding.materialPicker.setAdapter(SpinnerAdapters.createWithAndroidResources(requireContext(), Arrays.stream(TFMaterial.values())
-                .map(material -> material.getInfo(MyApplication.get(requireContext()).getMaterialInfo()).getName())
+        final var app = MyApplication.get(requireContext());
+        final var materials = app.getMaterialData().getMaterials();
+        binding.materialPicker.setAdapter(SpinnerAdapters.createWithAndroidResources(requireContext(), materials.stream()
+                .map(material -> material.getInfo(app.getMaterialInfo()).getName())
                 .toArray(String[]::new)));
         if (existingMaterial != null) {
             binding.quantityInput.setText(Formatting.formatANumber(requireContext(), existingMaterial.getQuantity()));
@@ -64,7 +63,7 @@ public abstract class AbstractTFMaterialDialog extends AppCompatDialogFragment {
                         return;
                     }
                     onValidInput(new TFMaterialData(
-                            TFMaterial.values()[binding.materialPicker.getSelectedItemPosition()],
+                            materials.get(binding.materialPicker.getSelectedItemPosition()).getIndex(),
                             quantity
                     ));
                     dismiss();

@@ -62,7 +62,7 @@ public final class UnitDescUnitInfoFragment extends BaseViewBindingFragment<@Non
         comboListAdapter = new ComboListAdapter(unitDataViewModel::setCurrentUnitToDisplay);
         binding.tfMaterialsList.setLayoutManager(new GridLayoutManager(requireContext(), Unit.MAX_NUM_OF_TF_MATERIALS));
         tfMaterialAdapter = new TFMaterialAdapter((v, material) -> BalloonFactory.createWithUsualSettings(requireContext())
-                .setText(material.getMaterial().getInfo(MyApplication.get(requireContext()).getMaterialInfo()).getName())
+                .setText(material.getMaterial(MyApplication.get(requireContext()).getMaterialData()).getInfo(MyApplication.get(requireContext()).getMaterialInfo()).getName())
                 .build()
                 .showAlignTop(v));
         binding.tfMaterialsList.setNestedScrollingEnabled(false);
@@ -77,7 +77,8 @@ public final class UnitDescUnitInfoFragment extends BaseViewBindingFragment<@Non
 
     @SuppressLint("SetTextI18n")
     private void setup(Unit unit, UDPUnitInfoFragmentMenu menu, FragmentUdpUnitInfoBinding binding) {
-        final var unitExplanationData = MyApplication.get(requireContext()).getUnitExplanationData();
+        final var app = MyApplication.get(requireContext());
+        final var unitExplanationData = app.getUnitExplanationData();
         menu.setUnit(unit);
         setToolbarTitle(unit.getExplanation(unitExplanationData).getFirstFormName());
         AssetImageLoading.loadAssetImage(binding.iconFirstForm, unit.getIconPathForForm(Unit.Form.FIRST, MyApplication.get(requireContext()).getUnitExplanationData()));
@@ -93,7 +94,7 @@ public final class UnitDescUnitInfoFragment extends BaseViewBindingFragment<@Non
         }
         binding.unitDesc.setText(unit.getDesc(requireContext()));
 
-        final var descPageTexts = unit.getDescPageTexts(MyApplication.get(requireContext()).getDescPageTextData());
+        final var descPageTexts = unit.getDescPageTexts(app.getDescPageTextData());
         final var usefulToOwnByText = descPageTexts.getUsefulToOwnBy();
         binding.usefulToOwnBy2.setText(usefulToOwnByText);
         binding.usefulToOwnCard.setVisibility(!Validations.isValidInfoString(usefulToOwnByText) ? View.GONE : View.VISIBLE);
@@ -123,7 +124,7 @@ public final class UnitDescUnitInfoFragment extends BaseViewBindingFragment<@Non
                 final var talentPrioHolder = talentPrioHolders.get(i);
                 talentHolder.setVisibility(View.VISIBLE);
                 talentPrioHolder.setVisibility(View.VISIBLE);
-                talentHolder.setText(talents.get(i).getTalent().getInfo(MyApplication.get(requireContext()).getTalentInfo()).getAbilityName());
+                talentHolder.setText(talents.get(i).getTalent(app.getTalentData()).getInfo(app.getTalentInfo()).getAbilityName());
                 talentPrioHolder.setText(talents.get(i).getPriority().getText());
             }
             for (int i = talents.size(); i < Unit.MAX_NUM_OF_TALENTS; i++) {

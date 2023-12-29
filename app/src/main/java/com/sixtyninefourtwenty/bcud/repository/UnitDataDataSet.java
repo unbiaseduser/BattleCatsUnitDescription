@@ -1,9 +1,10 @@
 package com.sixtyninefourtwenty.bcud.repository;
 
-import android.content.res.AssetManager;
+import android.content.Context;
 
 import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.Immutable;
+import com.sixtyninefourtwenty.bcud.MyApplication;
 import com.sixtyninefourtwenty.bcud.objects.Combo;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
 import com.sixtyninefourtwenty.bcud.repository.helper.ComboParser;
@@ -16,10 +17,12 @@ import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.objects.ElderEpic;
 import com.sixtyninefourtwenty.common.objects.Hypermax;
 import com.sixtyninefourtwenty.common.objects.Talent;
+import com.sixtyninefourtwenty.common.objects.TalentData;
 import com.sixtyninefourtwenty.common.objects.UnitBaseData;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.function.Function;
 
 import kotlin.io.TextStreamsKt;
 import lombok.Getter;
@@ -31,7 +34,8 @@ import lombok.SneakyThrows;
 public final class UnitDataDataSet implements VerboseUnitData {
 
     @SneakyThrows
-    public UnitDataDataSet(AssetManager assets) {
+    public UnitDataDataSet(Context context) {
+        final var assets = context.getAssets();
         try (final var unitTfMaterialDataReader = new BufferedReader(new InputStreamReader(assets.open("text/unit_tf_material_data.json")));
              final var unitEepDataReader = new BufferedReader(new InputStreamReader(assets.open("text/unit_eep_data.json")));
              final var unitTalentDataReader = new BufferedReader(new InputStreamReader(assets.open("text/unit_talent_data.json")));
@@ -42,27 +46,35 @@ public final class UnitDataDataSet implements VerboseUnitData {
             final var talentDataParser = new UnitTalentDataParser(TextStreamsKt.readText(unitTalentDataReader));
             final var hpDataParser = new UnitHPDataParser(TextStreamsKt.readText(unitHypermaxDataReader));
             final var unitParser = new UnitParser(TextStreamsKt.readText(unitBaseDataReader));
+            final Function<TalentData, Talent> talentDataToTalentFunction = data -> data.getTalent(MyApplication.get(context).getTalentData());
             storyLegends = unitParser.createMainList(UnitBaseData.Type.STORY_LEGEND,
                     tfMaterialDataParser::getMaterialListForUnitWithId,
-                    talentDataParser::getTalentListForUnitWithId);
+                    talentDataParser::getTalentListForUnitWithId,
+                    talentDataToTalentFunction);
             rares = unitParser.createMainList(UnitBaseData.Type.RARE,
                     tfMaterialDataParser::getMaterialListForUnitWithId,
-                    talentDataParser::getTalentListForUnitWithId);
+                    talentDataParser::getTalentListForUnitWithId,
+                    talentDataToTalentFunction);
             superRares = unitParser.createMainList(UnitBaseData.Type.SUPER_RARE,
                     tfMaterialDataParser::getMaterialListForUnitWithId,
-                    talentDataParser::getTalentListForUnitWithId);
+                    talentDataParser::getTalentListForUnitWithId,
+                    talentDataToTalentFunction);
             legendRares = unitParser.createMainList(UnitBaseData.Type.LEGEND_RARE,
                     tfMaterialDataParser::getMaterialListForUnitWithId,
-                    talentDataParser::getTalentListForUnitWithId);
+                    talentDataParser::getTalentListForUnitWithId,
+                    talentDataToTalentFunction);
             adventDrops = unitParser.createMainList(UnitBaseData.Type.ADVENT_DROP,
                     tfMaterialDataParser::getMaterialListForUnitWithId,
-                    talentDataParser::getTalentListForUnitWithId);
+                    talentDataParser::getTalentListForUnitWithId,
+                    talentDataToTalentFunction);
             cfSpecials = unitParser.createMainList(UnitBaseData.Type.CF_SPECIAL,
                     tfMaterialDataParser::getMaterialListForUnitWithId,
-                    talentDataParser::getTalentListForUnitWithId);
+                    talentDataParser::getTalentListForUnitWithId,
+                    talentDataToTalentFunction);
             ubers = unitParser.createMainList(UnitBaseData.Type.UBER,
                     tfMaterialDataParser::getMaterialListForUnitWithId,
-                    talentDataParser::getTalentListForUnitWithId);
+                    talentDataParser::getTalentListForUnitWithId,
+                    talentDataToTalentFunction);
             allUnits = new ImmutableList.Builder<Unit>()
                     .addAll(storyLegends)
                     .addAll(cfSpecials)

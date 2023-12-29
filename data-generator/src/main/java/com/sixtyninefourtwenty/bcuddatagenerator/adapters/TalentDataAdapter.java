@@ -26,7 +26,7 @@ public final class TalentDataAdapter extends ListAdapter<TalentData, TalentDataA
     private static final DiffUtil.ItemCallback<TalentData> TALENT_DIFFER = new DiffUtil.ItemCallback<>() {
         @Override
         public boolean areItemsTheSame(@NonNull TalentData oldItem, @NonNull TalentData newItem) {
-            return oldItem.getTalent() == newItem.getTalent();
+            return oldItem.getTalentIndex() == newItem.getTalentIndex();
         }
 
         @Override
@@ -65,7 +65,7 @@ public final class TalentDataAdapter extends ListAdapter<TalentData, TalentDataA
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final var item = getItem(position);
         final var context = holder.binding.getRoot().getContext();
-        holder.binding.name.setText(item.getTalent().getInfo(MyApplication.get(context).getTalentInfo()).getAbilityName());
+        holder.binding.name.setText(item.getTalent(MyApplication.get(context).getTalentData()).getInfo(MyApplication.get(context).getTalentInfo()).getAbilityName());
         holder.binding.priority.setText(item.getPriority().getText());
         holder.binding.priorityText.setText(context.getString(R.string.priority_str, context.getString(item.getPriority().getText())));
     }

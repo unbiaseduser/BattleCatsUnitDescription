@@ -26,7 +26,7 @@ public final class TFMaterialAdapter extends ListAdapter<TFMaterialData, TFMater
     private static final DiffUtil.ItemCallback<TFMaterialData> MATERIAL_DIFFER = new DiffUtil.ItemCallback<>() {
         @Override
         public boolean areItemsTheSame(@NonNull TFMaterialData oldItem, @NonNull TFMaterialData newItem) {
-            return oldItem.getMaterial() == newItem.getMaterial();
+            return oldItem.getMaterialIndex() == newItem.getMaterialIndex();
         }
 
         @Override
@@ -64,7 +64,8 @@ public final class TFMaterialAdapter extends ListAdapter<TFMaterialData, TFMater
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final var item = getItem(position);
-        holder.binding.name.setText(item.getMaterial().getInfo(MyApplication.get(holder.binding.getRoot().getContext()).getMaterialInfo()).getName());
+        final var app = MyApplication.get(holder.binding.getRoot().getContext());
+        holder.binding.name.setText(item.getMaterial(app.getMaterialData()).getInfo(app.getMaterialInfo()).getName());
         holder.binding.quantity.setText(holder.binding.getRoot().getContext().getString(R.string.quantity_num, item.getQuantity()));
     }
 

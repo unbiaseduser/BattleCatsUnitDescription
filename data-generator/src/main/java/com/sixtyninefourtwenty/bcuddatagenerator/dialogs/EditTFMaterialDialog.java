@@ -3,6 +3,7 @@ package com.sixtyninefourtwenty.bcuddatagenerator.dialogs;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.sixtyninefourtwenty.bcuddatagenerator.MyApplication;
 import com.sixtyninefourtwenty.bcuddatagenerator.R;
 import com.sixtyninefourtwenty.common.objects.TFMaterialData;
 import com.sixtyninefourtwenty.common.utils.MoreArrays;
@@ -41,7 +42,8 @@ public final class EditTFMaterialDialog extends AbstractTFMaterialDialog {
 
     @Override
     protected boolean checkDuplicateMaterialIndex(int index) {
-        if (index == getExistingMaterial().getMaterial().ordinal()) {
+        final var materialData = MyApplication.get(requireContext()).getMaterialData();
+        if (index == materialData.getMaterials().indexOf(getExistingMaterial().getMaterial(materialData))) {
             return false;
         }
         return MoreArrays.contains(args.getValue().getExistingTfMaterialIndices(), index);

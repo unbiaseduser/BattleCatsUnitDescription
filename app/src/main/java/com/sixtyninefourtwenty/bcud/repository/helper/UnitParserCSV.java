@@ -5,6 +5,7 @@ import com.konloch.util.FastStringUtils;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.objects.TFMaterialData;
+import com.sixtyninefourtwenty.common.objects.Talent;
 import com.sixtyninefourtwenty.common.objects.TalentData;
 import com.sixtyninefourtwenty.common.objects.UnitBaseData;
 import com.sixtyninefourtwenty.common.utils.CommonConstants;
@@ -14,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.IntFunction;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +39,8 @@ public final class UnitParserCSV implements UnitSupplier {
     @Override
     public ImmutableList<Unit> createMainList(UnitBaseData.Type type,
                                               IntFunction<ImmutableList<TFMaterialData>> tfMaterialsFunction,
-                                              IntFunction<ImmutableList<TalentData>> talentDataFunction) {
+                                              IntFunction<ImmutableList<TalentData>> talentDataFunction,
+                                              Function<TalentData, Talent> talentDataToTalentFunction) {
 
         return unitDataFileLines.stream()
                 .filter(parts -> UnitBaseData.Type.valueOf(parts[1]) == type)
@@ -47,7 +50,8 @@ public final class UnitParserCSV implements UnitSupplier {
                             unitId,
                             type,
                             tfMaterialsFunction.apply(unitId),
-                            talentDataFunction.apply(unitId)
+                            talentDataFunction.apply(unitId),
+                            talentDataToTalentFunction
                     );
                 })
                 .collect(new ImmutableListCollector<>());

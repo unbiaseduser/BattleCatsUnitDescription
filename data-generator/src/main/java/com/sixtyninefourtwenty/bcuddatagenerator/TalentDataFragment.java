@@ -28,9 +28,9 @@ import com.sixtyninefourtwenty.bcuddatagenerator.databinding.ListItemUnitTfMater
 import com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddUnitTalentDataDialog;
 import com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditUnitTalentDataDialog;
 import com.sixtyninefourtwenty.bcuddatagenerator.utils.Utils;
+import com.sixtyninefourtwenty.common.objects.UnitTalentData;
 import com.sixtyninefourtwenty.common.utils.Misc;
 import com.sixtyninefourtwenty.conflictresolver.ListImportConflictResolver;
-import com.sixtyninefourtwenty.common.objects.UnitTalentData;
 import com.sixtyninefourtwenty.stuff.ListAdapters;
 
 import org.json.JSONArray;

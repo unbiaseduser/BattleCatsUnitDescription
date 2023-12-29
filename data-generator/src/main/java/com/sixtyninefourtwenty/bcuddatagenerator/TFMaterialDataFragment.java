@@ -27,9 +27,9 @@ import com.sixtyninefourtwenty.bcuddatagenerator.databinding.ListItemUnitTfMater
 import com.sixtyninefourtwenty.bcuddatagenerator.dialogs.AddUnitTFMaterialDataDialog;
 import com.sixtyninefourtwenty.bcuddatagenerator.dialogs.EditUnitTFMaterialDataDialog;
 import com.sixtyninefourtwenty.bcuddatagenerator.utils.Utils;
+import com.sixtyninefourtwenty.common.objects.UnitTFMaterialData;
 import com.sixtyninefourtwenty.common.utils.Misc;
 import com.sixtyninefourtwenty.conflictresolver.ListImportConflictResolver;
-import com.sixtyninefourtwenty.common.objects.UnitTFMaterialData;
 import com.sixtyninefourtwenty.stuff.ListAdapters;
 
 import org.json.JSONArray;

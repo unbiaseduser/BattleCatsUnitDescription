@@ -1,19 +1,19 @@
-6|xp|XP
-30|purple_seed|Purple Catfruit Seed
-31|red_seed|Red Catfruit Seed
-32|blue_seed|Blue Catfruit Seed
-33|green_seed|Green Catfruit Seed
-34|yellow_seed|Yellow Catfruit Seed
-35|purple|Purple Catfruit
-36|red|Red Catfruit
-37|blue|Blue Catfruit
-38|green|Green Catfruit
-39|yellow|Yellow Catfruit
-40|epic|Epic Catfruit
-41|elder_seed|Elder Catfruit Seed
-42|elder|Elder Catfruit
-43|epic_seed|Epic Catfruit Seed
-44|gold|Gold Catfruit
-160|aku_seed|Aku Catfruit Seed
-161|aku|Aku Catfruit
-164|gold_seed|Gold Catfruit Seed
+6|img/material/xp
+30|img/material/purple_seed
+31|img/material/red_seed
+32|img/material/blue_seed
+33|img/material/green_seed
+34|img/material/yellow_seed
+35|img/material/purple
+36|img/material/red
+37|img/material/blue
+38|img/material/green
+39|img/material/yellow
+40|img/material/epic
+41|img/material/elder_seed
+42|img/material/elder
+43|img/material/epic_seed
+44|img/material/gold
+160|img/material/aku_seed
+161|img/material/aku
+164|img/material/gold_seed

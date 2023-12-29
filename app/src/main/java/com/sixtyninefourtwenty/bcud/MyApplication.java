@@ -1,6 +1,5 @@
 package com.sixtyninefourtwenty.bcud;
 
-import android.app.Application;
 import android.content.Context;
 
 import androidx.room.Room;
@@ -29,6 +28,7 @@ import com.sixtyninefourtwenty.bcud.repository.helper.UnitEEPriorityReasoningSup
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitExplanationParser;
 import com.sixtyninefourtwenty.bcud.repository.helper.UnitExplanationSupplier;
 import com.sixtyninefourtwenty.bcud.utils.AppPreferences;
+import com.sixtyninefourtwenty.common.application.CommonApplication;
 import com.sixtyninefourtwenty.common.objects.repository.TFMaterialInfoParser;
 import com.sixtyninefourtwenty.common.objects.repository.TFMaterialInfoSupplier;
 import com.sixtyninefourtwenty.common.objects.repository.TalentInfoParser;
@@ -42,7 +42,7 @@ import kotlin.LazyKt;
 import kotlin.LazyThreadSafetyMode;
 import lombok.Getter;
 
-public final class MyApplication extends Application {
+public final class MyApplication extends CommonApplication {
 
     private final Lazy<AppPreferences> prefs = LazyKt.lazy(LazyThreadSafetyMode.NONE, () -> new AppPreferences(this));
 
@@ -82,7 +82,7 @@ public final class MyApplication extends Application {
         return getDescPageTextData(true);
     }
 
-    private final Lazy<UnitData> unitData = LazyKt.lazy(LazyThreadSafetyMode.NONE, () -> new UnitDataDataSetCSV(getAssets()));
+    private final Lazy<UnitData> unitData = LazyKt.lazy(LazyThreadSafetyMode.NONE, () -> new UnitDataDataSetCSV(this));
 
     public UnitData getUnitData() {
         return unitData.getValue();
@@ -143,6 +143,8 @@ public final class MyApplication extends Application {
         getUnitData();
         getGuideData();
         getAdventData();
+        getMaterialData();
+        getTalentData();
     }
 
     public static MyApplication get(Context context) {

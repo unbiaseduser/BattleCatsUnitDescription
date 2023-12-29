@@ -3,7 +3,6 @@ package com.sixtyninefourtwenty.bcud.repository.helper;
 import com.google.common.collect.ImmutableList;
 import com.konloch.util.FastStringUtils;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
-import com.sixtyninefourtwenty.common.objects.TFMaterial;
 import com.sixtyninefourtwenty.common.objects.TFMaterialData;
 import com.sixtyninefourtwenty.common.utils.CommonConstants;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
@@ -40,7 +39,7 @@ public final class UnitTFMaterialDataParserCSV implements UnitTFMaterialDataSupp
                     final var materials = new ArrayList<TFMaterialData>();
                     for (int i = 1; i < parts.length; i += 2) {
                         materials.add(new TFMaterialData(
-                                TFMaterial.fromIndex(Integer.parseInt(parts[i])),
+                                Integer.parseInt(parts[i]),
                                 Integer.parseInt(parts[i + 1])
                         ));
                     }
