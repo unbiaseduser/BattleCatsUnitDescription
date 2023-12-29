@@ -13,6 +13,7 @@ import com.sixtyninefourtwenty.bcud.repository.FavoritesDataRepository;
 import com.sixtyninefourtwenty.bcud.repository.GuideData;
 import com.sixtyninefourtwenty.bcud.repository.GuideDataDataSet;
 import com.sixtyninefourtwenty.bcud.repository.PonosQuoteData;
+import com.sixtyninefourtwenty.bcud.repository.PonosQuoteSupplier;
 import com.sixtyninefourtwenty.bcud.repository.UnitData;
 import com.sixtyninefourtwenty.bcud.repository.UnitDataDataSetCSV;
 import com.sixtyninefourtwenty.bcud.repository.helper.ComboEffectDescParser;
@@ -100,9 +101,9 @@ public final class MyApplication extends CommonApplication {
         return adventData.getValue();
     }
 
-    private final Lazy<PonosQuoteData> ponosQuoteData = LazyKt.lazy(LazyThreadSafetyMode.NONE, () -> new PonosQuoteData(getAssets()));
+    private final Lazy<PonosQuoteSupplier> ponosQuoteData = LazyKt.lazy(LazyThreadSafetyMode.NONE, () -> new PonosQuoteData(getAssets()));
 
-    public PonosQuoteData getPonosQuoteData() {
+    public PonosQuoteSupplier getPonosQuoteData() {
         return ponosQuoteData.getValue();
     }
 

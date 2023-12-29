@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 
 import com.google.common.collect.ImmutableList;
 import com.sixtyninefourtwenty.bcud.utils.Utils;
+import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
 import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
@@ -19,7 +20,8 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 
 @Getter
-public final class PonosQuoteData {
+@NonNullTypesByDefault
+public final class PonosQuoteData implements PonosQuoteSupplier {
 
     @SneakyThrows
     public PonosQuoteData(InputStream input) {

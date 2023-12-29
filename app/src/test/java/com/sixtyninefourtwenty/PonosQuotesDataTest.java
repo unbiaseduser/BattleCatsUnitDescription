@@ -3,6 +3,7 @@ package com.sixtyninefourtwenty;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.sixtyninefourtwenty.bcud.repository.PonosQuoteData;
+import com.sixtyninefourtwenty.bcud.repository.PonosQuoteSupplier;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class PonosQuotesDataTest {
 
     @Test
     void test() throws Exception {
-        final var data = new PonosQuoteData(Files.newInputStream(ponosQuotesFile));
+        final PonosQuoteSupplier data = new PonosQuoteData(Files.newInputStream(ponosQuotesFile));
         final var quotes = data.getQuotes();
         assertEquals("Welcome to the Cat Base! Prepare yourself for battle here! When you're ready, attack!", quotes.get(0));
     }
