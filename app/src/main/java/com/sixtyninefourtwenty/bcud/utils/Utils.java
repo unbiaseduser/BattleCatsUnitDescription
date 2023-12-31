@@ -33,7 +33,6 @@ import com.sixtyninefourtwenty.stuff.Contexts;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 import io.noties.markwon.Markwon;
 import io.noties.markwon.ext.tables.TablePlugin;
@@ -46,8 +45,6 @@ import me.saket.bettermovementmethod.BetterLinkMovementMethod;
 @NonNullTypesByDefault
 public final class Utils {
 
-    public static final Pattern DATA_DELIMITER = Pattern.compile("\\|");
-    public static final Pattern DATA_DELIMITER_COMMA = Pattern.compile(",");
     public static final DiffUtil.ItemCallback<Unit> UNIT_DIFFER = new DiffUtil.ItemCallback<>() {
         @Override
         public boolean areItemsTheSame(@NonNull Unit oldItem, @NonNull Unit newItem) {

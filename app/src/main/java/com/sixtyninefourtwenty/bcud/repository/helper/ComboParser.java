@@ -1,6 +1,5 @@
 package com.sixtyninefourtwenty.bcud.repository.helper;
 
-import static com.sixtyninefourtwenty.bcud.utils.Utils.DATA_DELIMITER_COMMA;
 import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 import static kotlin.collections.CollectionsKt.first;
@@ -28,7 +27,7 @@ public final class ComboParser {
     private final ImmutableList<String[]> allCombosDataFileLines;
 
     public ComboParser(AssetManager assets) {
-        final var permittedComboFileLineIndicesArr = DATA_DELIMITER_COMMA.split(requireNonNull(AssetsJava.readFirstFileLine(assets, "text/combos/supported_combo_line_indices.txt")));
+        final var permittedComboFileLineIndicesArr = FastStringUtils.split(requireNonNull(AssetsJava.readFirstFileLine(assets, "text/combos/supported_combo_line_indices.txt")), CommonConstants.COMMA);
         permittedComboFileLineIndices = new IntArrayList(permittedComboFileLineIndicesArr.length);
         for (final var s : permittedComboFileLineIndicesArr) {
             permittedComboFileLineIndices.add(parseInt(s));

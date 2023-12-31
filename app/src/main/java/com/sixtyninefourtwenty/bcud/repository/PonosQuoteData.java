@@ -5,8 +5,9 @@ import static java.util.stream.Collectors.joining;
 import android.content.res.AssetManager;
 
 import com.google.common.collect.ImmutableList;
-import com.sixtyninefourtwenty.bcud.utils.Utils;
+import com.konloch.util.FastStringUtils;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
+import com.sixtyninefourtwenty.common.utils.CommonConstants;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
 import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
@@ -27,7 +28,7 @@ public final class PonosQuoteData implements PonosQuoteSupplier {
     public PonosQuoteData(InputStream input) {
         try (final var reader = new BufferedReader(new InputStreamReader(input))) {
             quotes = reader.lines()
-                    .map(Utils.DATA_DELIMITER::split)
+                    .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
                     .map(parts -> Stream.ofAll(List.of(parts))
                             .drop(1)
                             .takeWhile(part -> !"＠".equals(part))
