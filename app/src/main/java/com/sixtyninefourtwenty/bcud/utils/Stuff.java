@@ -9,6 +9,8 @@ import com.sixtyninefourtwenty.bcud.enums.License;
 import com.sixtyninefourtwenty.bcud.objects.ThirdPartyLibInfo;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -62,11 +64,17 @@ public final class Stuff {
     public static final Cache<String, String> TEXT_CACHE = CacheBuilder.newBuilder().maximumSize(15).build();
 
     @SneakyThrows
-    public static String getText(String path, Context context) {
-        return TEXT_CACHE.get(path, () -> {
+    public static String getText(String path, Context context, @Nullable Cache<String, String> textCache) {
+        final var finalCache = textCache != null ? textCache : TEXT_CACHE;
+        return finalCache.get(path, () -> {
             try (final var reader = new BufferedReader(new InputStreamReader(context.getAssets().open(path)))) {
                 return TextStreamsKt.readText(reader);
             }
         });
     }
+
+    public static String getText(String path, Context context) {
+        return getText(path, context, null);
+    }
+
 }
