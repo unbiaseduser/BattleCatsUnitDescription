@@ -1,10 +1,9 @@
 package com.sixtyninefourtwenty.bcud.viewmodels;
 
 import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNullElse;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.SavedStateHandleSupport;
 import androidx.lifecycle.Transformations;
@@ -34,6 +33,7 @@ import java.util.function.Predicate;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import io.vavr.Tuple3;
+import lombok.Getter;
 
 @NonNullTypesByDefault
 public final class UnitDataViewModel extends ViewModel {
@@ -58,42 +58,67 @@ public final class UnitDataViewModel extends ViewModel {
     private static final String UBER_TP_PRIORITY_KEY = "uber_tp_priority";
 
     public UnitDataViewModel(SavedStateHandle savedStateHandle, UnitData data, UnitExplanationSupplier explanationSupplier) {
-        final Unit currentUnit = savedStateHandle.get(CURRENT_UNIT_TO_DISPLAY_KEY);
-        if (currentUnit != null) {
-            currentUnitToDisplay.setValue(currentUnit);
-        }
-        final var storyLegendQuery = requireNonNullElse(savedStateHandle.get(STORY_LEGEND_QUERY_KEY), "");
-        storyLegendsIntermediate.setValue(Tuple.of(storyLegendQuery, data.getMainList(UnitBaseData.Type.STORY_LEGEND)));
-        final var cfSpecialsQuery = requireNonNullElse(savedStateHandle.get(CF_SPECIAL_QUERY_KEY), "");
-        cfSpecialsIntermediate.setValue(Tuple.of(cfSpecialsQuery, data.getMainList(UnitBaseData.Type.CF_SPECIAL)));
-        final var adventDropsQuery = requireNonNullElse(savedStateHandle.get(ADVENT_DROP_QUERY_KEY), "");
-        adventDropsIntermediate.setValue(Tuple.of(adventDropsQuery, data.getMainList(UnitBaseData.Type.ADVENT_DROP)));
-        final var raresQuery = requireNonNullElse(savedStateHandle.get(RARE_QUERY_KEY), "");
-        raresIntermediate.setValue(Tuple.of(raresQuery, data.getMainList(UnitBaseData.Type.RARE)));
-        final var superRaresQuery = requireNonNullElse(savedStateHandle.get(SUPER_RARE_QUERY_KEY), "");
-        superRaresIntermediate.setValue(Tuple.of(superRaresQuery, data.getMainList(UnitBaseData.Type.SUPER_RARE)));
-        final var ubersQuery = requireNonNullElse(savedStateHandle.get(UBER_QUERY_KEY), "");
-        ubersIntermediate.setValue(Tuple.of(ubersQuery, data.getMainList(UnitBaseData.Type.UBER)));
-        final var legendRaresQuery = requireNonNullElse(savedStateHandle.get(LEGEND_RARE_QUERY_KEY), "");
-        legendRaresIntermediate.setValue(Tuple.of(legendRaresQuery, data.getMainList(UnitBaseData.Type.LEGEND_RARE)));
+        currentUnitToDisplay = savedStateHandle.getLiveData(CURRENT_UNIT_TO_DISPLAY_KEY);
+        final var storyLegendQueryLiveData = savedStateHandle.getLiveData(STORY_LEGEND_QUERY_KEY, "");
+        storyLegendsIntermediate = Transformations.map(storyLegendQueryLiveData, query -> Tuple.of(query, data.getMainList(UnitBaseData.Type.STORY_LEGEND)));
+        storyLegends = Transformations.map(storyLegendsIntermediate, pair -> getSearchResults(pair._2, pair._1));
+        final var cfSpecialsQueryLiveData = savedStateHandle.getLiveData(CF_SPECIAL_QUERY_KEY, "");
+        cfSpecialsIntermediate = Transformations.map(cfSpecialsQueryLiveData, query -> Tuple.of(query, data.getMainList(UnitBaseData.Type.CF_SPECIAL)));
+        cfSpecials = Transformations.map(cfSpecialsIntermediate, pair -> getSearchResults(pair._2, pair._1));
+        final var adventDropsQueryLiveData = savedStateHandle.getLiveData(ADVENT_DROP_QUERY_KEY, "");
+        adventDropsIntermediate = Transformations.map(adventDropsQueryLiveData, query -> Tuple.of(query, data.getMainList(UnitBaseData.Type.ADVENT_DROP)));
+        adventDrops = Transformations.map(adventDropsIntermediate, pair -> getSearchResults(pair._2, pair._1));
+        final var raresQueryLiveData = savedStateHandle.getLiveData(RARE_QUERY_KEY, "");
+        raresIntermediate = Transformations.map(raresQueryLiveData, query -> Tuple.of(query, data.getMainList(UnitBaseData.Type.RARE)));
+        rares = Transformations.map(raresIntermediate, pair -> getSearchResults(pair._2, pair._1));
+        final var superRaresQueryLiveData = savedStateHandle.getLiveData(SUPER_RARE_QUERY_KEY, "");
+        superRaresIntermediate = Transformations.map(superRaresQueryLiveData, query -> Tuple.of(query, data.getMainList(UnitBaseData.Type.SUPER_RARE)));
+        superRares = Transformations.map(superRaresIntermediate, pair -> getSearchResults(pair._2, pair._1));
+        final var ubersQueryLiveData = savedStateHandle.getLiveData(UBER_QUERY_KEY, "");
+        ubersIntermediate = Transformations.map(ubersQueryLiveData, query -> Tuple.of(query, data.getMainList(UnitBaseData.Type.UBER)));
+        ubers = Transformations.map(ubersIntermediate, pair -> getSearchResults(pair._2, pair._1));
+        final var legendRaresQueryLiveData = savedStateHandle.getLiveData(LEGEND_RARE_QUERY_KEY, "");
+        legendRaresIntermediate = Transformations.map(legendRaresQueryLiveData, query -> Tuple.of(query, data.getMainList(UnitBaseData.Type.LEGEND_RARE)));
+        legendRares = Transformations.map(legendRaresIntermediate, pair -> getSearchResults(pair._2, pair._1));
         dataSet = data;
         this.explanationSupplier = explanationSupplier;
         this.savedStateHandle = savedStateHandle;
-        final var rareHypermaxPriorityQuery = requireNonNullElse(savedStateHandle.get(RARE_HP_QUERY_KEY), "");
-        final var rareHypermaxPriorityType = requireNonNullElse(savedStateHandle.get(RARE_HP_PRIORITY_KEY), Hypermax.Priority.MAX);
-        rareHypermaxPriorityIntermediate.setValue(Tuple.of(rareHypermaxPriorityQuery, dataSet.getHypermaxPriorityList(rareHypermaxPriorityType, Hypermax.UnitType.RARE)));
-        final var superRareHypermaxPriorityQuery = requireNonNullElse(savedStateHandle.get(SUPER_RARE_HP_QUERY_KEY), "");
-        final var superRareHypermaxPriorityType = requireNonNullElse(savedStateHandle.get(SUPER_RARE_HP_PRIORITY_KEY), Hypermax.Priority.MAX);
-        superRareHypermaxPriorityIntermediate.setValue(Tuple.of(superRareHypermaxPriorityQuery, dataSet.getHypermaxPriorityList(superRareHypermaxPriorityType, Hypermax.UnitType.SUPER_RARE)));
-        final var specialHypermaxPriorityQuery = requireNonNullElse(savedStateHandle.get(SPECIAL_HP_QUERY_KEY), "");
-        final var specialHypermaxPriorityType = requireNonNullElse(savedStateHandle.get(SPECIAL_HP_PRIORITY_KEY), Hypermax.Priority.MAX);
-        specialHypermaxPriorityIntermediate.setValue(Tuple.of(specialHypermaxPriorityQuery, dataSet.getHypermaxPriorityList(specialHypermaxPriorityType, Hypermax.UnitType.SPECIAL)));
-        final var nonUberTalentPriorityQuery = requireNonNullElse(savedStateHandle.get(NON_UBER_TP_QUERY_KEY), "");
-        final var nonUberTalentPriority = requireNonNullElse(savedStateHandle.get(NON_UBER_TP_PRIORITY_KEY), Talent.Priority.TOP);
-        nonUberTalentPriorityIntermediate.setValue(Tuple.of(nonUberTalentPriorityQuery, dataSet.getTalentPriorityList(nonUberTalentPriority, Talent.UnitType.NON_UBER), nonUberTalentPriority));
-        final var uberTalentPriorityQuery = requireNonNullElse(savedStateHandle.get(UBER_TP_QUERY_KEY), "");
-        final var uberTalentPriority = requireNonNullElse(savedStateHandle.get(UBER_TP_PRIORITY_KEY), Talent.Priority.TOP);
-        uberTalentPriorityIntermediate.setValue(Tuple.of(uberTalentPriorityQuery, dataSet.getTalentPriorityList(uberTalentPriority, Talent.UnitType.UBER), uberTalentPriority));
+        final var rareHypermaxPriorityQueryLiveData = savedStateHandle.getLiveData(RARE_HP_QUERY_KEY, "");
+        final var rareHypermaxPriorityTypeLiveData = savedStateHandle.getLiveData(RARE_HP_PRIORITY_KEY, Hypermax.Priority.MAX);
+        rareHypermaxPriorityIntermediate = new MediatorLiveData<>();
+        rareHypermaxPriorityIntermediate.addSource(rareHypermaxPriorityQueryLiveData, query -> rareHypermaxPriorityIntermediate.setValue(Tuple.of(query, dataSet.getHypermaxPriorityList(requireNonNull(rareHypermaxPriorityTypeLiveData.getValue()), Hypermax.UnitType.RARE))));
+        rareHypermaxPriorityIntermediate.addSource(rareHypermaxPriorityTypeLiveData, type -> rareHypermaxPriorityIntermediate.setValue(Tuple.of(requireNonNull(rareHypermaxPriorityQueryLiveData.getValue()), dataSet.getHypermaxPriorityList(type, Hypermax.UnitType.RARE))));
+        rareHypermaxPriority = Transformations.map(rareHypermaxPriorityIntermediate, pair -> getSearchResults(pair._2, pair._1));
+        final var superRareHypermaxPriorityQueryLiveData = savedStateHandle.getLiveData(SUPER_RARE_HP_QUERY_KEY, "");
+        final var superRareHypermaxPriorityTypeLiveData = savedStateHandle.getLiveData(SUPER_RARE_HP_PRIORITY_KEY, Hypermax.Priority.MAX);
+        superRareHypermaxPriorityIntermediate = new MediatorLiveData<>();
+        superRareHypermaxPriorityIntermediate.addSource(superRareHypermaxPriorityQueryLiveData, query -> superRareHypermaxPriorityIntermediate.setValue(Tuple.of(query, dataSet.getHypermaxPriorityList(requireNonNull(superRareHypermaxPriorityTypeLiveData.getValue()), Hypermax.UnitType.SUPER_RARE))));
+        superRareHypermaxPriorityIntermediate.addSource(superRareHypermaxPriorityTypeLiveData, type -> superRareHypermaxPriorityIntermediate.setValue(Tuple.of(requireNonNull(superRareHypermaxPriorityQueryLiveData.getValue()), dataSet.getHypermaxPriorityList(type, Hypermax.UnitType.SUPER_RARE))));
+        superRareHypermaxPriority = Transformations.map(superRareHypermaxPriorityIntermediate, pair -> getSearchResults(pair._2, pair._1));
+        final var specialHypermaxPriorityQueryLiveData = savedStateHandle.getLiveData(SPECIAL_HP_QUERY_KEY, "");
+        final var specialHypermaxPriorityTypeLiveData = savedStateHandle.getLiveData(SPECIAL_HP_PRIORITY_KEY, Hypermax.Priority.MAX);
+        specialHypermaxPriorityIntermediate = new MediatorLiveData<>();
+        specialHypermaxPriorityIntermediate.addSource(specialHypermaxPriorityQueryLiveData, query -> specialHypermaxPriorityIntermediate.setValue(Tuple.of(query, dataSet.getHypermaxPriorityList(requireNonNull(specialHypermaxPriorityTypeLiveData.getValue()), Hypermax.UnitType.SPECIAL))));
+        specialHypermaxPriorityIntermediate.addSource(specialHypermaxPriorityTypeLiveData, type -> specialHypermaxPriorityIntermediate.setValue(Tuple.of(requireNonNull(specialHypermaxPriorityQueryLiveData.getValue()), dataSet.getHypermaxPriorityList(type, Hypermax.UnitType.SPECIAL))));
+        specialHypermaxPriority = Transformations.map(specialHypermaxPriorityIntermediate, pair -> getSearchResults(pair._2, pair._1));
+        final var nonUberTalentPriorityQueryLiveData = savedStateHandle.getLiveData(NON_UBER_TP_QUERY_KEY, "");
+        final var nonUberTalentPriorityLiveData = savedStateHandle.getLiveData(NON_UBER_TP_PRIORITY_KEY, Talent.Priority.TOP);
+        nonUberTalentPriorityIntermediate = new MediatorLiveData<>();
+        nonUberTalentPriorityIntermediate.addSource(nonUberTalentPriorityQueryLiveData, query -> {
+            final var talentPriority = requireNonNull(nonUberTalentPriorityLiveData.getValue());
+            nonUberTalentPriorityIntermediate.setValue(Tuple.of(query, dataSet.getTalentPriorityList(talentPriority, Talent.UnitType.NON_UBER), talentPriority));
+        });
+        nonUberTalentPriorityIntermediate.addSource(nonUberTalentPriorityLiveData, priority -> nonUberTalentPriorityIntermediate.setValue(Tuple.of(requireNonNull(nonUberTalentPriorityQueryLiveData.getValue()), dataSet.getTalentPriorityList(priority, Talent.UnitType.NON_UBER), priority)));
+        nonUberTalentPriority = Transformations.map(nonUberTalentPriorityIntermediate, triple -> Tuple.of(getSearchResults(triple._2, triple._1), triple._3));
+        final var uberTalentPriorityQueryLiveData = savedStateHandle.getLiveData(UBER_TP_QUERY_KEY, "");
+        final var uberTalentPriorityLiveData = savedStateHandle.getLiveData(UBER_TP_PRIORITY_KEY, Talent.Priority.TOP);
+        uberTalentPriorityIntermediate = new MediatorLiveData<>();
+        uberTalentPriorityIntermediate.addSource(uberTalentPriorityQueryLiveData, query -> {
+            final var talentPriority = requireNonNull(uberTalentPriorityLiveData.getValue());
+            uberTalentPriorityIntermediate.setValue(Tuple.of(query, dataSet.getTalentPriorityList(talentPriority, Talent.UnitType.UBER), talentPriority));
+        });
+        uberTalentPriorityIntermediate.addSource(uberTalentPriorityLiveData, priority -> uberTalentPriorityIntermediate.setValue(Tuple.of(requireNonNull(uberTalentPriorityQueryLiveData.getValue()), dataSet.getTalentPriorityList(priority, Talent.UnitType.UBER), priority)));
+        uberTalentPriority = Transformations.map(uberTalentPriorityIntermediate, triple -> Tuple.of(getSearchResults(triple._2, triple._1), triple._3));
     }
 
     private final SavedStateHandle savedStateHandle;
@@ -116,45 +141,31 @@ public final class UnitDataViewModel extends ViewModel {
         }
     }
 
-    private final MutableLiveData<Unit> currentUnitToDisplay = new MutableLiveData<>();
-
-    public LiveData<Unit> getCurrentUnitToDisplay() {
-        return currentUnitToDisplay;
-    }
+    @Getter
+    private final LiveData<Unit> currentUnitToDisplay;
 
     public void setCurrentUnitToDisplay(Unit unit) {
         if (!unit.equals(currentUnitToDisplay.getValue())) {
-            currentUnitToDisplay.setValue(unit);
             savedStateHandle.set(CURRENT_UNIT_TO_DISPLAY_KEY, unit);
         }
     }
 
-    private final MutableLiveData<Tuple2<String, ImmutableList<Unit>>> storyLegendsIntermediate = new MutableLiveData<>();
-    private final LiveData<ImmutableList<Unit>> storyLegends = Transformations.map(storyLegendsIntermediate, pair -> getSearchResults(pair._2, pair._1));
-    private final MutableLiveData<Tuple2<String, ImmutableList<Unit>>> cfSpecialsIntermediate = new MutableLiveData<>();
-    private final LiveData<ImmutableList<Unit>> cfSpecials = Transformations.map(cfSpecialsIntermediate, pair -> getSearchResults(pair._2, pair._1));
-    private final MutableLiveData<Tuple2<String, ImmutableList<Unit>>> adventDropsIntermediate = new MutableLiveData<>();
-    private final LiveData<ImmutableList<Unit>> adventDrops = Transformations.map(adventDropsIntermediate, pair -> getSearchResults(pair._2, pair._1));
-    private final MutableLiveData<Tuple2<String, ImmutableList<Unit>>> raresIntermediate = new MutableLiveData<>();
-    private final LiveData<ImmutableList<Unit>> rares = Transformations.map(raresIntermediate, pair -> getSearchResults(pair._2, pair._1));
-    private final MutableLiveData<Tuple2<String, ImmutableList<Unit>>> superRaresIntermediate = new MutableLiveData<>();
-    private final LiveData<ImmutableList<Unit>> superRares = Transformations.map(superRaresIntermediate, pair -> getSearchResults(pair._2, pair._1));
-    private final MutableLiveData<Tuple2<String, ImmutableList<Unit>>> ubersIntermediate = new MutableLiveData<>();
-    private final LiveData<ImmutableList<Unit>> ubers = Transformations.map(ubersIntermediate, pair -> getSearchResults(pair._2, pair._1));
-    private final MutableLiveData<Tuple2<String, ImmutableList<Unit>>> legendRaresIntermediate = new MutableLiveData<>();
-    private final LiveData<ImmutableList<Unit>> legendRares = Transformations.map(legendRaresIntermediate, pair -> getSearchResults(pair._2, pair._1));
+    private final LiveData<Tuple2<String, ImmutableList<Unit>>> storyLegendsIntermediate;
+    private final LiveData<ImmutableList<Unit>> storyLegends;
+    private final LiveData<Tuple2<String, ImmutableList<Unit>>> cfSpecialsIntermediate;
+    private final LiveData<ImmutableList<Unit>> cfSpecials;
+    private final LiveData<Tuple2<String, ImmutableList<Unit>>> adventDropsIntermediate;
+    private final LiveData<ImmutableList<Unit>> adventDrops;
+    private final LiveData<Tuple2<String, ImmutableList<Unit>>> raresIntermediate;
+    private final LiveData<ImmutableList<Unit>> rares;
+    private final LiveData<Tuple2<String, ImmutableList<Unit>>> superRaresIntermediate;
+    private final LiveData<ImmutableList<Unit>> superRares;
+    private final LiveData<Tuple2<String, ImmutableList<Unit>>> ubersIntermediate;
+    private final LiveData<ImmutableList<Unit>> ubers;
+    private final LiveData<Tuple2<String, ImmutableList<Unit>>> legendRaresIntermediate;
+    private final LiveData<ImmutableList<Unit>> legendRares;
 
     public void setUnitDescQuery(UnitBaseData.Type type, String query) {
-        final var liveData = switch (type) {
-            case STORY_LEGEND -> storyLegendsIntermediate;
-            case CF_SPECIAL -> cfSpecialsIntermediate;
-            case ADVENT_DROP -> adventDropsIntermediate;
-            case RARE -> raresIntermediate;
-            case SUPER_RARE -> superRaresIntermediate;
-            case UBER -> ubersIntermediate;
-            case LEGEND_RARE -> legendRaresIntermediate;
-        };
-        liveData.setValue(requireNonNull(liveData.getValue()).update1(query));
         final var key = switch (type) {
             case STORY_LEGEND -> STORY_LEGEND_QUERY_KEY;
             case CF_SPECIAL -> CF_SPECIAL_QUERY_KEY;
@@ -179,20 +190,14 @@ public final class UnitDataViewModel extends ViewModel {
         };
     }
 
-    private final MutableLiveData<Tuple2<String, ImmutableList<Unit>>> rareHypermaxPriorityIntermediate = new MutableLiveData<>();
-    private final MutableLiveData<Tuple2<String, ImmutableList<Unit>>> superRareHypermaxPriorityIntermediate = new MutableLiveData<>();
-    private final MutableLiveData<Tuple2<String, ImmutableList<Unit>>> specialHypermaxPriorityIntermediate = new MutableLiveData<>();
-    private final LiveData<ImmutableList<Unit>> rareHypermaxPriority = Transformations.map(rareHypermaxPriorityIntermediate, pair -> getSearchResults(pair._2, pair._1));
-    private final LiveData<ImmutableList<Unit>> superRareHypermaxPriority = Transformations.map(superRareHypermaxPriorityIntermediate, pair -> getSearchResults(pair._2, pair._1));
-    private final LiveData<ImmutableList<Unit>> specialHypermaxPriority = Transformations.map(specialHypermaxPriorityIntermediate, pair -> getSearchResults(pair._2, pair._1));
+    private final MediatorLiveData<Tuple2<String, ImmutableList<Unit>>> rareHypermaxPriorityIntermediate;
+    private final MediatorLiveData<Tuple2<String, ImmutableList<Unit>>> superRareHypermaxPriorityIntermediate;
+    private final MediatorLiveData<Tuple2<String, ImmutableList<Unit>>> specialHypermaxPriorityIntermediate;
+    private final LiveData<ImmutableList<Unit>> rareHypermaxPriority;
+    private final LiveData<ImmutableList<Unit>> superRareHypermaxPriority;
+    private final LiveData<ImmutableList<Unit>> specialHypermaxPriority;
 
     public void setHypermaxPriorityQuery(Hypermax.UnitType type, String query) {
-        final var liveData = switch (type) {
-            case SPECIAL -> specialHypermaxPriorityIntermediate;
-            case RARE -> rareHypermaxPriorityIntermediate;
-            case SUPER_RARE -> superRareHypermaxPriorityIntermediate;
-        };
-        liveData.setValue(requireNonNull(liveData.getValue()).update1(query));
         final var key = switch (type) {
             case SPECIAL -> SPECIAL_HP_QUERY_KEY;
             case RARE -> RARE_HP_QUERY_KEY;
@@ -202,13 +207,6 @@ public final class UnitDataViewModel extends ViewModel {
     }
 
     public void setHypermaxPriorityType(Hypermax.UnitType type, Hypermax.Priority priority) {
-        final var liveData = switch (type) {
-            case SPECIAL -> specialHypermaxPriorityIntermediate;
-            case RARE -> rareHypermaxPriorityIntermediate;
-            case SUPER_RARE -> superRareHypermaxPriorityIntermediate;
-        };
-        final var list = dataSet.getHypermaxPriorityList(priority, type);
-        liveData.setValue(requireNonNull(liveData.getValue()).update2(list));
         final var key = switch (type) {
             case SPECIAL -> SPECIAL_HP_PRIORITY_KEY;
             case RARE -> RARE_HP_PRIORITY_KEY;
@@ -225,17 +223,12 @@ public final class UnitDataViewModel extends ViewModel {
         };
     }
 
-    private final MutableLiveData<Tuple3<String, ImmutableList<Unit>, Talent.Priority>> nonUberTalentPriorityIntermediate = new MutableLiveData<>();
-    private final MutableLiveData<Tuple3<String, ImmutableList<Unit>, Talent.Priority>> uberTalentPriorityIntermediate = new MutableLiveData<>();
-    private final LiveData<Tuple2<ImmutableList<Unit>, Talent.Priority>> nonUberTalentPriority = Transformations.map(nonUberTalentPriorityIntermediate, triple -> Tuple.of(getSearchResults(triple._2, triple._1), triple._3));
-    private final LiveData<Tuple2<ImmutableList<Unit>, Talent.Priority>> uberTalentPriority = Transformations.map(uberTalentPriorityIntermediate, triple -> Tuple.of(getSearchResults(triple._2, triple._1), triple._3));
+    private final MediatorLiveData<Tuple3<String, ImmutableList<Unit>, Talent.Priority>> nonUberTalentPriorityIntermediate;
+    private final MediatorLiveData<Tuple3<String, ImmutableList<Unit>, Talent.Priority>> uberTalentPriorityIntermediate;
+    private final LiveData<Tuple2<ImmutableList<Unit>, Talent.Priority>> nonUberTalentPriority;
+    private final LiveData<Tuple2<ImmutableList<Unit>, Talent.Priority>> uberTalentPriority;
 
     public void setTalentPriorityQuery(Talent.UnitType type, String query) {
-        final var liveData = switch (type) {
-            case NON_UBER -> nonUberTalentPriorityIntermediate;
-            case UBER -> uberTalentPriorityIntermediate;
-        };
-        liveData.setValue(requireNonNull(liveData.getValue()).update1(query));
         final var key = switch (type) {
             case NON_UBER -> NON_UBER_TP_QUERY_KEY;
             case UBER -> UBER_TP_QUERY_KEY;
@@ -244,12 +237,6 @@ public final class UnitDataViewModel extends ViewModel {
     }
 
     public void setTalentPriorityType(Talent.UnitType type, Talent.Priority priority) {
-        final var liveData = switch (type) {
-            case NON_UBER -> nonUberTalentPriorityIntermediate;
-            case UBER -> uberTalentPriorityIntermediate;
-        };
-        final var list = dataSet.getTalentPriorityList(priority, type);
-        liveData.setValue(requireNonNull(liveData.getValue()).update2(list).update3(priority));
         final var key = switch (type) {
             case NON_UBER -> NON_UBER_TP_PRIORITY_KEY;
             case UBER -> UBER_TP_PRIORITY_KEY;
