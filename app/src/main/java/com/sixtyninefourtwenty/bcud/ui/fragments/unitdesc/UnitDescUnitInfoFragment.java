@@ -29,7 +29,6 @@ import com.sixtyninefourtwenty.bcud.utils.Utils;
 import com.sixtyninefourtwenty.bcud.utils.fragments.BaseViewBindingFragment;
 import com.sixtyninefourtwenty.bcud.viewmodels.ComboDataViewModel;
 import com.sixtyninefourtwenty.bcud.viewmodels.UnitDataViewModel;
-import com.sixtyninefourtwenty.common.utils.Validations;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -97,14 +96,14 @@ public final class UnitDescUnitInfoFragment extends BaseViewBindingFragment<@Non
         final var descPageTexts = unit.getDescPageTexts(app.getDescPageTextData());
         final var usefulToOwnByText = descPageTexts.getUsefulToOwnBy();
         binding.usefulToOwnBy2.setText(usefulToOwnByText);
-        binding.usefulToOwnCard.setVisibility(!Validations.isValidInfoString(usefulToOwnByText) ? View.GONE : View.VISIBLE);
+        binding.usefulToOwnCard.setVisibility(usefulToOwnByText == null ? View.GONE : View.VISIBLE);
         final var usefulToTfOrTalentText = descPageTexts.getUsefulToTFOrTalentBy();
         binding.usefulToTfBy.setText(unit.isCfSpecial() ? R.string.useful_to_unlock_talents_by : R.string.useful_to_tf_by);
         binding.usefulToTfBy2.setText(usefulToTfOrTalentText);
-        binding.usefulToTfCard.setVisibility(!Validations.isValidInfoString(usefulToTfOrTalentText) ? View.GONE : View.VISIBLE);
+        binding.usefulToTfCard.setVisibility(usefulToTfOrTalentText == null ? View.GONE : View.VISIBLE);
         final var hypermaxPriorityText = descPageTexts.getHypermaxPriority();
         binding.hp2.setText(hypermaxPriorityText);
-        binding.hpCard.setVisibility(!Validations.isValidInfoString(hypermaxPriorityText) ? View.GONE : View.VISIBLE);
+        binding.hpCard.setVisibility(hypermaxPriorityText == null ? View.GONE : View.VISIBLE);
 
         final var tfMaterials = unit.getTfMaterialData();
         tfMaterialAdapter.submitList(tfMaterials);

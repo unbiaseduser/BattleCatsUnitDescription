@@ -16,7 +16,6 @@ import com.sixtyninefourtwenty.bottomsheetalertdialog.DialogButtonProperties;
 import com.sixtyninefourtwenty.common.objects.ElderEpic;
 import com.sixtyninefourtwenty.common.objects.UnitEEPriorityData;
 import com.sixtyninefourtwenty.common.utils.Formatting;
-import com.sixtyninefourtwenty.common.utils.Validations;
 import com.sixtyninefourtwenty.stuff.Views;
 
 public abstract class AbstractUnitEEPDataDialog extends BottomSheetDialogFragment {
@@ -52,7 +51,7 @@ public abstract class AbstractUnitEEPDataDialog extends BottomSheetDialogFragmen
                                 binding.elderOrEpicInputLayout.setError(null);
                                 return;
                             }
-                            if (!Validations.isValidInfoString(binding.elderOrEpicInput)) {
+                            if (Views.isBlank(binding.elderOrEpicInput)) {
                                 binding.unitIdInputLayout.setError(null);
                                 binding.elderOrEpicInputLayout.setError(getString(R.string.elder_epic_priority_text_empty_error));
                                 return;

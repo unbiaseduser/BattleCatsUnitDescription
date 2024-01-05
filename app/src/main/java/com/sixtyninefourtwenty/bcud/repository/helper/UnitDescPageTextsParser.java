@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcud.repository.helper;
 
+import static java.util.Objects.requireNonNull;
+
 import android.content.res.AssetManager;
 
 import com.google.common.io.CharStreams;
@@ -25,7 +27,7 @@ public final class UnitDescPageTextsParser implements UnitDescPageTextsSupplier 
     @SuppressWarnings("unused")
     public UnitDescPageTextsParser(String json) {
         UnitBaseData.SERIALIZER.listFromJson(new JSONArray(json))
-                .forEach(d -> data.put(d.getUnitId(), new Unit.DescPageTexts(
+                .forEach(d -> data.put(d.getUnitId(), Unit.DescPageTexts.of(
                         d.getTextForInfo(UnitBaseData.Info.USEFUL_TO_OWN),
                         d.getTextForInfo(UnitBaseData.Info.USEFUL_TO_TF_OR_TALENT),
                         d.getTextForInfo(UnitBaseData.Info.HYPERMAX_PRIORITY)
@@ -37,7 +39,7 @@ public final class UnitDescPageTextsParser implements UnitDescPageTextsSupplier 
         try (final var reader = new BufferedReader(new InputStreamReader(assets.open("text/unit_base_data.json")))) {
             final var json = CharStreams.toString(reader);
             UnitBaseData.SERIALIZER.listFromJson(new JSONArray(json))
-                    .forEach(d -> data.put(d.getUnitId(), new Unit.DescPageTexts(
+                    .forEach(d -> data.put(d.getUnitId(), Unit.DescPageTexts.of(
                             d.getTextForInfo(UnitBaseData.Info.USEFUL_TO_OWN),
                             d.getTextForInfo(UnitBaseData.Info.USEFUL_TO_TF_OR_TALENT),
                             d.getTextForInfo(UnitBaseData.Info.HYPERMAX_PRIORITY)
@@ -47,6 +49,6 @@ public final class UnitDescPageTextsParser implements UnitDescPageTextsSupplier 
 
     @Override
     public Unit.DescPageTexts getDescPageTexts(int unitId) {
-        return data.getOrDefault(unitId, Unit.DescPageTexts.EMPTY);
+        return requireNonNull(data.getOrDefault(unitId, Unit.DescPageTexts.EMPTY));
     }
 }

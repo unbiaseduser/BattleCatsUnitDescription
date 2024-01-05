@@ -17,7 +17,6 @@ import com.sixtyninefourtwenty.bottomsheetalertdialog.BottomSheetAlertDialogFrag
 import com.sixtyninefourtwenty.bottomsheetalertdialog.DialogButtonProperties;
 import com.sixtyninefourtwenty.common.objects.UnitBaseData;
 import com.sixtyninefourtwenty.common.utils.SpinnerAdapters;
-import com.sixtyninefourtwenty.common.utils.Validations;
 import com.sixtyninefourtwenty.stuff.Views;
 
 import java.util.Arrays;
@@ -45,7 +44,7 @@ public abstract class AbstractUnitBaseDataDialog extends BottomSheetDialogFragme
     }
 
     private boolean validateInfoInputField(CharSequence error, TextInputLayout inputLayout, TextInputEditText editText) {
-        if (!Validations.isValidInfoString(editText)) {
+        if (Views.isBlank(editText)) {
             setInputFieldError(error, inputLayout);
             return false;
         }

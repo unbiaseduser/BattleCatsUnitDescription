@@ -50,12 +50,27 @@ public class Unit implements Parcelable {
     }
 
     @Value
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
     public static class DescPageTexts {
+        @Nullable
         String usefulToOwnBy;
+        @Nullable
         String usefulToTFOrTalentBy;
+        @Nullable
         String hypermaxPriority;
 
-        public static DescPageTexts EMPTY = new DescPageTexts("", "", "");
+        public static DescPageTexts of(
+                @Nullable String usefulToOwnBy,
+                @Nullable String usefulToTFOrTalentBy,
+                @Nullable String hypermaxPriority
+        ) {
+            if (usefulToOwnBy == null && usefulToTFOrTalentBy == null && hypermaxPriority == null) {
+                return EMPTY;
+            }
+            return new DescPageTexts(usefulToOwnBy, usefulToTFOrTalentBy, hypermaxPriority);
+        }
+
+        public static final DescPageTexts EMPTY = new DescPageTexts(null, null, null);
     }
 
     @Value

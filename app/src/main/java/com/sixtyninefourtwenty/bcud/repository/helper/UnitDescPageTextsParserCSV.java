@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcud.repository.helper;
 
+import static java.util.Objects.requireNonNull;
+
 import android.content.res.AssetManager;
 
 import com.konloch.util.FastStringUtils;
@@ -8,9 +10,12 @@ import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.utils.CommonConstants;
 import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.function.Function;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -23,10 +28,17 @@ public final class UnitDescPageTextsParserCSV implements UnitDescPageTextsSuppli
 
     @SneakyThrows
     public UnitDescPageTextsParserCSV(InputStream inputStream) {
+
+        Function<String, @Nullable String> normalizeCSVValue = input -> !input.equals("-") ? input : null;
+
         try (final var reader = new BufferedReader(new InputStreamReader(inputStream))) {
             reader.lines()
                     .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
-                    .forEach(line -> data.put(Integer.parseInt(line[0]), new Unit.DescPageTexts(line[1], line[2], line[3])));
+                    .forEach(line -> data.put(Integer.parseInt(line[0]), Unit.DescPageTexts.of(
+                            normalizeCSVValue.apply(line[1]),
+                            normalizeCSVValue.apply(line[2]),
+                            normalizeCSVValue.apply(line[3])
+                    )));
         }
     }
 
@@ -36,7 +48,7 @@ public final class UnitDescPageTextsParserCSV implements UnitDescPageTextsSuppli
 
     @Override
     public Unit.DescPageTexts getDescPageTexts(int unitId) {
-        return data.getOrDefault(unitId, Unit.DescPageTexts.EMPTY);
+        return requireNonNull(data.getOrDefault(unitId, Unit.DescPageTexts.EMPTY));
     }
 
 }

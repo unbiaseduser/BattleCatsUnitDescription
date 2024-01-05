@@ -3,7 +3,6 @@ package com.sixtyninefourtwenty;
 import static com.sixtyninefourtwenty.TestUtils.createUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,7 +17,6 @@ import com.sixtyninefourtwenty.common.objects.ElderEpic;
 import com.sixtyninefourtwenty.common.objects.Hypermax;
 import com.sixtyninefourtwenty.common.objects.Talent;
 import com.sixtyninefourtwenty.common.objects.UnitBaseData;
-import com.sixtyninefourtwenty.common.utils.Validations;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

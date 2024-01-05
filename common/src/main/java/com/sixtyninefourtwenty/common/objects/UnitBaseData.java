@@ -5,15 +5,14 @@ import static java.util.Objects.requireNonNull;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.sixtyninefourtwenty.common.R;
 import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
-import com.sixtyninefourtwenty.common.utils.Validations;
 import com.sixtyninefourtwenty.stuff.interfaces.JsonSerializer;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.json.JSONObject;
 
 import java.util.EnumMap;
@@ -44,7 +43,7 @@ public class UnitBaseData implements Parcelable {
             final var miscInfoTextObj = new JSONObject();
             for (final var miscInfo : Info.values()) {
                 final var text = obj.getTextForInfo(miscInfo);
-                if (Validations.isValidInfoString(text)) {
+                if (text != null) {
                     miscInfoTextObj.put(miscInfo.name(), text);
                 }
             }
@@ -58,13 +57,25 @@ public class UnitBaseData implements Parcelable {
         @SneakyThrows
         public UnitBaseData fromJson(JSONObject obj) {
             final var miscInfoTextObj = obj.optJSONObject("misc_info_text");
-            return new UnitBaseData(
-                    obj.getInt("unit_id"),
-                    Type.valueOf(obj.getString("type")),
-                    miscInfoTextObj != null ? miscInfoTextObj.optString(Info.USEFUL_TO_OWN.name(), Validations.NO_INFO) : null,
-                    miscInfoTextObj != null ? miscInfoTextObj.optString(Info.USEFUL_TO_TF_OR_TALENT.name(), Validations.NO_INFO) : null,
-                    miscInfoTextObj != null ? miscInfoTextObj.optString(Info.HYPERMAX_PRIORITY.name(), Validations.NO_INFO) : null
-            );
+            final var unitId = obj.getInt("unit_id");
+            final var type = Type.valueOf(obj.getString("type"));
+            if (miscInfoTextObj != null) {
+                return new UnitBaseData(
+                        unitId,
+                        type,
+                        miscInfoTextObj.has(Info.USEFUL_TO_OWN.name()) ? miscInfoTextObj.getString(Info.USEFUL_TO_OWN.name()) : null,
+                        miscInfoTextObj.has(Info.USEFUL_TO_TF_OR_TALENT.name()) ? miscInfoTextObj.getString(Info.USEFUL_TO_TF_OR_TALENT.name()) : null,
+                        miscInfoTextObj.has(Info.HYPERMAX_PRIORITY.name()) ? miscInfoTextObj.getString(Info.HYPERMAX_PRIORITY.name()) : null
+                );
+            } else {
+                return new UnitBaseData(
+                        unitId,
+                        type,
+                        null,
+                        null,
+                        null
+                );
+            }
         }
     };
 
@@ -75,23 +86,24 @@ public class UnitBaseData implements Parcelable {
                         @Nullable String hypermaxPriority) {
         this.unitId = unitId;
         this.type = type;
-        if (Validations.isValidInfoString(usefulToOwnBy)) {
+        if (usefulToOwnBy != null) {
             miscInfoTexts.put(Info.USEFUL_TO_OWN, usefulToOwnBy);
         }
-        if (Validations.isValidInfoString(usefulToTFOrTalentBy)) {
+        if (usefulToTFOrTalentBy != null) {
             miscInfoTexts.put(Info.USEFUL_TO_TF_OR_TALENT, usefulToTFOrTalentBy);
         }
-        if (Validations.isValidInfoString(hypermaxPriority)) {
+        if (hypermaxPriority != null) {
             miscInfoTexts.put(Info.HYPERMAX_PRIORITY, hypermaxPriority);
         }
     }
 
+    @Nullable
     public String getTextForInfo(Info info) {
-        return requireNonNull(miscInfoTexts.getOrDefault(info, ""));
+        return miscInfoTexts.get(info);
     }
 
     public boolean hasInfo(Info info) {
-        return !Validations.NO_INFO.equals(getTextForInfo(info));
+        return getTextForInfo(info) != null;
     }
 
     public static final Creator<UnitBaseData> CREATOR = new Creator<>() {
@@ -116,7 +128,7 @@ public class UnitBaseData implements Parcelable {
         type = (Type) requireNonNull(in.readSerializable());
         for (final var miscInfo : Info.values()) {
             final var text = in.readString();
-            if (Validations.isValidInfoString(text)) {
+            if (text != null) {
                 miscInfoTexts.put(miscInfo, text);
             }
         }
