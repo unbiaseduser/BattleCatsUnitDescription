@@ -9,7 +9,6 @@ import com.sixtyninefourtwenty.common.annotations.NonNullTypesByDefault;
 import com.sixtyninefourtwenty.common.objects.ElderEpic;
 import com.sixtyninefourtwenty.common.utils.CommonConstants;
 import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
-import com.sixtyninefourtwenty.common.utils.Validations;
 import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -45,13 +44,9 @@ public final class UnitEEPriorityReasoningDataParserCSV implements UnitEEPriorit
     @Nullable
     @Override
     public String getPriorityReasoningForUnitWithId(int unitId, ElderEpic elderEpic) {
-        final var number = switch (elderEpic) {
-            case ELDER -> 0;
-            case EPIC -> 1;
-        };
         return eepDataFileLines.stream()
                 .filter(parts -> Integer.parseInt(parts[0]) == unitId)
-                .filter(parts -> Integer.parseInt(parts[1]) == number)
+                .filter(parts -> Integer.parseInt(parts[1]) == elderEpic.getNumberInCSV())
                 .findFirst()
                 .map(parts -> parts[2])
                 .orElse(null);
@@ -59,12 +54,8 @@ public final class UnitEEPriorityReasoningDataParserCSV implements UnitEEPriorit
 
     @Override
     public ImmutableList<Unit> createElderEpicPriorityList(ElderEpic elderEpic, ImmutableList<Unit> unitsToSearchFrom) {
-        final var number = switch (elderEpic) {
-            case ELDER -> 0;
-            case EPIC -> 1;
-        };
         return eepDataFileLines.stream()
-                .filter(parts -> Integer.parseInt(parts[1]) == number)
+                .filter(parts -> Integer.parseInt(parts[1]) == elderEpic.getNumberInCSV())
                 .map(parts -> CollectionsKt.firstOrNull(unitsToSearchFrom, unit -> unit.getId() == Integer.parseInt(parts[0])))
                 .filter(Objects::nonNull)
                 .collect(new ImmutableListCollector<>());
