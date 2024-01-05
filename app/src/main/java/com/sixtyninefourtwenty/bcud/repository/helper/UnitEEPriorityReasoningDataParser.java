@@ -11,6 +11,7 @@ import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
 import com.sixtyninefourtwenty.common.utils.Validations;
 import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.json.JSONArray;
 
 import java.util.List;
@@ -33,13 +34,14 @@ public final class UnitEEPriorityReasoningDataParser implements UnitEEPriorityRe
         this(AssetsJava.readEntireTextFile(assets,"text/unit_eep_data.json"));
     }
 
+    @Nullable
     @Override
     public String getPriorityReasoningForUnitWithId(int unitId, ElderEpic elderEpic) {
         return dataList.stream()
                 .filter(data -> data.getUnitId() == unitId && data.getElderEpic() == elderEpic)
                 .findFirst()
                 .map(UnitEEPriorityData::getText)
-                .orElse(Validations.NO_INFO);
+                .orElse(null);
     }
 
     @Override

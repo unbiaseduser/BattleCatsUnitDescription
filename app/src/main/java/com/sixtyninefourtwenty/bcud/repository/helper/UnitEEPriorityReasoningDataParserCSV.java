@@ -12,6 +12,8 @@ import com.sixtyninefourtwenty.common.utils.ImmutableListCollector;
 import com.sixtyninefourtwenty.common.utils.Validations;
 import com.sixtyninefourtwenty.javastuff.AssetsJava;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -40,6 +42,7 @@ public final class UnitEEPriorityReasoningDataParserCSV implements UnitEEPriorit
         this(AssetsJava.openQuietly(assets, "text/eep_data.txt"));
     }
 
+    @Nullable
     @Override
     public String getPriorityReasoningForUnitWithId(int unitId, ElderEpic elderEpic) {
         final var number = switch (elderEpic) {
@@ -51,7 +54,7 @@ public final class UnitEEPriorityReasoningDataParserCSV implements UnitEEPriorit
                 .filter(parts -> Integer.parseInt(parts[1]) == number)
                 .findFirst()
                 .map(parts -> parts[2])
-                .orElse(Validations.NO_INFO);
+                .orElse(null);
     }
 
     @Override

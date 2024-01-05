@@ -112,6 +112,7 @@ public class Unit implements Parcelable {
 
     // this method is used in ElderEpicTFPriorityDialog by a unit got thru safe args, but android
     // studio doesn't recognize the generated args class
+    @Nullable
     @SuppressWarnings("unused")
     public String getEEPriorityReasoning(UnitEEPriorityReasoningSupplier supplier, ElderEpic elderEpic) {
         return supplier.getPriorityReasoningForUnitWithId(id, elderEpic);

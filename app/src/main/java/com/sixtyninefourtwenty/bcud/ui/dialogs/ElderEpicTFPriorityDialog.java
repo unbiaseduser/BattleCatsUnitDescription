@@ -39,7 +39,10 @@ public final class ElderEpicTFPriorityDialog extends BaseViewBindingBottomSheetA
     protected void setup(@NonNull DialogEepBinding binding, @Nullable Bundle savedInstanceState) {
         final var args = ElderEpicTFPriorityDialogArgs.fromBundle(requireArguments());
         final var unit = args.getUnit();
-        binding.reason.setText(unit.getEEPriorityReasoning(MyApplication.get(requireContext()).getEEPReasoningData(), args.getElderEpic()));
+        final var elderEpic = args.getElderEpic();
+        final var reason = unit.getEEPriorityReasoning(MyApplication.get(requireContext()).getEEPReasoningData(), args.getElderEpic());
+        final var finalReason = reason != null ? reason : "This unit does not have a reason for " + elderEpic + ". If you're not a developer, please file a bug report.";
+        binding.reason.setText(finalReason);
         final var tfMaterials = unit.getTfMaterialData();
         binding.tfMaterialsList.setLayoutManager(new GridLayoutManager(requireContext(), Unit.MAX_NUM_OF_TF_MATERIALS));
         binding.tfMaterialsList.setAdapter(new TFMaterialAdapter(tfMaterials, (v, material) -> BalloonFactory.createWithUsualSettings(requireContext())
