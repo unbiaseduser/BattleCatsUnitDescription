@@ -4,6 +4,8 @@ import static com.sixtyninefourtwenty.TestUtils.createUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.google.common.collect.ImmutableList;
@@ -52,15 +54,16 @@ class CSVParsersTest {
         final var slapstickCatsId = 152;
         //Slapstick Cats has elder TF
         final var slapstickElderTFReasoning = parser.getPriorityReasoningForUnitWithId(slapstickCatsId, ElderEpic.ELDER);
-        assertNotEquals(Validations.NO_INFO, slapstickElderTFReasoning);
+        assertNotNull(slapstickElderTFReasoning);
         //Slapstick Cats doesn't have epic TF
         final var slapstickEpicTFReasoning = parser.getPriorityReasoningForUnitWithId(slapstickCatsId, ElderEpic.EPIC);
-        assertEquals(Validations.NO_INFO, slapstickEpicTFReasoning);
+        assertNull(slapstickEpicTFReasoning);
         //Some random cat that definitely doesn't have elder/epic TF
         final var someCatWithNoElderEpicTFId = 10;
-        final var definitelyEmptyElderTFReasoning = parser.getPriorityReasoningForUnitWithId(someCatWithNoElderEpicTFId, ElderEpic.ELDER);
-        final var definitelyEmptyEpicTFReasoning = parser.getPriorityReasoningForUnitWithId(someCatWithNoElderEpicTFId, ElderEpic.EPIC);
-        List.of(definitelyEmptyElderTFReasoning, definitelyEmptyEpicTFReasoning).forEach(s -> assertEquals(Validations.NO_INFO, s));
+        final var definitelyNullElderTFReasoning = parser.getPriorityReasoningForUnitWithId(someCatWithNoElderEpicTFId, ElderEpic.ELDER);
+        final var definitelyNullEpicTFReasoning = parser.getPriorityReasoningForUnitWithId(someCatWithNoElderEpicTFId, ElderEpic.EPIC);
+        assertNull(definitelyNullElderTFReasoning);
+        assertNull(definitelyNullEpicTFReasoning);
 
         //Should return empty list when passed an empty unit list
         final var emptyElderCats = parser.createElderEpicPriorityList(ElderEpic.ELDER, ImmutableList.of());
