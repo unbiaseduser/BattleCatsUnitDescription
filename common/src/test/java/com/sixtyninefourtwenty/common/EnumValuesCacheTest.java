@@ -21,7 +21,7 @@ class EnumValuesCacheTest {
     
     @Test
     void test() {
-        assertIterableEquals(EnumSet.allOf(Talent.class), cache.getEnumValues(Talent.class));
+        assertIterableEquals(EnumSet.allOf(Talent.Priority.class), cache.getEnumValues(Talent.Priority.class));
     }
 
 }
