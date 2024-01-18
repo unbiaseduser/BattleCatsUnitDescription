@@ -79,6 +79,7 @@ public final class BackupFavoritesWorker extends Worker {
 
     @Override
     public void onStopped() {
+        NotificationManagerCompat.from(getApplicationContext()).cancel(Constants.FAVORITES_BACKUP_NOTIFICATION_ID);
         final var outputUri = Uri.parse(requireNonNull(getInputData().getString(OUTPUT_URI_KEY)));
         final var file = requireNonNull(DocumentFile.fromSingleUri(getApplicationContext(), outputUri));
         if (file.exists()) {
