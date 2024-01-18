@@ -42,20 +42,29 @@ class JsonSerializersTest {
                 assertJsonObjectContentEquals(jsonObject1, jsonObject2);
             } else if (elem1 instanceof JSONArray jsonArray1) {
                 final var jsonArray2 = (JSONArray) elem2;
-                for (int i = 0; i < jsonArray1.length(); i++) {
-                    final var innerElem1 = jsonArray1.get(i);
-                    final var innerElem2 = jsonArray2.get(i);
-                    if (innerElem1 instanceof JSONObject jsonObject1) {
-                        final var jsonObject2 = (JSONObject) innerElem2;
-                        assertJsonObjectContentEquals(jsonObject1, jsonObject2);
-                    } else {
-                        assertEquals(innerElem1, innerElem2);
-                    }
-                }
+                assertJsonArrayContentEquals(jsonArray1, jsonArray2);
             } else {
                 assertEquals(elem1, elem2);
             }
         }).get());
+    }
+
+    private void assertJsonArrayContentEquals(JSONArray arr1, JSONArray arr2) {
+        Try.run(() -> {
+            for (int i = 0; i < arr1.length(); i++) {
+                final var elem1 = arr1.get(i);
+                final var elem2 = arr2.get(i);
+                if (elem1 instanceof JSONArray jsonArray1) {
+                    final var jsonArray2 = (JSONArray) elem2;
+                    assertJsonArrayContentEquals(jsonArray1, jsonArray2);
+                } else if (elem1 instanceof JSONObject jsonObject1) {
+                    final var jsonObject2 = (JSONObject) elem2;
+                    assertJsonObjectContentEquals(jsonObject1, jsonObject2);
+                } else {
+                    assertEquals(elem1, elem2);
+                }
+            }
+        }).get();
     }
 
     @MethodSource("talentDataJson")
@@ -297,7 +306,7 @@ class JsonSerializersTest {
         return Stream.generate(() -> {
             final var unitId = Random.Default.nextInt();
             final var elderEpic = elderEpicValues[Random.Default.nextInt(elderEpicValues.length)];
-            final var text = new String(Random.Default.nextBytes(3));
+            final var text = Integer.toString(Random.Default.nextInt());
             return Arguments.of(
                     new UnitEEPriorityData(unitId, elderEpic, text),
                     jsonFormat.apply(Tuple.of(unitId, elderEpic, text))
