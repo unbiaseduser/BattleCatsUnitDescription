@@ -1,6 +1,5 @@
 package com.sixtyninefourtwenty.bcud.repository.helper;
 
-import static com.sixtyninefourtwenty.common.utils.ThrowingFunction.unchecked;
 import static java.util.Objects.requireNonNull;
 import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.joining;
@@ -20,6 +19,7 @@ import java.io.InputStreamReader;
 import java.util.function.Function;
 
 import io.vavr.collection.Stream;
+import io.vavr.control.Try;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import lombok.SneakyThrows;
@@ -56,7 +56,7 @@ public final class UnitExplanationParser implements UnitExplanationSupplier {
     }
 
     public UnitExplanationParser(Iterable<Unit> units, AssetManager assets) {
-        this(units, unchecked(fileName -> assets.open("text/unit_desc/" + fileName)));
+        this(units, fileName -> Try.of(() -> assets.open("text/unit_desc/" + fileName)).get());
     }
 
     private final Int2ObjectMap<Unit.Explanation> data = new Int2ObjectOpenHashMap<>();
