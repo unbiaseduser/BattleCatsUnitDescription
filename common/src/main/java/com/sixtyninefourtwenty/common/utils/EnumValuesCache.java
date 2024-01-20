@@ -13,13 +13,7 @@ public final class EnumValuesCache {
 
     @SuppressWarnings("unchecked")
     public <E extends Enum<E>> ImmutableList<E> getEnumValues(Class<E> clazz) {
-        return (ImmutableList<E>) map.computeIfAbsent(clazz, enumClass -> {
-            try {
-                return ImmutableList.copyOf((E[]) requireNonNull(enumClass.getDeclaredMethod("values").invoke(null)));
-            } catch (ReflectiveOperationException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        return (ImmutableList<E>) map.computeIfAbsent(clazz, enumClass -> ImmutableList.copyOf(requireNonNull(enumClass.getEnumConstants())));
     }
 
 }
