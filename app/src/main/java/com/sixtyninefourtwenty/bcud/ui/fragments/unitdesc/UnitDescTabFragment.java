@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,8 +37,8 @@ public abstract class UnitDescTabFragment extends BaseViewBindingFragment<@NonNu
 
     @Override
     protected void setup(@NonNull GenericSearchableListBinding binding, @Nullable Bundle savedInstanceState) {
-        final var searchModel = new ViewModelProvider(requireActivity()).get(SearchViewModel.class);
-        final var settingsModel = new ViewModelProvider(requireActivity()).get(AppSettingsViewModel.class);
+        final var searchModel = SearchViewModel.get(requireActivity());
+        final var settingsModel = AppSettingsViewModel.get(requireActivity());
         final var unitModel = UnitDataViewModel.get(requireActivity());
         final var rcv = binding.list;
         rcv.setHasFixedSize(true);

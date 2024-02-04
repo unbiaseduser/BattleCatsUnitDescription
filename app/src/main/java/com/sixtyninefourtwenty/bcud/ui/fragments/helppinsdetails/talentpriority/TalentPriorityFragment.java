@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuProvider;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -74,7 +73,7 @@ public final class TalentPriorityFragment extends TabLayoutViewPagerFragment {
 
     @Override
     protected void setup(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        model = new ViewModelProvider(requireActivity()).get(SearchViewModel.class);
+        model = SearchViewModel.get(requireActivity());
         requireActivity().addMenuProvider(provider, getViewLifecycleOwner());
     }
 

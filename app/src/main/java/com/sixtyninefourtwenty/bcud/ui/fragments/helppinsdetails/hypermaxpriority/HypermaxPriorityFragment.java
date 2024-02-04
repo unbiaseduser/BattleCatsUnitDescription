@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuProvider;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -55,8 +54,8 @@ public final class HypermaxPriorityFragment extends TabLayoutViewPagerFragment {
 
     @Override
     protected void setup(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        appSettingsViewModel = new ViewModelProvider(requireActivity()).get(AppSettingsViewModel.class);
-        final var model = new ViewModelProvider(requireActivity()).get(SearchViewModel.class);
+        appSettingsViewModel = AppSettingsViewModel.get(requireActivity());
+        final var model = SearchViewModel.get(requireActivity());
         requireActivity().addMenuProvider(new HypermaxPriorityFragmentMenu(model), getViewLifecycleOwner());
     }
 

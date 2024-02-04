@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,8 +34,8 @@ public abstract class HypermaxPriorityTabFragment extends BaseViewBindingFragmen
 
     @Override
     protected void setup(@NonNull HpTpTabBinding binding, @Nullable Bundle savedInstanceState) {
-        final var searchModel = new ViewModelProvider(requireActivity()).get(SearchViewModel.class);
-        final var settingsModel = new ViewModelProvider(requireActivity()).get(AppSettingsViewModel.class);
+        final var searchModel = SearchViewModel.get(requireActivity());
+        final var settingsModel = AppSettingsViewModel.get(requireActivity());
         final var unitModel = UnitDataViewModel.get(requireActivity());
         final var spn = binding.spinner;
         spn.setItemSelectedListener(position -> {
