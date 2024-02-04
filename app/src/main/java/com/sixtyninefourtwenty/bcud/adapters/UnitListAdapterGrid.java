@@ -12,13 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sixtyninefourtwenty.bcud.MyApplication;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
+import com.sixtyninefourtwenty.bcud.repository.helper.UnitExplanationSupplier;
 import com.sixtyninefourtwenty.bcud.utils.AssetImageLoading;
 import com.sixtyninefourtwenty.bcud.utils.Utils;
 import com.sixtyninefourtwenty.common.utils.UnitIconRatioImageView;
 import com.sixtyninefourtwenty.stuff.Dimensions;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.IntConsumer;
@@ -30,14 +33,28 @@ public final class UnitListAdapterGrid extends ListAdapter<Unit, UnitListAdapter
         return Utils.isDeviceInLandscape(context) ? 5 : 3;
     }
 
-    public UnitListAdapterGrid(Consumer<Unit> onItemClickListener, BiConsumer<View, Unit> onItemLongClickListener) {
+    public UnitListAdapterGrid(
+            Consumer<Unit> onItemClickListener,
+            BiConsumer<View, Unit> onItemLongClickListener,
+            @Nullable UnitExplanationSupplier unitExplanationSupplier
+    ) {
         super(Utils.UNIT_DIFFER);
         this.onItemClickListener = onItemClickListener;
         this.onItemLongClickListener = onItemLongClickListener;
+        this.unitExplanationSupplier = unitExplanationSupplier;
+    }
+
+    public UnitListAdapterGrid(
+            Consumer<Unit> onItemClickListener,
+            BiConsumer<View, Unit> onItemLongClickListener
+    ) {
+        this(onItemClickListener, onItemLongClickListener, null);
     }
 
     private final Consumer<Unit> onItemClickListener;
     private final BiConsumer<View, Unit> onItemLongClickListener;
+    @Nullable
+    private final UnitExplanationSupplier unitExplanationSupplier;
 
     @NonNull
     @Override
@@ -55,7 +72,13 @@ public final class UnitListAdapterGrid extends ListAdapter<Unit, UnitListAdapter
 
     @Override
     public void onBindViewHolder(@NonNull UnitListGridViewHolder holder, int position) {
-        AssetImageLoading.loadAssetImage(holder.icon, getItem(position).getLatestFormIconPath(MyApplication.get(holder.icon.getContext()).getUnitExplanationData()));
+        final var unit = getItem(position);
+        final var context = holder.icon.getContext();
+        final var unitExplanationData = Objects.requireNonNullElseGet(
+                unitExplanationSupplier,
+                () -> MyApplication.get(context).getUnitExplanationData()
+        );
+        AssetImageLoading.loadAssetImage(holder.icon, unit.getLatestFormIconPath(unitExplanationData));
     }
 
     public static final class UnitListGridViewHolder extends RecyclerView.ViewHolder {

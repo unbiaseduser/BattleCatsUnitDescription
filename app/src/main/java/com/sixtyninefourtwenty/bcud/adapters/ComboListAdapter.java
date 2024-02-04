@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcud.adapters;
 
+import static java.util.Objects.requireNonNullElseGet;
+
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,11 +15,14 @@ import com.sixtyninefourtwenty.bcud.MyApplication;
 import com.sixtyninefourtwenty.bcud.databinding.ListItemComboBinding;
 import com.sixtyninefourtwenty.bcud.objects.Combo;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
+import com.sixtyninefourtwenty.bcud.repository.helper.ComboEffectDescSupplier;
+import com.sixtyninefourtwenty.bcud.repository.helper.ComboNameSupplier;
 import com.sixtyninefourtwenty.bcud.utils.AssetImageLoading;
 import com.sixtyninefourtwenty.common.utils.UnitIconRatioImageView;
 import com.sixtyninefourtwenty.stuff.Dimensions;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.function.Consumer;
 import java.util.function.IntConsumer;
@@ -40,10 +45,24 @@ public final class ComboListAdapter extends ListAdapter<Combo, ComboListAdapter.
 
     private final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     private final Consumer<Unit> onUnitInComboClickListener;
+    @Nullable
+    private final ComboNameSupplier comboNameSupplier;
+    @Nullable
+    private final ComboEffectDescSupplier comboEffectDescSupplier;
 
-    public ComboListAdapter(Consumer<Unit> onUnitInComboClickListener) {
+    public ComboListAdapter(
+            Consumer<Unit> onUnitInComboClickListener,
+            @Nullable ComboNameSupplier comboNameSupplier,
+            @Nullable ComboEffectDescSupplier comboEffectDescSupplier
+    ) {
         super(COMBO_DIFFER);
         this.onUnitInComboClickListener = onUnitInComboClickListener;
+        this.comboNameSupplier = comboNameSupplier;
+        this.comboEffectDescSupplier = comboEffectDescSupplier;
+    }
+
+    public ComboListAdapter(Consumer<Unit> onUnitInComboClickListener) {
+        this(onUnitInComboClickListener, null, null);
     }
 
     @NonNull
@@ -57,12 +76,20 @@ public final class ComboListAdapter extends ListAdapter<Combo, ComboListAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final var combo = getItem(position);
         final var context = holder.itemView.getContext();
-        holder.binding.name.setText(combo.getName(MyApplication.get(context).getComboNameData()));
-        holder.binding.typeLevel.setText(combo.getType().getEffectDesc(MyApplication.get(context).getComboEffectDescData(), combo.getLevel()));
+        final var comboNameData = requireNonNullElseGet(
+                comboNameSupplier,
+                () -> MyApplication.get(context).getComboNameData()
+        );
+        final var comboEffectDescData = requireNonNullElseGet(
+                comboEffectDescSupplier,
+                () -> MyApplication.get(context).getComboEffectDescData()
+        );
+        holder.binding.name.setText(combo.getName(comboNameData));
+        holder.binding.typeLevel.setText(combo.getType().getEffectDesc(comboEffectDescData, combo.getLevel()));
 
         final var existingLayoutMan = holder.binding.list.getLayoutManager();
         if (existingLayoutMan == null) {
-            final var lm = new GridLayoutManager(holder.itemView.getContext(), Combo.MAX_NUM_OF_UNITS);
+            final var lm = new GridLayoutManager(context, Combo.MAX_NUM_OF_UNITS);
             lm.setInitialPrefetchItemCount(combo.getUnitsAndForms().size());
             holder.binding.list.setLayoutManager(lm);
         } else if (existingLayoutMan instanceof GridLayoutManager glm) {

@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcuddatagenerator.adapters;
 
+import static java.util.Objects.requireNonNullElseGet;
+
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,6 +18,8 @@ import com.sixtyninefourtwenty.bcuddatagenerator.MyApplication;
 import com.sixtyninefourtwenty.bcuddatagenerator.R;
 import com.sixtyninefourtwenty.bcuddatagenerator.databinding.ListItemTalentDataBinding;
 import com.sixtyninefourtwenty.common.objects.TalentData;
+import com.sixtyninefourtwenty.common.objects.repository.TalentInfoSupplier;
+import com.sixtyninefourtwenty.common.objects.repository.TalentSupplier;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -41,14 +45,32 @@ public final class TalentDataAdapter extends ListAdapter<TalentData, TalentDataA
     private final BiConsumer<TalentData, TalentDataAdapter> onEditClick;
     @Nullable
     private final Consumer<RecyclerView.ViewHolder> onDrag;
+    @Nullable
+    private final TalentSupplier talentSupplier;
+    @Nullable
+    private final TalentInfoSupplier talentInfoSupplier;
 
-    public TalentDataAdapter(@Nullable BiConsumer<TalentData, TalentDataAdapter> onDeleteClick,
-                             @Nullable BiConsumer<TalentData, TalentDataAdapter> onEditClick,
-                             @Nullable Consumer<RecyclerView.ViewHolder> onDrag) {
+    public TalentDataAdapter(
+            @Nullable BiConsumer<TalentData, TalentDataAdapter> onDeleteClick,
+            @Nullable BiConsumer<TalentData, TalentDataAdapter> onEditClick,
+            @Nullable Consumer<RecyclerView.ViewHolder> onDrag,
+            @Nullable TalentSupplier talentSupplier,
+            @Nullable TalentInfoSupplier talentInfoSupplier
+    ) {
         super(TALENT_DIFFER);
         this.onDeleteClick = onDeleteClick;
         this.onEditClick = onEditClick;
         this.onDrag = onDrag;
+        this.talentSupplier = talentSupplier;
+        this.talentInfoSupplier = talentInfoSupplier;
+    }
+
+    public TalentDataAdapter(
+            @Nullable BiConsumer<TalentData, TalentDataAdapter> onDeleteClick,
+            @Nullable BiConsumer<TalentData, TalentDataAdapter> onEditClick,
+            @Nullable Consumer<RecyclerView.ViewHolder> onDrag
+    ) {
+        this(onDeleteClick, onEditClick, onDrag, null, null);
     }
 
     @NonNull
@@ -65,7 +87,15 @@ public final class TalentDataAdapter extends ListAdapter<TalentData, TalentDataA
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final var item = getItem(position);
         final var context = holder.binding.getRoot().getContext();
-        holder.binding.name.setText(item.getTalent(MyApplication.get(context).getTalentData()).getInfo(MyApplication.get(context).getTalentInfo()).getAbilityName());
+        final var talentData = requireNonNullElseGet(
+                talentSupplier,
+                () -> MyApplication.get(context).getTalentData()
+        );
+        final var talentInfo = requireNonNullElseGet(
+                talentInfoSupplier,
+                () -> MyApplication.get(context).getTalentInfo()
+        );
+        holder.binding.name.setText(item.getTalent(talentData).getInfo(talentInfo).getAbilityName());
         holder.binding.priority.setText(item.getPriority().getText());
         holder.binding.priorityText.setText(context.getString(R.string.priority_str, context.getString(item.getPriority().getText())));
     }

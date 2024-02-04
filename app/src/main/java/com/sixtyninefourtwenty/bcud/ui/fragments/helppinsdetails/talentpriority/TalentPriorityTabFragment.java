@@ -1,6 +1,7 @@
 package com.sixtyninefourtwenty.bcud.ui.fragments.helppinsdetails.talentpriority;
 
 import static com.sixtyninefourtwenty.bcud.utils.Utils.UNIT_DIFFER;
+import static java.util.Objects.requireNonNullElseGet;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -22,6 +23,7 @@ import com.sixtyninefourtwenty.bcud.databinding.DialogTalentDetailsBinding;
 import com.sixtyninefourtwenty.bcud.databinding.HpTpTabBinding;
 import com.sixtyninefourtwenty.bcud.databinding.ListItemUnitTpBinding;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
+import com.sixtyninefourtwenty.bcud.repository.helper.UnitExplanationSupplier;
 import com.sixtyninefourtwenty.bcud.utils.AssetImageLoading;
 import com.sixtyninefourtwenty.bcud.utils.BalloonFactory;
 import com.sixtyninefourtwenty.bcud.utils.fragments.BaseViewBindingDialogFragment;
@@ -113,15 +115,28 @@ public abstract class TalentPriorityTabFragment extends BaseViewBindingFragment<
             notifyDataSetChanged();
         }
 
-        public UnitListTPAdapter(Consumer<Unit> onItemClickListener,
-                                 TriConsumer<View, Unit, Talent.Priority> onTalentIconClickListener) {
+        public UnitListTPAdapter(
+                Consumer<Unit> onItemClickListener,
+                TriConsumer<View, Unit, Talent.Priority> onTalentIconClickListener,
+                @Nullable UnitExplanationSupplier unitExplanationSupplier
+        ) {
             super(UNIT_DIFFER);
             this.onItemClickListener = onItemClickListener;
             this.onTalentIconClickListener = onTalentIconClickListener;
+            this.unitExplanationSupplier = unitExplanationSupplier;
+        }
+
+        public UnitListTPAdapter(
+                Consumer<Unit> onItemClickListener,
+                TriConsumer<View, Unit, Talent.Priority> onTalentIconClickListener
+        ) {
+            this(onItemClickListener, onTalentIconClickListener, null);
         }
 
         private final Consumer<Unit> onItemClickListener;
         private final TriConsumer<View, Unit, Talent.Priority> onTalentIconClickListener;
+        @Nullable
+        private final UnitExplanationSupplier unitExplanationSupplier;
 
         @NonNull
         @Override
@@ -134,7 +149,12 @@ public abstract class TalentPriorityTabFragment extends BaseViewBindingFragment<
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             final var unit = getItem(position);
-            AssetImageLoading.loadAssetImage(holder.binding.unitIcon, unit.getLatestFormIconPath(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()));
+            final var context = holder.binding.getRoot().getContext();
+            final var unitExplanationData = requireNonNullElseGet(
+                    unitExplanationSupplier,
+                    () -> MyApplication.get(context).getUnitExplanationData()
+            );
+            AssetImageLoading.loadAssetImage(holder.binding.unitIcon, unit.getLatestFormIconPath(unitExplanationData));
             final var talents = unit.getTalents(currentPriority);
             for (int i = 0; i < talents.size(); i++) {
                 holder.icons[i].setVisibility(View.VISIBLE);
@@ -143,7 +163,7 @@ public abstract class TalentPriorityTabFragment extends BaseViewBindingFragment<
             for (int i = talents.size(); i < Unit.MAX_NUM_OF_TALENTS; i++) {
                 holder.icons[i].setVisibility(View.GONE);
             }
-            holder.binding.unitName.setText(unit.getExplanation(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()).getFirstFormName());
+            holder.binding.unitName.setText(unit.getExplanation(unitExplanationData).getFirstFormName());
         }
 
         private static final class ViewHolder extends RecyclerView.ViewHolder {

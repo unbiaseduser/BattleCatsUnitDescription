@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcud.ui.fragments.helppinsdetails.elderepictfpriority;
 
+import static java.util.Objects.requireNonNullElseGet;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sixtyninefourtwenty.bcud.MyApplication;
 import com.sixtyninefourtwenty.bcud.databinding.ListItemUnitEepBinding;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
+import com.sixtyninefourtwenty.bcud.repository.helper.UnitExplanationSupplier;
 import com.sixtyninefourtwenty.bcud.utils.AssetImageLoading;
 import com.sixtyninefourtwenty.bcud.utils.Utils;
 import com.sixtyninefourtwenty.bcud.utils.fragments.BaseFragment;
@@ -43,15 +46,31 @@ public abstract class ElderEpicTabFragment extends BaseFragment<@NonNull Recycle
 
     private static final class UnitListEEPAdapter extends ListAdapter<Unit, UnitListEEPAdapter.ViewHolder> {
 
-        public UnitListEEPAdapter(List<Unit> list, Consumer<Unit> onIconClickListener, Consumer<Unit> onButtonClickListener) {
+        public UnitListEEPAdapter(
+                List<Unit> list,
+                Consumer<Unit> onIconClickListener,
+                Consumer<Unit> onButtonClickListener
+        ) {
+            this(list, onIconClickListener, onButtonClickListener, null);
+        }
+
+        public UnitListEEPAdapter(
+                List<Unit> list,
+                Consumer<Unit> onIconClickListener,
+                Consumer<Unit> onButtonClickListener,
+                @Nullable UnitExplanationSupplier unitExplanationSupplier
+        ) {
             super(Utils.UNIT_DIFFER);
             submitList(list);
             this.onIconClickListener = onIconClickListener;
             this.onButtonClickListener = onButtonClickListener;
+            this.unitExplanationSupplier = unitExplanationSupplier;
         }
 
         private final Consumer<Unit> onIconClickListener;
         private final Consumer<Unit> onButtonClickListener;
+        @Nullable
+        private final UnitExplanationSupplier unitExplanationSupplier;
 
         @NonNull
         @Override
@@ -64,7 +83,13 @@ public abstract class ElderEpicTabFragment extends BaseFragment<@NonNull Recycle
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            AssetImageLoading.loadAssetImage(holder.binding.unitIcon, getItem(position).getLatestFormIconPath(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()));
+            final var unit = getItem(position);
+            final var context = holder.binding.getRoot().getContext();
+            final var unitExplanationData = requireNonNullElseGet(
+                    unitExplanationSupplier,
+                    () -> MyApplication.get(context).getUnitExplanationData()
+            );
+            AssetImageLoading.loadAssetImage(holder.binding.unitIcon, unit.getLatestFormIconPath(unitExplanationData));
         }
 
         private static final class ViewHolder extends RecyclerView.ViewHolder {

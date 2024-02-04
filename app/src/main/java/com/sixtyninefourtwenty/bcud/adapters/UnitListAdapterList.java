@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcud.adapters;
 
+import static java.util.Objects.requireNonNullElseGet;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sixtyninefourtwenty.bcud.MyApplication;
 import com.sixtyninefourtwenty.bcud.databinding.ListItemUnitListBinding;
 import com.sixtyninefourtwenty.bcud.objects.Unit;
+import com.sixtyninefourtwenty.bcud.repository.helper.UnitExplanationSupplier;
 import com.sixtyninefourtwenty.bcud.utils.AssetImageLoading;
 import com.sixtyninefourtwenty.bcud.utils.Utils;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -22,14 +26,28 @@ import java.util.function.ObjIntConsumer;
 
 public final class UnitListAdapterList extends ListAdapter<Unit, UnitListAdapterList.UnitListViewHolderList> {
 
-    public UnitListAdapterList(Consumer<Unit> onItemClickListener, BiConsumer<View, Unit> onButtonMenuClickListener) {
+    public UnitListAdapterList(
+            Consumer<Unit> onItemClickListener,
+            BiConsumer<View, Unit> onButtonMenuClickListener,
+            @Nullable UnitExplanationSupplier unitExplanationSupplier
+    ) {
         super(Utils.UNIT_DIFFER);
         this.onItemClickListener = onItemClickListener;
         this.onButtonMenuClickListener = onButtonMenuClickListener;
+        this.unitExplanationSupplier = unitExplanationSupplier;
+    }
+
+    public UnitListAdapterList(
+            Consumer<Unit> onItemClickListener,
+            BiConsumer<View, Unit> onButtonMenuClickListener
+    ) {
+        this(onItemClickListener, onButtonMenuClickListener, null);
     }
 
     private final Consumer<Unit> onItemClickListener;
     private final BiConsumer<View, Unit> onButtonMenuClickListener;
+    @Nullable
+    private final UnitExplanationSupplier unitExplanationSupplier;
 
     @NonNull
     @Override
@@ -43,8 +61,13 @@ public final class UnitListAdapterList extends ListAdapter<Unit, UnitListAdapter
     @Override
     public void onBindViewHolder(@NonNull UnitListViewHolderList holder, int position) {
         final var unit = getItem(position);
-        AssetImageLoading.loadAssetImage(holder.binding.unitIcon, unit.getLatestFormIconPath(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()));
-        holder.binding.unitName.setText(unit.getExplanation(MyApplication.get(holder.binding.getRoot().getContext()).getUnitExplanationData()).getFirstFormName());
+        final var context = holder.binding.getRoot().getContext();
+        final var unitExplanationData = requireNonNullElseGet(
+                unitExplanationSupplier,
+                () -> MyApplication.get(context).getUnitExplanationData()
+        );
+        AssetImageLoading.loadAssetImage(holder.binding.unitIcon, unit.getLatestFormIconPath(unitExplanationData));
+        holder.binding.unitName.setText(unit.getExplanation(unitExplanationData).getFirstFormName());
     }
 
     public static final class UnitListViewHolderList extends RecyclerView.ViewHolder {

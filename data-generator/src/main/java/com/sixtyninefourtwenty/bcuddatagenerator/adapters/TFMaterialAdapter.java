@@ -1,5 +1,7 @@
 package com.sixtyninefourtwenty.bcuddatagenerator.adapters;
 
+import static java.util.Objects.requireNonNullElseGet;
+
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,6 +18,8 @@ import com.sixtyninefourtwenty.bcuddatagenerator.MyApplication;
 import com.sixtyninefourtwenty.bcuddatagenerator.R;
 import com.sixtyninefourtwenty.bcuddatagenerator.databinding.ListItemTfMaterialBinding;
 import com.sixtyninefourtwenty.common.objects.TFMaterialData;
+import com.sixtyninefourtwenty.common.objects.repository.TFMaterialInfoSupplier;
+import com.sixtyninefourtwenty.common.objects.repository.TFMaterialSupplier;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -41,14 +45,32 @@ public final class TFMaterialAdapter extends ListAdapter<TFMaterialData, TFMater
     private final BiConsumer<TFMaterialData, TFMaterialAdapter> onEditClick;
     @Nullable
     private final Consumer<RecyclerView.ViewHolder> onDrag;
+    @Nullable
+    private final TFMaterialSupplier tfMaterialSupplier;
+    @Nullable
+    private final TFMaterialInfoSupplier tfMaterialInfoSupplier;
 
-    public TFMaterialAdapter(@Nullable BiConsumer<TFMaterialData, TFMaterialAdapter> onDeleteClick,
-                             @Nullable BiConsumer<TFMaterialData, TFMaterialAdapter> onEditClick,
-                             @Nullable Consumer<RecyclerView.ViewHolder> onDrag) {
+    public TFMaterialAdapter(
+            @Nullable BiConsumer<TFMaterialData, TFMaterialAdapter> onDeleteClick,
+            @Nullable BiConsumer<TFMaterialData, TFMaterialAdapter> onEditClick,
+            @Nullable Consumer<RecyclerView.ViewHolder> onDrag
+    ) {
+        this(onDeleteClick, onEditClick, onDrag, null, null);
+    }
+
+    public TFMaterialAdapter(
+            @Nullable BiConsumer<TFMaterialData, TFMaterialAdapter> onDeleteClick,
+            @Nullable BiConsumer<TFMaterialData, TFMaterialAdapter> onEditClick,
+            @Nullable Consumer<RecyclerView.ViewHolder> onDrag,
+            @Nullable TFMaterialSupplier tfMaterialSupplier,
+            @Nullable TFMaterialInfoSupplier tfMaterialInfoSupplier
+    ) {
         super(MATERIAL_DIFFER);
         this.onDeleteClick = onDeleteClick;
         this.onEditClick = onEditClick;
         this.onDrag = onDrag;
+        this.tfMaterialSupplier = tfMaterialSupplier;
+        this.tfMaterialInfoSupplier = tfMaterialInfoSupplier;
     }
 
     @NonNull
@@ -64,8 +86,16 @@ public final class TFMaterialAdapter extends ListAdapter<TFMaterialData, TFMater
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final var item = getItem(position);
-        final var app = MyApplication.get(holder.binding.getRoot().getContext());
-        holder.binding.name.setText(item.getMaterial(app.getMaterialData()).getInfo(app.getMaterialInfo()).getName());
+        final var context = holder.binding.getRoot().getContext();
+        final var materialData = requireNonNullElseGet(
+                tfMaterialSupplier,
+                () -> MyApplication.get(context).getMaterialData()
+        );
+        final var materialInfo = requireNonNullElseGet(
+                tfMaterialInfoSupplier,
+                () -> MyApplication.get(context).getMaterialInfo()
+        );
+        holder.binding.name.setText(item.getMaterial(materialData).getInfo(materialInfo).getName());
         holder.binding.quantity.setText(holder.binding.getRoot().getContext().getString(R.string.quantity_num, item.getQuantity()));
     }
 
