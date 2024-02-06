@@ -25,7 +25,7 @@ public final class UnitTFMaterialDataParserCSV implements UnitTFMaterialDataSupp
     public UnitTFMaterialDataParserCSV(InputStream input) {
         try (final var reader = new BufferedReader(new InputStreamReader(input))) {
             materialDataFileLines = reader.lines()
-                    .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
+                    .map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE))
                     .collect(new ImmutableListCollector<>());
         }
     }

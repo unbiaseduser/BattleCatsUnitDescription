@@ -32,7 +32,7 @@ public final class UnitTalentDataParserCSV implements UnitTalentDataSupplier {
     public UnitTalentDataParserCSV(InputStream input) {
         try (final var reader = new BufferedReader(new InputStreamReader(input))) {
             tpDataFileLines = reader.lines()
-                    .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
+                    .map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE))
                     .collect(new ImmutableListCollector<>());
         }
     }

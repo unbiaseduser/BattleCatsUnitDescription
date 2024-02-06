@@ -27,12 +27,12 @@ public final class ComboParser {
     private final ImmutableList<String[]> allCombosDataFileLines;
 
     public ComboParser(AssetManager assets) {
-        final var permittedComboFileLineIndicesArr = FastStringUtils.split(requireNonNull(AssetsJava.readFirstFileLine(assets, "text/combos/supported_combo_line_indices.txt")), CommonConstants.COMMA);
+        final var permittedComboFileLineIndicesArr = FastStringUtils.split(requireNonNull(AssetsJava.readFirstFileLine(assets, "text/combos/supported_combo_line_indices.txt")), CommonConstants.CSV_DELIMITER_COMMA);
         permittedComboFileLineIndices = new IntArrayList(permittedComboFileLineIndicesArr.length);
         for (final var s : permittedComboFileLineIndicesArr) {
             permittedComboFileLineIndices.add(parseInt(s));
         }
-        allCombosDataFileLines = AssetsJava.readTextFileLines(assets, "text/combos/NyancomboData.csv", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.COMMA)).collect(new ImmutableListCollector<>()));
+        allCombosDataFileLines = AssetsJava.readTextFileLines(assets, "text/combos/NyancomboData.csv", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_COMMA)).collect(new ImmutableListCollector<>()));
     }
 
     public ImmutableList<Combo> createCombos(Iterable<Unit> unitsToSearchFrom) {

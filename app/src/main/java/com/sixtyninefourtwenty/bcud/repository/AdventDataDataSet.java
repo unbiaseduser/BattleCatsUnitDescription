@@ -27,7 +27,7 @@ public final class AdventDataDataSet implements AdventData {
     }
 
     private List<AdventStage> initStages(AssetManager assets) {
-        var lines = AssetsJava.readTextFileLines(assets, "text/advent_stages.txt", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.PIPE)).collect(new ImmutableListCollector<>()));
+        var lines = AssetsJava.readTextFileLines(assets, "text/advent_stages.txt", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE)).collect(new ImmutableListCollector<>()));
         var detailsDir = "text/advents/";
         var imgDir = "img/advent_stages/";
         return CollectionsKt.map(lines, line -> new AdventStage(Integer.parseInt(line[0]), imgDir + line[1] + ".png", line[2], detailsDir + line[3] + ".md", line[4]));
@@ -35,8 +35,8 @@ public final class AdventDataDataSet implements AdventData {
 
     private ImmutableList<AdventBoss> initBosses(AssetManager assets) {
         var stages = initStages(assets);
-        var bossesFileLines = AssetsJava.readTextFileLines(assets, "text/advent_bosses.txt", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.PIPE)).collect(new ImmutableListCollector<>()));
-        var bossInfosFileLines = AssetsJava.readTextFileLines(assets, "text/advent_boss_infos.txt", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.PIPE)).collect(new ImmutableListCollector<>()));
+        var bossesFileLines = AssetsJava.readTextFileLines(assets, "text/advent_bosses.txt", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE)).collect(new ImmutableListCollector<>()));
+        var bossInfosFileLines = AssetsJava.readTextFileLines(assets, "text/advent_boss_infos.txt", stream -> stream.map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE)).collect(new ImmutableListCollector<>()));
         var list = new ImmutableList.Builder<AdventBoss>();
         for (var bossParts : bossesFileLines) {
             int currentBossId = Integer.parseInt(bossParts[0]);

@@ -28,7 +28,7 @@ public final class PonosQuoteData implements PonosQuoteSupplier {
     public PonosQuoteData(InputStream input) {
         try (final var reader = new BufferedReader(new InputStreamReader(input))) {
             quotes = reader.lines()
-                    .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
+                    .map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE))
                     .map(parts -> Stream.ofAll(List.of(parts))
                             .drop(1)
                             .takeWhile(part -> !"＠".equals(part))

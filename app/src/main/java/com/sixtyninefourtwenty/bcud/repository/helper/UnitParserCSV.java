@@ -31,7 +31,7 @@ public final class UnitParserCSV implements UnitSupplier {
     public UnitParserCSV(InputStream input) {
         try (final var reader = new BufferedReader(new InputStreamReader(input))) {
             unitDataFileLines = reader.lines()
-                    .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
+                    .map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE))
                     .collect(new ImmutableListCollector<>());
         }
     }

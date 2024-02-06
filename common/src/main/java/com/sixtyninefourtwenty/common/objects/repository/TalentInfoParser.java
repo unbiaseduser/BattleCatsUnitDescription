@@ -28,7 +28,7 @@ public final class TalentInfoParser implements TalentInfoSupplier {
     public TalentInfoParser(InputStream inputStream) {
         try (final var reader = new BufferedReader(new InputStreamReader(inputStream))) {
             talentInfos = reader.lines()
-                    .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
+                    .map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE))
                     .map(parts -> new Talent.Info(
                             parts[0],
                             Stream.ofAll(List.of(parts))

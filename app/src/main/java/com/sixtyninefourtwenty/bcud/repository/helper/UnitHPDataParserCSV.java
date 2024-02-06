@@ -28,7 +28,7 @@ public final class UnitHPDataParserCSV implements UnitHPDataSupplier {
     public UnitHPDataParserCSV(InputStream input) {
         try (final var reader = new BufferedReader(new InputStreamReader(input))) {
             hpDataFileLines = reader.lines()
-                    .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
+                    .map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE))
                     .collect(new ImmutableListCollector<>());
         }
     }

@@ -36,7 +36,7 @@ public final class UnitExplanationParser implements UnitExplanationSupplier {
             try (final var fileReader = new BufferedReader(new InputStreamReader(openInputStreamFromFileName.apply(fileName)))) {
                 lines = fileReader.lines()
                         .filter(not(String::isEmpty))
-                        .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
+                        .map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE))
                         .collect(new ImmutableListCollector<>());
             }
             final Function<String[], String> parseDesc = parts -> Stream.of(parts)

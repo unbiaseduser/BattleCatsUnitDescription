@@ -28,7 +28,7 @@ public final class TFMaterialInfoParser implements TFMaterialInfoSupplier {
     public TFMaterialInfoParser(InputStream inputStream) {
         try (final var reader = new BufferedReader(new InputStreamReader(inputStream))) {
             materialInfos = reader.lines()
-                    .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
+                    .map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE))
                     .map(parts -> new TFMaterial.Info(
                             parts[0],
                             Stream.ofAll(List.of(parts))

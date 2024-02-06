@@ -33,7 +33,7 @@ public final class UnitDescPageTextsParserCSV implements UnitDescPageTextsSuppli
 
         try (final var reader = new BufferedReader(new InputStreamReader(inputStream))) {
             reader.lines()
-                    .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
+                    .map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE))
                     .forEach(line -> data.put(Integer.parseInt(line[0]), Unit.DescPageTexts.of(
                             normalizeCSVValue.apply(line[1]),
                             normalizeCSVValue.apply(line[2]),

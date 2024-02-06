@@ -23,7 +23,7 @@ public final class TalentParser implements TalentSupplier {
     public TalentParser(InputStream inputStream) {
         try (final var reader = new BufferedReader(new InputStreamReader(inputStream))) {
             talents = reader.lines()
-                    .map(line -> FastStringUtils.split(line, CommonConstants.PIPE))
+                    .map(line -> FastStringUtils.split(line, CommonConstants.CSV_DELIMITER_PIPE))
                     .map(parts -> new Talent(Integer.parseInt(parts[0]), parts[1]))
                     .collect(toList());
         }
